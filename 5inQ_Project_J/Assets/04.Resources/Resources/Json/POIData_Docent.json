@@ -1,0 +1,28 @@
+{
+    "ARzone_List":[
+        {
+            "idx":0,
+            "Landmark":"박물관",
+            "LandmarkInfo":"박물관",
+            "shooting": "설명의 이미지를 카메라로찍어주세요."
+        },
+        {
+            "idx":1,
+            "Landmark":"학교동상",
+            "LandmarkInfo":"초대 총장 동상",
+            "shooting": "설명의 이미지를 카메라로찍어주세요."
+        },
+        {
+            "idx":2,
+            "Landmark":"카페",
+            "LandmarkInfo":"학교 초기에 지어진 카페",
+            "shooting": "설명의 이미지를 카메라로찍어주세요."
+        },
+        {
+            "idx":3,
+            "Landmark":"피조물",
+            "LandmarkInfo":"기부받은 피조물",
+            "shooting": "설명의 이미지를 카메라로찍어주세요."
+        }
+    ]
+}
