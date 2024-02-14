@@ -14,6 +14,7 @@ public class UIRayCaster : MonoBehaviour
     [SerializeField] private ScrollRect ListPage_Change_Content;
     private Color photozone_Color;
     private Color docent_Color;
+
     private void Start()
     {
         photozone_Color = photozone.color;
@@ -24,13 +25,11 @@ public class UIRayCaster : MonoBehaviour
         docent.color = docent_Color;
         photozone_ListPage.SetActive(true);
         docent_ListPage.SetActive(false);
-        ListPage_Change_Content.content = photozone_ListPage.GetComponent<RectTransform>();
-        
+        ListPage_Change_Content.content = photozone_ListPage.GetComponent<RectTransform>();    
     }
+
     private void Update()
-    {
-       
-        
+    {       
         if (Input.GetMouseButtonDown(0))
         {
             GraphicRaycaster raycaster = GetComponentInParent<GraphicRaycaster>();
@@ -53,8 +52,6 @@ public class UIRayCaster : MonoBehaviour
                         photozone_ListPage.SetActive(true);
                         docent_ListPage.SetActive(false);
                         ListPage_Change_Content.content = photozone_ListPage.GetComponent<RectTransform>();
-
-
                     }
 
                     else if (result.gameObject.CompareTag("DocentButton"))
@@ -67,7 +64,6 @@ public class UIRayCaster : MonoBehaviour
                         photozone_ListPage.SetActive(false);
                         docent_ListPage.SetActive(true);
                         ListPage_Change_Content.content = docent_ListPage.GetComponent<RectTransform>();
-
                     }
                 }
             }
