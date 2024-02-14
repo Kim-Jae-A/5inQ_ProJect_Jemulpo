@@ -9,11 +9,12 @@ public class UIRayCaster : MonoBehaviour
 {
     [SerializeField] private Image photozone;
     [SerializeField] private Image docent;
-    [SerializeField] private GameObject photozone_ListPage;
-    [SerializeField] private GameObject docent_ListPage;
+    [SerializeField] private GameObject ListPage;
     [SerializeField] private ScrollRect ListPage_Change_Content;
     private Color photozone_Color;
     private Color docent_Color;
+
+    private ScrollViewManager scrollViewManager;
     private void Start()
     {
         photozone_Color = photozone.color;
@@ -22,11 +23,10 @@ public class UIRayCaster : MonoBehaviour
         docent_Color.a = 0f;
         photozone.color = photozone_Color;
         docent.color = docent_Color;
-        photozone_ListPage.SetActive(true);
-        docent_ListPage.SetActive(false);
-        ListPage_Change_Content.content = photozone_ListPage.GetComponent<RectTransform>();
-        
+        ListPage_Change_Content.content = ListPage.GetComponent<RectTransform>();
+        scrollViewManager = GetComponentInChildren<ScrollViewManager>();
     }
+
     private void Update()
     {
        
@@ -50,10 +50,9 @@ public class UIRayCaster : MonoBehaviour
                         docent_Color.a = 0f;
                         photozone.color = photozone_Color;
                         docent.color = docent_Color;
-                        photozone_ListPage.SetActive(true);
-                        docent_ListPage.SetActive(false);
-                        ListPage_Change_Content.content = photozone_ListPage.GetComponent<RectTransform>();
-
+                        scrollViewManager.OnPhotozoneButtonClicked();
+                      
+                      
 
                     }
 
@@ -64,9 +63,8 @@ public class UIRayCaster : MonoBehaviour
                         docent_Color.a = 1f;
                         photozone.color = photozone_Color;
                         docent.color = docent_Color;
-                        photozone_ListPage.SetActive(false);
-                        docent_ListPage.SetActive(true);
-                        ListPage_Change_Content.content = docent_ListPage.GetComponent<RectTransform>();
+                        scrollViewManager.OnDocentButtonClicked();
+                       
 
                     }
                 }
