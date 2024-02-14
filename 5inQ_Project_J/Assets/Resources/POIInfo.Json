@@ -1,0 +1,16 @@
+{
+	"poi": [
+		{
+			"name": "경기인력개발원",
+			"description": "경기인력개발원은..",
+			"latitude": 37.55555,
+			"longtitude": 127.55555
+		},
+		{
+			"name": "집",
+			"description": "우리집은..",
+			"latitude": 37.123456,
+			"longtitude": 127.123456
+		}
+	]
+}

@@ -1,20 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+using System;
+[System.Serializable]
 public struct POIdata
 {
-    private string name;
-    private string description;
-    private float latitude;
-    private float longitude;
+    public string name;
+    public string description;
+    public float latitude;
+    public float longtitude;
 
-
-    public POIdata(string name, string description, float latitude, float longitude)
+    public POIdata(string name, string description, float latitude, float longtitude)
     {
         this.name = name;
         this.description = description;
         this.latitude = latitude;
-        this.longitude = longitude;
+        this.longtitude = longtitude;
     }
 }

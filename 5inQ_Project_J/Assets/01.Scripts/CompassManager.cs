@@ -42,7 +42,7 @@ public class CompassExample : MonoBehaviour
         arrowImage.transform.rotation = Quaternion.Slerp(arrowImage.transform.rotation, targetRotation, smoothFactor * Time.deltaTime);
 
         // 각도를 텍스트로 변환하여 Text에 출력 (반올림된 각도 사용)
-        compassText.text = Mathf.Round(-targetRotation.eulerAngles.z).ToString() + "도";
+        compassText.text = Mathf.Round(targetRotation.eulerAngles.z).ToString() + "도";
     }
 
     void OnDestroy()
