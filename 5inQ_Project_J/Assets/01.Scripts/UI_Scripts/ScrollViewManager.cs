@@ -10,6 +10,7 @@ public class AR_POI
     public string Landmark;
     public string LandmarkInfo;
     public string shooting;
+    public string imagepath;
 }
 [System.Serializable]
 public class AR_DataList
@@ -76,6 +77,9 @@ public class ScrollViewManager : MonoBehaviour
 
         Text title = element.transform.Find("Title and descripttion/Title").GetComponent<Text>();
         Text info = element.transform.Find("Title and descripttion/Description").GetComponent <Text>();
+        Image image = element.transform.Find("DescripImage").GetComponent<Image>();
+
+
         if(title != null)
         {
             title.text = ARZone_poi.Landmark;
@@ -84,6 +88,16 @@ public class ScrollViewManager : MonoBehaviour
         if (info != null)
         {
             info.text = ARZone_poi.LandmarkInfo;
+        }
+        if(image != null)
+        {
+            Sprite sprite = Resources.Load<Sprite>(ARZone_poi.imagepath);
+            if(sprite != null)
+            {
+                image.sprite = sprite;
+            }
+
+            
         }
     }
 

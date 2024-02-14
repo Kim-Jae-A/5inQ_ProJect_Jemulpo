@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 6674614244483330369}
   - component: {fileID: 3678626615627344536}
   m_Layer: 5
-  m_Name: "\uB3C4\uC2A8\uD2B8, AR \uC774\uBBF8\uC9C0"
+  m_Name: DescripImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
