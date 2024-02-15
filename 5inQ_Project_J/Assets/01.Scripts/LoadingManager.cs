@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// 로딩화면
 /// </summary>
-public class FadeInAndLoadScene : MonoBehaviour
+public class LoadingManager : MonoBehaviour
 {
     public Image LogoImage;
     public Text LogoText;
