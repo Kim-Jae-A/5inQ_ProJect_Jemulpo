@@ -16,12 +16,9 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     Color Highlightcolor = new Color(0, 0.6f, 1);
     Color Normalcolor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
 
-    public static bool isPicture = true;
-    public static bool isVideo = false;
-
     void Start()
     {
-        if (isPicture)
+        if (CameraMode.isPicture)
         {
             HighlightPhotoText();
         }
@@ -29,8 +26,8 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     }
     public void OnPhotoBtn()
     {
-        isPicture = true;
-        isVideo = false;
+        CameraMode.isPicture = true;
+        CameraMode.isVideo = false;
 
         HighlightPhotoText();
         NormalVideoText();
@@ -40,8 +37,8 @@ public class PhotoZoneUI_Btn : MonoBehaviour
 
     public void OnVideoBtn()
     {
-        isVideo = true;
-        isPicture = false;
+        CameraMode.isVideo = true;
+        CameraMode.isPicture = false;
 
         HighlightVideoText();
         NormalPhotoText();

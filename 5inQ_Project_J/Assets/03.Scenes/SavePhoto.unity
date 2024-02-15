@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3cc229e0238748a79ba43129b573e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  save_UI: {fileID: 1312800828}
+  photoView: {fileID: 1312800832}
 --- !u!1 &683566559
 GameObject:
   m_ObjectHideFlags: 0
