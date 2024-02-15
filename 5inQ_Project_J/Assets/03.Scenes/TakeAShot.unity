@@ -922,7 +922,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1104080235}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PhotoZoneShot_Btn, Assembly-CSharp
         m_MethodName: OnVideoBtn
         m_Mode: 1
@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104080230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9f5c78d6218205488835e7d0f0be15c, type: 3}
+  m_Script: {fileID: 11500000, guid: 14162a3b86992b9418780f997d10c476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   photoText: {fileID: 1069691808}
@@ -1485,6 +1485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1625181209}
   - component: {fileID: 1625181208}
+  - component: {fileID: 1625181210}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -1519,6 +1520,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1625181210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625181207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c224166b7b7cdd428cb4eb2ddcbdaa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1685154355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1616,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1104080235}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PhotoZoneShot_Btn, Assembly-CSharp
         m_MethodName: OnPhotoBtn
         m_Mode: 1
@@ -1615,7 +1628,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1104080235}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PhotoZoneShot_Btn, Assembly-CSharp
         m_MethodName: OnShotBtn
         m_Mode: 1
