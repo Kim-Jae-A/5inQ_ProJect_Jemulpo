@@ -1061,7 +1061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247f52e9385e73b4689dcbc79c7178e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPlace: {fileID: 0}
+  spawnedObject: {fileID: 1495667218531674988, guid: c41429f1b84c32b4f89985931441fd7c,
+    type: 3}
+  indicator: {fileID: 2120981771}
+  zoomSpeed: 0.05
 --- !u!1 &1279158307
 GameObject:
   m_ObjectHideFlags: 0
