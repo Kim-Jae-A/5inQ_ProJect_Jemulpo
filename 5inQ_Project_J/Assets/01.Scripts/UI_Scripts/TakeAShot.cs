@@ -5,7 +5,7 @@ using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 
-public class CameraManager : MonoBehaviour
+public class TakeAShot : MonoBehaviour
 {
     public void OnShotBtn()
     {
@@ -20,7 +20,6 @@ public class CameraManager : MonoBehaviour
         ScreenCapture.CaptureScreenshot(pathToSave);
         SceneManager.LoadScene("SavePhoto");
         yield return new WaitForEndOfFrame();
-
         
     }
 }
