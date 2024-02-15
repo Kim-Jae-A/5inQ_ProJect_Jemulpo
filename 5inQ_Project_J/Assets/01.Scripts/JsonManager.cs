@@ -1,5 +1,5 @@
+ï»¿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using UnityEngine;
 
 [System.Serializable]
@@ -74,35 +74,64 @@ public class Guide
 }
 
 public class JsonManager : MonoBehaviour
-{
-    void Start()
+{    // ì •ì  ë³€ìˆ˜ë¡œ JsonManager í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì €ì¥
+    public static JsonManager instance;
+
+    // RouteData ê°ì²´
+    public RouteData data;
+
+    void Awake()
     {
-        // Resources Æú´õ¿¡¼­ JSON ÆÄÀÏ ·Îµå
+        // ì¸ìŠ¤í„´ìŠ¤ê°€ nullì¼ ê²½ìš°ì—ë§Œ í˜„ì¬ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í• ë‹¹
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            LoadData();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    // ë°ì´í„° ë¡œë“œ í•¨ìˆ˜
+    void LoadData()
+    {
+        // Resources í´ë”ì—ì„œ JSON íŒŒì¼ ë¡œë“œ
         TextAsset json = Resources.Load<TextAsset>("Test");
 
-        // JSON ÆÄÀÏÀ» RouteData °´Ã¼·Î º¯È¯
+        // JSON íŒŒì¼ì„ RouteData ê°ì²´ë¡œ ë³€í™˜
+        data = JsonConvert.DeserializeObject<RouteData>(json.text);
+    }
+    void Start()
+    {
+        // Resources í´ë”ì—ì„œ JSON íŒŒì¼ ë¡œë“œ
+        TextAsset json = Resources.Load<TextAsset>("Test");
+
+        // JSON íŒŒì¼ì„ RouteData ê°ì²´ë¡œ ë³€í™˜
         RouteData data = JsonConvert.DeserializeObject<RouteData>(json.text);
 
-        // RouteData¿¡¼­ ÇÊ¿äÇÑ Á¤º¸ ÃßÃâ ¹× Ãâ·Â
+        // RouteDataì—ì„œ í•„ìš”í•œ ì •ë³´ ì¶”ì¶œ ë° ì¶œë ¥
         Debug.Log("Code: " + data.code);
         Debug.Log("Message: " + data.message);
         Debug.Log("Current Date Time: " + data.currentDateTime);
 
-        // Ã¹ ¹øÂ° TraFast Á¤º¸ °¡Á®¿À±â
+        // ì²« ë²ˆì§¸ TraFast ì •ë³´ ê°€ì ¸ì˜¤ê¸°
         if (data.route.trafast.Count > 0)
         {
             TraFast firstTraFast = data.route.trafast[0];
+            /*
             Debug.Log("Distance: " + firstTraFast.summary.distance);
             Debug.Log("Duration: " + firstTraFast.summary.duration);
             Debug.Log("Departure Time: " + firstTraFast.summary.departureTime);
-            // path µ¥ÀÌÅÍ È®ÀÎ
+            // path ë°ì´í„° í™•ì¸
+            
             foreach (var point in firstTraFast.path)
             {
-                // ¸®½ºÆ® ³»ÀÇ °¢ Æ÷ÀÎÆ® Ãâ·Â
+               // ë¦¬ìŠ¤íŠ¸ ë‚´ì˜ ê° í¬ì¸íŠ¸ ì¶œë ¥
                 Debug.Log("Longitude: " + point[0] + ", Latitude: " + point[1]);
-            }
-
-            // Section µ¥ÀÌÅÍ È®ÀÎ
+            }           
+            // Section ë°ì´í„° í™•ì¸
             foreach (Section sectionInfo in firstTraFast.section)
             {
                 Debug.Log("Point Index: " + sectionInfo.pointIndex);
@@ -113,7 +142,7 @@ public class JsonManager : MonoBehaviour
                 Debug.Log("Speed: " + sectionInfo.speed);
             }
 
-            // Guide µ¥ÀÌÅÍ È®ÀÎ
+            // Guide ë°ì´í„° í™•ì¸
             foreach (Guide guideInfo in firstTraFast.guide)
             {
                 Debug.Log("Point Index: " + guideInfo.pointIndex);
@@ -122,6 +151,7 @@ public class JsonManager : MonoBehaviour
                 Debug.Log("Distance: " + guideInfo.distance);
                 Debug.Log("Duration: " + guideInfo.duration);
             }
+             */
         }
     }
 }
