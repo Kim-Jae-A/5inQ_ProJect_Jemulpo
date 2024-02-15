@@ -50,4 +50,5 @@ public class CompassExample : MonoBehaviour
         // 스크립트가 파괴될 때 Compass 센서 비활성화
         Input.compass.enabled = false;
     }
+
 }
