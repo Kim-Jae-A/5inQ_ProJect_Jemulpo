@@ -406,7 +406,7 @@ MonoBehaviour:
   Info_name: {fileID: 1515381798}
   Info_Description: {fileID: 53327721}
   Info_Image: {fileID: 979127594}
-  Shooting: {fileID: 0}
+  Shooting: {fileID: 1474621826}
   PreviousScene: UI_AR&Docent ListPage
 --- !u!1 &385538132
 GameObject:
