@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIRayCaster : MonoBehaviour
@@ -15,6 +16,9 @@ public class UIRayCaster : MonoBehaviour
     private Color docent_Color;
 
     private ScrollViewManager scrollViewManager;
+
+    [SerializeField] private string AR_InfoScene;
+    [SerializeField] private string PreviousScene;
     private void Start()
     {
         photozone_Color = photozone.color;
@@ -26,11 +30,9 @@ public class UIRayCaster : MonoBehaviour
         ListPage_Change_Content.content = ListPage.GetComponent<RectTransform>();
         scrollViewManager = GetComponentInChildren<ScrollViewManager>();
     }
-
+ 
     private void Update()
-    {
-       
-        
+    {   
         if (Input.GetMouseButtonDown(0))
         {
             GraphicRaycaster raycaster = GetComponentInParent<GraphicRaycaster>();
@@ -51,9 +53,6 @@ public class UIRayCaster : MonoBehaviour
                         photozone.color = photozone_Color;
                         docent.color = docent_Color;
                         scrollViewManager.OnPhotozoneButtonClicked();
-                      
-                      
-
                     }
 
                     else if (result.gameObject.CompareTag("DocentButton"))
@@ -64,11 +63,30 @@ public class UIRayCaster : MonoBehaviour
                         photozone.color = photozone_Color;
                         docent.color = docent_Color;
                         scrollViewManager.OnDocentButtonClicked();
-                       
-
+                    }
+                    else if (result.gameObject.CompareTag("Element"))
+                    {
+                        AR_POI selectedData = result.gameObject.GetComponent<SaveListElementData>().GetARJsonData(); 
+                        //ÀÌ ¿Ö Áø?
+                        if (selectedData == null)
+                        {
+                            //Debug.Log("selectedData is null.");
+                            return;
+                        }
+                        JsonDataHolder.Instance.SetSelectedARData(selectedData);
+                        OnARList_ElementClicked();
                     }
                 }
             }
         }
+    }
+
+    public void OnARList_ElementClicked()
+    {
+        SceneManager.LoadScene(AR_InfoScene);
+    }
+    public void OnReturnButton()
+    {
+        SceneManager.LoadScene(PreviousScene);
     }
 }

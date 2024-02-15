@@ -325,9 +325,10 @@ GameObject:
   - component: {fileID: 600234870905925403}
   - component: {fileID: 6257368890838514151}
   - component: {fileID: 3845574050892210024}
+  - component: {fileID: 5158806001419760100}
   m_Layer: 5
   m_Name: "\uB3C4\uC2A8\uD2B8&\uD3EC\uD1A0\uC874 \uB9AC\uC2A4\uD2B8 \uC694\uC18C"
-  m_TagString: Untagged
+  m_TagString: Element
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,3 +393,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5158806001419760100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4529024487372935987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0cc3bbee207d1409c3d1d14ed85db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
