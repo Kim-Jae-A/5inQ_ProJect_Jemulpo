@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PhotozoneButton
   - DocentButton
+  - Element
   layers:
   - Default
   - TransparentFX
