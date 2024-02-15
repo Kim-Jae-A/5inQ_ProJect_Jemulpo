@@ -17,7 +17,7 @@ public class StaticMapManager : MonoBehaviour
     {
         map.rectTransform.sizeDelta = new Vector2(width, height);
 
-        string apiURL = url + $"?w={1024}&h={1024}&center=127.1054221,37.3591614&level=16&scale=2";
+        string apiURL = url + $"?w={1000}&h={1000}&center=127.1054221,37.3591614&level=16&scale=2";
 
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
@@ -27,16 +27,21 @@ public class StaticMapManager : MonoBehaviour
         switch (request.result)
         {
             case UnityWebRequest.Result.ConnectionError:
+                Debug.LogWarning(request.result.ToString());
                 yield break;
             case UnityWebRequest.Result.Success:
+                Debug.LogWarning(request.result.ToString());
                 break;
             case UnityWebRequest.Result.ProtocolError:
+                Debug.LogWarning(request.result.ToString());
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogWarning(request.result.ToString());
                 yield break;
         }
         if (request.isDone)
         {
+            Debug.LogWarning(request.result.ToString());
             map.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
         }
     }
