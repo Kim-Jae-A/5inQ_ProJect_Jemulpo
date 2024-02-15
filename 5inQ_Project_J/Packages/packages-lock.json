@@ -77,6 +77,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.render-pipelines.core": {
       "version": "14.0.8",
       "depth": 1,
@@ -258,6 +265,17 @@
         "com.unity.modules.vr": "1.0.0",
         "com.unity.modules.xr": "1.0.0",
         "com.unity.xr.legacyinputhelpers": "2.1.7"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.openxr": {
+      "version": "1.7.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "4.0.1",
+        "com.unity.xr.legacyinputhelpers": "2.1.2",
+        "com.unity.inputsystem": "1.4.4"
       },
       "url": "https://packages.unity.com"
     },

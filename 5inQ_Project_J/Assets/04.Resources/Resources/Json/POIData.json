@@ -13,7 +13,6 @@
             "LandmarkInfo":"중앙운동장",
             "shooting": "설명의 이미지를 카메라로찍어주세요.",
             "imagepath": "Image/PlayGround"
-
         },
         {
             "idx":2,
@@ -21,7 +20,6 @@
             "LandmarkInfo":"대강당",
             "shooting": "설명의 이미지를 카메라로찍어주세요.",
             "imagepath": "Image/Auditurium"
-
         },
         {
             "idx":3,

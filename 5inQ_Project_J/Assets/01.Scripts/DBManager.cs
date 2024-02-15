@@ -1,38 +1,82 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
-
+// JsonUtilityÎ•º ÌÜµÌï¥ JSONÏùÑ ObjectÎ°ú Î≥ÄÌôò
 public class DBManager : MonoBehaviour
 {
-    // POI µ•¿Ã≈Õ∏¶ ¿˙¿Â«“ ∏ÆΩ∫∆Æ
-
+    public string url = "https://docs.google.com/spreadsheets/d/10GaozCAYllIZpwaNcOVs_IMyFdZO7P77DjIqR2mWiBY/edit#gid=0";
     class POIDataList
     {
-        public List<POIdata> poi = new List<POIdata>();
+        public List<POIData> poi = new List<POIData>();
     }
+
     POIDataList data = new POIDataList();
+
     // Start is called before the first frame update
     void Start()
     {
-        // Resources ∆˙¥ıø°º≠ JSON ∆ƒ¿œ ∑ŒµÂ
-        TextAsset json = Resources.Load<TextAsset>("POIInfo");
-        Debug.Log(json);
-        // JSON ∆ƒ¿œ¿ª POIDataList ∞¥√º∑Œ ∫Ø»Ø
-        data = JsonUtility.FromJson<POIDataList>(json.text);
-        Debug.Log(data.poi.Count);
-        // ∫Ø»Øµ» µ•¿Ã≈Õ »Æ¿Œ
-        foreach (POIdata poi in data.poi)
+        ReadJSON();
+
+        StartCoroutine(RequestCoroutine());
+    }
+
+    IEnumerator RequestCoroutine()
+    {
+        UnityWebRequest data = UnityWebRequest.Get(url);
+
+        yield return data.SendWebRequest(); // ÏÑúÎ≤ÑÏóê Îç∞Ïù¥ÌÑ∞ ÏöîÏ≤≠ Î≥¥ÎÇ¥Í∏∞
+
+        switch(data.result)
         {
-            Debug.Log("Name: " + poi.name);
-            Debug.Log("Description: " + poi.description);
-            Debug.Log("Latitude: " + poi.latitude);
-            Debug.Log("Longtitude: " + poi.longtitude);
+            case UnityWebRequest.Result.Success:
+                break;
+            case UnityWebRequest.Result.ConnectionError:
+                yield break;
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                yield break;
+                break;
+            case UnityWebRequest.Result.DataProcessingError:
+                yield break;
+                break;
+        }
+
+        if (data.isDone)
+        {
+            string json = data.downloadHandler.text;
+
+            string[] rows = json.Split('\n');
+            for (int i = 0; i < rows.Length; i++)
+            {
+                string[] columns = rows[i].Split('\t');
+
+                foreach (var column in columns)
+                {
+                    // Debug.Log("line: " + i + ": " + column); // Íµ¨Í∏Ä Ïä§ÌîÑÎ†àÎìú ÏãúÌä∏ ÏÇ¨Ïö© 2 ~ 10Î≤àÏß∏
+                }
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ReadJSON()
     {
+        // Resources Ìè¥ÎçîÎ•º ÏÇ¨Ïö©ÌïòÏßÄ ÏïäÏùÑ Ïãú
+        //string path = Application.dataPath + "/04. Resources/ROIInfo.json";
+        //string json = File.ReadAllText(path);
+        //Debug.Log(json);
 
+        // Resources Ìè¥ÎçîÎ•º ÏÇ¨Ïö© Ïãú
+        TextAsset textAsset = Resources.Load<TextAsset>("POIInfo");
+        string json = textAsset.text;
+
+        data = JsonUtility.FromJson<POIDataList>(json);
+        foreach (POIData po in data.poi)
+        {
+            Debug.Log(po.name);
+        }
     }
 }

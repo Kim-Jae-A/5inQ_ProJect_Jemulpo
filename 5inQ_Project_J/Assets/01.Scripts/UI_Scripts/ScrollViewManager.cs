@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [System.Serializable]
 public class AR_POI
@@ -74,7 +76,7 @@ public class ScrollViewManager : MonoBehaviour
     private void CreateScrollviewContent(AR_POI ARZone_poi)
     {
         GameObject element = Instantiate(List_element, content.transform);
-
+        
         Text title = element.transform.Find("Title and descripttion/Title").GetComponent<Text>();
         Text info = element.transform.Find("Title and descripttion/Description").GetComponent <Text>();
         Image image = element.transform.Find("DescripImage").GetComponent<Image>();
@@ -89,6 +91,7 @@ public class ScrollViewManager : MonoBehaviour
         {
             info.text = ARZone_poi.LandmarkInfo;
         }
+
         if(image != null)
         {
             Sprite sprite = Resources.Load<Sprite>(ARZone_poi.imagepath);
@@ -96,9 +99,26 @@ public class ScrollViewManager : MonoBehaviour
             {
                 image.sprite = sprite;
             }
-
             
         }
+
+        EventTrigger trigger = element.AddComponent<EventTrigger>();
+        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
+        entry.callback.AddListener((eventdata) => OnScrollview_ElementClicked(ARZone_poi));
+        trigger.triggers.Add(entry);
+
+    }
+
+   private void OnScrollview_ElementClicked(AR_POI arData)
+    {
+        if (arData == null)
+        {
+            Debug.Log("arData is null.");
+            return;
+        }
+        Debug.Log("OnScrollview_ElementClicked - Data received: " + (arData != null ? arData.Landmark : "null"));
+        JsonDataHolder.Instance.SetSelectedARData(arData);
+        SceneManager.LoadScene("HyeJi_UI(02_12)", LoadSceneMode.Single);
     }
 
 }
