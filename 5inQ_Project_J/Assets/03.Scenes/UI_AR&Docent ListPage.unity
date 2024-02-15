@@ -380,7 +380,7 @@ MonoBehaviour:
   docent: {fileID: 208548967}
   ListPage: {fileID: 1160032381}
   ListPage_Change_Content: {fileID: 963548796}
-  AR_InfoScene: HyeJi_UI(02_12)
+  AR_InfoScene: PhotoZone_Docent
   PreviousScene: Home
 --- !u!1 &208548965
 GameObject:
