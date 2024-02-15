@@ -514,8 +514,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625181208}
-        m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+      - m_Target: {fileID: 1625181210}
+        m_TargetAssemblyTypeName: TakeAShot, Assembly-CSharp
         m_MethodName: OnShotBtn
         m_Mode: 1
         m_Arguments:
@@ -1505,7 +1505,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625181209}
-  - component: {fileID: 1625181208}
   - component: {fileID: 1625181210}
   m_Layer: 0
   m_Name: CameraManager
@@ -1514,18 +1513,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1625181208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625181207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fc3ba73da782614b8985c548b7d6e37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1625181209
 Transform:
   m_ObjectHideFlags: 0
@@ -1553,6 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c224166b7b7cdd428cb4eb2ddcbdaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: Resources
 --- !u!1 &1685154355
 GameObject:
   m_ObjectHideFlags: 0
