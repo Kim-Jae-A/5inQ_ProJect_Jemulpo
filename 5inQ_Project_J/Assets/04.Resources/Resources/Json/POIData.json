@@ -1,0 +1,32 @@
+{
+    "ARzone_List":[
+        {
+            "idx":0,
+            "Landmark":"식당",
+            "LandmarkInfo":"중식당",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant"
+        },
+        {
+            "idx":1,
+            "Landmark":"운동장",
+            "LandmarkInfo":"중앙운동장",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/PlayGround"
+        },
+        {
+            "idx":2,
+            "Landmark":"강당",
+            "LandmarkInfo":"대강당",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/Auditurium"
+        },
+        {
+            "idx":3,
+            "Landmark":"도서관",
+            "LandmarkInfo":"중앙 도서관",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/Library"
+        }
+    ]
+}
