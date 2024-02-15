@@ -9,7 +9,6 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     [SerializeField] Text videoText;
     [SerializeField] Image shotImage;
     [SerializeField] Sprite videoStartShot;
-    [SerializeField] Sprite videoStopShot;
     [SerializeField] Sprite photoShot;
 
 
@@ -18,7 +17,7 @@ public class PhotoZoneUI_Btn : MonoBehaviour
 
     void Start()
     {
-        if (CameraMode.isPicture)
+        if (CameraMode.isPhoto)
         {
             HighlightPhotoText();
         }
@@ -26,7 +25,7 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     }
     public void OnPhotoBtn()
     {
-        CameraMode.isPicture = true;
+        CameraMode.isPhoto = true;
         CameraMode.isVideo = false;
 
         HighlightPhotoText();
@@ -38,13 +37,15 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     public void OnVideoBtn()
     {
         CameraMode.isVideo = true;
-        CameraMode.isPicture = false;
+        CameraMode.isPhoto = false;
 
         HighlightVideoText();
         NormalPhotoText();
 
         shotImage.sprite = videoStartShot;
     }
+
+   
 
 
 

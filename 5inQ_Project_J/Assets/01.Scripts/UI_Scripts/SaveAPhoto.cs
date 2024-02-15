@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SavePhoto : MonoBehaviour
 {
     public Image photoView;
+    public string albumName = "Statin-J";
+    public string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".png";
 
 
     private void Start()
@@ -41,6 +43,16 @@ public class SavePhoto : MonoBehaviour
             Debug.LogWarning("Image file not found in persistent data path.");
         }
 
+    }
+
+    public void SaveToGallery()
+    {
+        Texture2D texture = photoView.sprite.texture;
+
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, albumName, fileName + ".png",
+            (success, path) => Debug.Log("Image save result: " + success + " " + path));
+
+        Debug.Log("Permission result: " + permission);
     }
    
 }
