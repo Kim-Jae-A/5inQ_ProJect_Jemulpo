@@ -10,14 +10,16 @@ public class StaticMapManager : MonoBehaviour
     string key_ID = "yxpbvkcpme";
     string key = "0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t";
     public RawImage map;
-    int width = 3000;
-    int height = 3000;
+    int width = 10000;
+    int height = 10000;
+    
 
     IEnumerator Start()
     {
-        map.rectTransform.sizeDelta = new Vector2(width, height);
+        //map.rectTransform.sizeDelta = new Vector2(width, height);
 
-        string apiURL = url + $"?w={1000}&h={1000}&center=127.1054221,37.3591614&level=16&scale=2";
+        //string apiURL = url + $"?w={1000}&h={1000}&center=126.74257123848277,37.71370370592501&level=16&scale=2";
+        string apiURL = url + $"?w=1000&h=1000&markers=type:n|size:mid|pos:126.74257123848277%2037.713703705925|label:1&";
 
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
