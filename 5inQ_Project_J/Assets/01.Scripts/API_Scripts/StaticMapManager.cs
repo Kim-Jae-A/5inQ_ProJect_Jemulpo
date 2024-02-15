@@ -19,7 +19,7 @@ public class StaticMapManager : MonoBehaviour
         //map.rectTransform.sizeDelta = new Vector2(width, height);
 
         //string apiURL = url + $"?w={1000}&h={1000}&center=126.74257123848277,37.71370370592501&level=16&scale=2";
-        string apiURL = url + $"?w=1000&h=1000&markers=type:n|size:mid|pos:126.74257123848277%2037.713703705925|label:1&";
+        string apiURL = url + $"?w=1000&h=1000&markers=type:n|size:mid|pos:126.74257123848277%2037.713703705925|label:1&scale=2";
 
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
