@@ -23,31 +23,42 @@ public class UIRayCaster : MonoBehaviour
     {
         photozone_Color = photozone.color;
         docent_Color = docent.color;
-        photozone_Color.a = 1f;
-        docent_Color.a = 0f;
+        string selectedButton = PlayerPrefs.GetString("selectedButton", "Photozone");
+        if(selectedButton == "Photozone")
+        {
+            photozone_Color.a = 1f;
+            docent_Color.a = 0f;
+        }
+        else if(selectedButton == "Docent")
+        {
+            photozone_Color.a = 0f;
+            docent_Color.a = 1f;
+        }
+
         photozone.color = photozone_Color;
         docent.color = docent_Color;
         ListPage_Change_Content.content = ListPage.GetComponent<RectTransform>();
         scrollViewManager = GetComponentInChildren<ScrollViewManager>();
     }
- 
+
     private void Update()
-    {   
+    {
         if (Input.GetMouseButtonDown(0))
         {
             GraphicRaycaster raycaster = GetComponentInParent<GraphicRaycaster>();
 
-            if(raycaster != null)
+            if (raycaster != null)
             {
                 PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
                 pointerEventData.position = Input.mousePosition;
                 List<RaycastResult> results = new List<RaycastResult>();
                 raycaster.Raycast(pointerEventData, results);
-                foreach(RaycastResult result in results)
+                foreach (RaycastResult result in results)
                 {
                     if (result.gameObject.CompareTag("PhotozoneButton"))
                     {
                         Debug.Log("포토존 버튼 선택.");
+                        PlayerPrefs.SetString("selectedButton", "Photozone");
                         photozone_Color.a = 1f;
                         docent_Color.a = 0f;
                         photozone.color = photozone_Color;
@@ -58,6 +69,7 @@ public class UIRayCaster : MonoBehaviour
                     else if (result.gameObject.CompareTag("DocentButton"))
                     {
                         Debug.Log("도슨트 버튼 선택");
+                        PlayerPrefs.SetString("selectedButton", "Docent");
                         photozone_Color.a = 0f;
                         docent_Color.a = 1f;
                         photozone.color = photozone_Color;
@@ -66,7 +78,7 @@ public class UIRayCaster : MonoBehaviour
                     }
                     else if (result.gameObject.CompareTag("Element"))
                     {
-                        AR_POI selectedData = result.gameObject.GetComponent<SaveListElementData>().GetARJsonData(); 
+                        AR_POI selectedData = result.gameObject.GetComponent<SaveListElementData>().GetARJsonData();
                         //이 왜 진?
                         if (selectedData == null)
                         {
