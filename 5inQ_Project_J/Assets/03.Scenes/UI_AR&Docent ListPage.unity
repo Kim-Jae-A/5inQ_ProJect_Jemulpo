@@ -380,7 +380,7 @@ MonoBehaviour:
   docent: {fileID: 208548967}
   ListPage: {fileID: 1160032381}
   ListPage_Change_Content: {fileID: 963548796}
-  AR_InfoScene: HyeJi_UI(02_12)
+  AR_InfoScene: PhotoZone_Docent
   PreviousScene: Home
 --- !u!1 &208548965
 GameObject:
@@ -1442,7 +1442,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1952249681}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 115225541}
+        m_TargetAssemblyTypeName: UIRayCaster, Assembly-CSharp
+        m_MethodName: OnReturnButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1952249681
 MonoBehaviour:
   m_ObjectHideFlags: 0
