@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// 홈 메뉴 버튼
 /// </summary>
-public class ButtonManager : MonoBehaviour
+public class SceneController : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
