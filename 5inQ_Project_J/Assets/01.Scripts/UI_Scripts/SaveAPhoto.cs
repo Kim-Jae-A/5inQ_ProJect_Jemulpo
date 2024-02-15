@@ -43,35 +43,4 @@ public class SavePhoto : MonoBehaviour
 
     }
    
-/*    IEnumerator GetPictureAndShowIt()
-    {
-        files = Directory.GetFiles(Application.persistentDataPath, "*.png");
-
-        if (files.Length > 0)
-        {
-            string pathToFile = files[files.Length - 1];
-            Texture2D texture = GetScreenImage(pathToFile);
-            yield return new WaitForEndOfFrame();
-
-            if (texture != null)
-            {
-                Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 1));
-                save_UI.GetComponent<Image>().sprite = sp;
-            }
-        }
-
-    }*/
-
-/*    private Texture2D GetScreenImage(string filePath)
-    {
-        Texture2D texture = null;
-        byte[] fileBytes;
-        if (File.Exists(filePath))
-        {
-            fileBytes = File.ReadAllBytes(filePath);
-            texture = new Texture2D(1080, 2000, TextureFormat.ARGB32, false);
-            texture.LoadImage(fileBytes);
-        }
-        return texture;
-    }*/
 }
