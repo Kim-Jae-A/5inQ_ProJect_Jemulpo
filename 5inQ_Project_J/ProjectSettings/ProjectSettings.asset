@@ -136,8 +136,6 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: -1829285252232011348, guid: c00d74bb5b6137a4286fd66bce933f3d, type: 2}
-  - {fileID: 11400000, guid: efe4d17d423f40f4abc92d48a2ee8964, type: 2}
-  - {fileID: -736583588086103326, guid: 438781a775f7f224c8b5ca58a1edbd43, type: 2}
   - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
   - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
   metroInputSource: 0
@@ -801,7 +799,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: DOTWEEN;USE_INPUT_SYSTEM_POSE_CONTROL
+    Android: DOTWEEN
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
@@ -811,9 +809,9 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     Stadia: DOTWEEN
-    Standalone: DOTWEEN;USE_INPUT_SYSTEM_POSE_CONTROL
+    Standalone: DOTWEEN
     WebGL: DOTWEEN
-    Windows Store Apps: DOTWEEN;USE_INPUT_SYSTEM_POSE_CONTROL
+    Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN
     tvOS: DOTWEEN
