@@ -1,124 +1,82 @@
-using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
-[System.Serializable]
-public class RouteData
-{
-    public int code;
-    public string message;
-    public string currentDateTime;
-    public Route route;
-}
-
-[System.Serializable]
-public class Route
-{
-    public List<TraFast> trafast;
-}
-
-[System.Serializable]
-public class TraFast
-{
-    public Summary summary;
-    public float[] path;
-    public List<Section> section;
-    public List<Guide> guide;
-}
-[System.Serializable]
-public class Summary
-{
-    public Start start;
-    public Goal goal;
-    public int distance;
-    public int duration;
-    public int etaServiceType;
-    public string departureTime;
-    public List<List<float>> bbox;
-    public int tollFare;
-    public int taxiFare;
-    public int fuelPrice;
-}
-
-[System.Serializable]
-public class Start
-{
-    public List<float> location;
-}
-
-[System.Serializable]
-public class Goal
-{
-    public List<float> location;
-    public int dir;
-}
-[System.Serializable]
-public class Section
-{
-    public int pointIndex;
-    public int pointCount;
-    public int distance;
-    public string name;
-    public int congestion;
-    public int speed;
-}
-
-[System.Serializable]
-public class Guide
-{
-    public int pointIndex;
-    public int type;
-    public string instructions;
-    public int distance;
-    public int duration;
-}
-
+// JsonUtilityÎ•º ÌÜµÌï¥ JSONÏùÑ ObjectÎ°ú Î≥ÄÌôò
 public class DBManager : MonoBehaviour
 {
+    public string url = "https://docs.google.com/spreadsheets/d/10GaozCAYllIZpwaNcOVs_IMyFdZO7P77DjIqR2mWiBY/edit#gid=0";
+    class POIDataList
+    {
+        public List<POIData> poi = new List<POIData>();
+    }
+
+    POIDataList data = new POIDataList();
+
+    // Start is called before the first frame update
     void Start()
     {
-        // Resources ∆˙¥ıø°º≠ JSON ∆ƒ¿œ ∑ŒµÂ
-        TextAsset json = Resources.Load<TextAsset>("Test");
-        // JSON ∆ƒ¿œ¿ª RouteData ∞¥√º∑Œ ∫Ø»Ø
-        RouteData data = JsonUtility.FromJson<RouteData>(json.text);
+        ReadJSON();
 
-        // RouteDataø°º≠ « ø‰«— ¡§∫∏ √ﬂ√‚ π◊ √‚∑¬
-        Debug.Log("Code: " + data.code);
-        Debug.Log("Message: " + data.message);
-        Debug.Log("Current Date Time: " + data.currentDateTime);
-        
-        // √π π¯¬∞ TraFast ¡§∫∏ ∞°¡Æø¿±‚
-        if (data.route.trafast.Count > 0)
+        StartCoroutine(RequestCoroutine());
+    }
+
+    IEnumerator RequestCoroutine()
+    {
+        UnityWebRequest data = UnityWebRequest.Get(url);
+
+        yield return data.SendWebRequest(); // ÏÑúÎ≤ÑÏóê Îç∞Ïù¥ÌÑ∞ ÏöîÏ≤≠ Î≥¥ÎÇ¥Í∏∞
+
+        switch(data.result)
         {
-            TraFast firstTraFast = data.route.trafast[0];
-            Debug.Log("Distance: " + firstTraFast.summary.distance);
-            Debug.Log("Duration: " + firstTraFast.summary.duration);
-            Debug.Log("Departure Time: " + firstTraFast.summary.departureTime);
-            Debug.Log("Path: " + firstTraFast.path.Length);
+            case UnityWebRequest.Result.Success:
+                break;
+            case UnityWebRequest.Result.ConnectionError:
+                yield break;
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                yield break;
+                break;
+            case UnityWebRequest.Result.DataProcessingError:
+                yield break;
+                break;
+        }
 
-            // Section µ•¿Ã≈Õ »Æ¿Œ
-            foreach (Section sectionInfo in firstTraFast.section)
-            {
-                Debug.Log("Point Index: " + sectionInfo.pointIndex);
-                Debug.Log("Point Count: " + sectionInfo.pointCount);
-                Debug.Log("Distance: " + sectionInfo.distance);
-                Debug.Log("Name: " + sectionInfo.name);
-                Debug.Log("Congestion: " + sectionInfo.congestion);
-                Debug.Log("Speed: " + sectionInfo.speed);
-            }
+        if (data.isDone)
+        {
+            string json = data.downloadHandler.text;
 
-            // Guide µ•¿Ã≈Õ »Æ¿Œ
-            foreach (Guide guideInfo in firstTraFast.guide)
+            string[] rows = json.Split('\n');
+            for (int i = 0; i < rows.Length; i++)
             {
-                Debug.Log("Point Index: " + guideInfo.pointIndex);
-                Debug.Log("Type: " + guideInfo.type);
-                Debug.Log("Instructions: " + guideInfo.instructions);
-                Debug.Log("Distance: " + guideInfo.distance);
-                Debug.Log("Duration: " + guideInfo.duration);
+                string[] columns = rows[i].Split('\t');
+
+                foreach (var column in columns)
+                {
+                    // Debug.Log("line: " + i + ": " + column); // Íµ¨Í∏Ä Ïä§ÌîÑÎ†àÎìú ÏãúÌä∏ ÏÇ¨Ïö© 2 ~ 10Î≤àÏß∏
+                }
             }
+        }
+    }
+
+    private void ReadJSON()
+    {
+        // Resources Ìè¥ÎçîÎ•º ÏÇ¨Ïö©ÌïòÏßÄ ÏïäÏùÑ Ïãú
+        //string path = Application.dataPath + "/04. Resources/ROIInfo.json";
+        //string json = File.ReadAllText(path);
+        //Debug.Log(json);
+
+        // Resources Ìè¥ÎçîÎ•º ÏÇ¨Ïö© Ïãú
+        TextAsset textAsset = Resources.Load<TextAsset>("POIInfo");
+        string json = textAsset.text;
+
+        data = JsonUtility.FromJson<POIDataList>(json);
+        foreach (POIData po in data.poi)
+        {
+            Debug.Log(po.name);
         }
     }
 }
