@@ -1,23 +1,24 @@
 using System;
-using System.Collections;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SavePhoto : MonoBehaviour
 {
-    public Image photoView;
-    public string albumName = "Statin-J";
-    public string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".png";
+    [SerializeField] Image photoView;
+    [SerializeField] GameObject saveMessage;
+    [SerializeField] string sceneName;
 
-
+    Texture2D savephotoTexture;
     private void Start()
     {
-        LoadResources();
-        //StartCoroutine(GetPictureAndShowIt());
+        GetImageAndShow();
+        saveMessage.SetActive(false);
     }
 
-    public void LoadResources()
+    public void GetImageAndShow()
     {
         // 내부 저장소에 저장된 이미지 파일 경로를 가져옵니다.
         string imagePath = Path.Combine(Application.persistentDataPath, "ImageName");
@@ -38,21 +39,30 @@ public class SavePhoto : MonoBehaviour
             // Image 컴포넌트에 Sprite를 설정합니다.
             photoView.sprite = sprite;
         }
-        else
-        {
-            Debug.LogWarning("Image file not found in persistent data path.");
-        }
-
     }
 
-    public void SaveToGallery()
+    public void SaveToGalleryBtn()
     {
-        Texture2D texture = photoView.sprite.texture;
+        savephotoTexture = photoView.sprite.texture;
 
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, albumName, fileName + ".png",
-            (success, path) => Debug.Log("Image save result: " + success + " " + path));
+        string albumName = "Station-J";
+        string fileName = DateTime.Now.ToString("yyyyMMdd-HH:mm:ss");
 
-        Debug.Log("Permission result: " + permission);
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(savephotoTexture, albumName, fileName + ".png",
+        (success, path) => Invoke("DeleyUI", 3f));
+
+        saveMessage.SetActive(true);
+
     }
-   
+
+    public void DeleyUI()
+    {
+        saveMessage.SetActive(false);       
+    }
+
+    public void ReturnBtn()
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
 }
