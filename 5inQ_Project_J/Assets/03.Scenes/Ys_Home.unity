@@ -668,8 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57d5e185645b443bd30e11c7b7126d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetButton: {fileID: 288373058}
-  sceneToLoad: test
+  sceneToLoad: UI_AR&Docent ListPage
   scaleMultiplier: 1.1
   outlineWidth: 5
 --- !u!114 &288373058
@@ -1007,8 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57d5e185645b443bd30e11c7b7126d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetButton: {fileID: 700481093}
-  sceneToLoad: test
+  sceneToLoad: Map_Scene
   scaleMultiplier: 1.1
   outlineWidth: 5
 --- !u!114 &700481093
@@ -1055,13 +1053,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 700481092}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Change_Scene, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1159,7 +1157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57d5e185645b443bd30e11c7b7126d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetButton: {fileID: 742478822}
   sceneToLoad: test
   scaleMultiplier: 1.1
   outlineWidth: 5
@@ -1635,7 +1632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57d5e185645b443bd30e11c7b7126d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetButton: {fileID: 1404861511}
   sceneToLoad: test
   scaleMultiplier: 1.1
   outlineWidth: 5
@@ -2439,7 +2435,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -9.3132e-10, y: 0.0000019073}
-  m_SizeDelta: {x: 1080, y: 2400}
+  m_SizeDelta: {x: 3000, y: 3000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057899126
 MonoBehaviour:
