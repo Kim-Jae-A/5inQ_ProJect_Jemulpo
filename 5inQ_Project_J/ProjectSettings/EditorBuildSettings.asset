@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/03.Scenes/TakeAShot.unity
     guid: dae3a791ca40b9846a117b45f3216a7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/03.Scenes/SavePhoto.unity
     guid: da2da977f0215144b8406dbac08a6e36
   m_configObjects:
