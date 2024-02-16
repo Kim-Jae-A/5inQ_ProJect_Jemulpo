@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 60154126}
   - component: {fileID: 60154125}
+  - component: {fileID: 60154127}
+  - component: {fileID: 60154128}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -173,6 +175,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &60154127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60154124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedLibrary: {fileID: 11400000, guid: 9dd2490231e950c4984f5e0b7d0bb4c1,
+    type: 2}
+  m_MaxNumberOfMovingImages: 2
+  m_TrackedImagePrefab: {fileID: 0}
+--- !u!114 &60154128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60154124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c885e04b5e97f4ca6c9704a1986394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &83134354
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +680,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1625181210}
         m_TargetAssemblyTypeName: TakeAShot, Assembly-CSharp
         m_MethodName: OnShotBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1625181210}
+        m_TargetAssemblyTypeName: TakeAShot, Assembly-CSharp
+        m_MethodName: OnVideoStartBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
