@@ -22,24 +22,25 @@ public class TakeAShot : MonoBehaviour
 
         if (CameraMode.isPhoto)
         {
-            // 캡처된 화면을 Texture2D로 생성합니다.
+            // 캡처된 화면을 Texture2D로 생성한다
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
             tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
             tex.Apply();
 
-            // 캡처된 화면을 PNG 형식의 byte 배열로 변환합니다.
+            // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
             byte[] bytes = tex.EncodeToPNG();
             Destroy(tex);
 
-            // byte 배열을 PNG 파일로 저장합니다.
+            // byte 배열을 PNG 파일로 저장한다.
             string fileName = "ImageName";
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             File.WriteAllBytes(filePath, bytes);
 
-            // "SavePhoto" 씬으로 이동합니다.
+            // "SavePhoto" 씬으로 이동한다.
             SceneManager.LoadScene("SavePhoto");
         }
 
+        //비디오 버튼이 눌려있을 때
         if(CameraMode.isVideo)
         {
             shotImage.sprite = videoStopShot;
@@ -49,6 +50,7 @@ public class TakeAShot : MonoBehaviour
 
         yield return null;
 
+        //비디오 촬영 버튼을 눌렀을 때
         if(CameraMode.isRecord)
         {         
             CameraMode.isRecord = false;
@@ -57,6 +59,7 @@ public class TakeAShot : MonoBehaviour
 
         yield return null;
 
+        //비디오 촬영을 끝내는 버튼을 눌렀을 때
         if (CameraMode.isRecordDone)
         {
             SceneManager.LoadScene("SavePhoto");
