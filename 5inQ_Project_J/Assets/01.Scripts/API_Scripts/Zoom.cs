@@ -15,15 +15,10 @@ public class Zoom : MonoBehaviour
     private Vector3 movePos;
 
     private bool _isZooming = false;
-    private bool _isMoving = false;
 
     private void Update()
     {
-        if (Input.touchCount == 2)
-        {
-            ZoomAndPan();
-        }
-        else if (Input.touchCount == 1)
+        if (Input.touchCount == 1)
         {
             _isZooming = false;
             Touch touch = Input.GetTouch(0);
@@ -40,6 +35,11 @@ public class Zoom : MonoBehaviour
                 prePos = touch.position - touch.deltaPosition;
             }
         }
+        else if (Input.touchCount == 2)
+        {
+            ZoomAndPan();
+        }
+        
     }
 
     private void ZoomAndPan()

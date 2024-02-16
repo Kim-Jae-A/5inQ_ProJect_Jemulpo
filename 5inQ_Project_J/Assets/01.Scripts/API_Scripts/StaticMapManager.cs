@@ -87,8 +87,8 @@ public class StaticMapManager : MonoBehaviour
 
     IEnumerator StaticMapDrawing()
     {
-        string apiURL = url + $"?w={1000}&h={1000}&center={longitude},{latitude}&level=16&scale=2";
-        //string apiURL = url + $"?w=1000&h=1000&markers=type:n|size:mid|pos:126.74257123848277%2037.713703705925|label:1&scale=2";
+        //string apiURL = url + $"?w={1000}&h={1000}&center={longitude},{latitude}&level=16&scale=2";
+        string apiURL = url + $"?w=1000&h=1000&&markers=type:d|size:tiny|pos:{longitude}%20{latitude}|color:red&scale=2";
 
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
