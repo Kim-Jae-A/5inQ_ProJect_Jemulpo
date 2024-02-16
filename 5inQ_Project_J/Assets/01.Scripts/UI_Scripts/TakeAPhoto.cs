@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 public class TakeAShot : MonoBehaviour
 {
@@ -11,30 +12,44 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] Image shotImage;
     [SerializeField] Sprite videoStopShot;
 
-    [Header("비디오 모드 버튼")]
+    [Header("버튼")]
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
+    [SerializeField] GameObject returnBtn;
+    [SerializeField] string sceneName;
 
+    [Header("카메라 영역")]
+    [SerializeField] GameObject shotUI;
+
+
+    Camera cam;
     void Start()
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);
+        returnBtn.SetActive(true);
+        shotUI.SetActive(true);
     }
 
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
+        // "SavePhoto" 씬으로 이동한다.
+        SceneManager.LoadScene("SavePhoto");
     }
 
     IEnumerator ScreenShot()
     {
+        returnBtn.SetActive(false);
+        shotUI.SetActive(false );
         yield return new WaitForEndOfFrame();
 
         if (CameraMode.isPhoto)
         {
             // 캡처된 화면을 Texture2D로 생성한다
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
+            tex.ReadPixels(captureRect, 0, 0);
             tex.Apply();
 
             // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
@@ -42,23 +57,21 @@ public class TakeAShot : MonoBehaviour
             Destroy(tex);
 
             // byte 배열을 PNG 파일로 저장한다.
-            string fileName = "ImageName";
+            string fileName = "ImageName.png";
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             File.WriteAllBytes(filePath, bytes);
 
-            // "SavePhoto" 씬으로 이동한다.
-            SceneManager.LoadScene("SavePhoto");
         }
     }
 
     //비디오 시작 버튼을 눌렀을 때
     public void OnVideoStartBtn()
     {
-        videoStartBtn.SetActive(false);
-        videoStopBtn.SetActive(true);
         //비디오 모드면
         if (CameraMode.isVideo)
         {
+            videoStartBtn.SetActive(false);
+            videoStopBtn.SetActive(true);
             CameraMode.isVideo = false;
             CameraMode.isRecord = true;
         }
@@ -72,6 +85,11 @@ public class TakeAShot : MonoBehaviour
         {
             SceneManager.LoadScene("SavePhoto");
         }
+    }
+
+    public void OnReturnBtn()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
 

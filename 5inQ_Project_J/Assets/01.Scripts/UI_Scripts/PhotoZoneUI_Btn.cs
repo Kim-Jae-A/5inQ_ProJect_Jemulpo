@@ -17,10 +17,8 @@ public class PhotoZoneUI_Btn : MonoBehaviour
 
     void Start()
     {
-        if (CameraMode.isPhoto)
-        {
-            HighlightPhotoText();
-        }
+        HighlightPhotoText();
+        NormalVideoText();
 
     }
     public void OnPhotoBtn()
