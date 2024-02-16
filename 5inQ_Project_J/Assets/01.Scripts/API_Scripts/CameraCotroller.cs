@@ -9,7 +9,7 @@ public class CameraCotroller : MonoBehaviour
     float speed = 10.0f;
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
-    public Text test;
+
     float m_fSpeed = 0.1f;       // 변경 속도를 설정합니다 
     float m_fFieldOfView = 60f;     // 카메라의 FieldOfView의 기본값을 60으로 정합니다.
 
@@ -39,7 +39,7 @@ public class CameraCotroller : MonoBehaviour
 
             // 이전 두 터치의 차이 
             float fPreDis = (vecPreTouchPos0 - vecPreTouchPos1).magnitude;
-            // 현재 두 터치의 차
+            // 현재 두 터치의 차
             float fToucDis = (Input.touches[0].position - Input.touches[1].position).magnitude;
 
 
