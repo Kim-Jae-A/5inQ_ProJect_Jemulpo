@@ -11,15 +11,19 @@ public class StaticMapManager : MonoBehaviour
     string key_ID = "yxpbvkcpme";
     string key = "0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t";
     public RawImage map;
+    string apiURL;
+    bool check;
 
     public static float latitude;  // 위도
     public static float longitude; // 경도
 
-    bool checkGPS;
     void Start()
     {
         // 위치 정보 권한 요청
         StartCoroutine(RequestLocationPermission());
+#if UNITY_EDITOR
+        StartCoroutine(StaticMapDrawing());
+#endif
     }
 
     IEnumerator RequestLocationPermission()
@@ -49,6 +53,7 @@ public class StaticMapManager : MonoBehaviour
 
         // 위치 서비스 초기화를 기다림
         StartCoroutine(UpdateLocation());
+        //StartCoroutine(StaticMapDrawing());
     }
 
     IEnumerator UpdateLocation()
@@ -67,13 +72,13 @@ public class StaticMapManager : MonoBehaviour
                 // 현재 위치 정보를 구조체에 저장
                 latitude = Input.location.lastData.latitude;
                 longitude = Input.location.lastData.longitude;
-                if (!checkGPS)
+
+                if (!check)
                 {
                     StartCoroutine(StaticMapDrawing());
                 }
-                checkGPS = true;
+                check = true;
             }
-
             // 잠시 대기 후 다시 위치 업데이트
             yield return new WaitForSeconds(1);
         }
@@ -87,9 +92,10 @@ public class StaticMapManager : MonoBehaviour
 
     IEnumerator StaticMapDrawing()
     {
-        //string apiURL = url + $"?w={1000}&h={1000}&center={longitude},{latitude}&level=16&scale=2";
-        string apiURL = url + $"?w=1000&h=1000&&markers=type:d|size:tiny|pos:{longitude}%20{latitude}|color:red&scale=2";
-
+        apiURL = url + $"?w=1000&h=1000&center={longitude},{latitude}&level=16&scale=2"; // 현재 위치 좌표
+#if UNITY_EDITOR
+        apiURL = url + $"?w=1000&h=1000&center=126.657566,37.466480&level=17&scale=2"; //제물포역
+#endif
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);
