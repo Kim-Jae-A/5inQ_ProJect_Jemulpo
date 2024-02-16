@@ -39,4 +39,6 @@ public class ButtonTouchEffect : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         SceneManager.LoadScene(sceneToLoad); // 지정된 씬으로 이동
     }
+
+
 }
