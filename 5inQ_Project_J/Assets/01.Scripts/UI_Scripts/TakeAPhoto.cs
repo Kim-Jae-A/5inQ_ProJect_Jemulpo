@@ -11,6 +11,16 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] Image shotImage;
     [SerializeField] Sprite videoStopShot;
 
+    [Header("비디오 모드 버튼")]
+    [SerializeField] GameObject videoStartBtn;
+    [SerializeField] GameObject videoStopBtn;
+
+    void Start()
+    {
+        videoStartBtn.SetActive(true);
+        videoStopBtn.SetActive(false);
+    }
+
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
@@ -39,33 +49,36 @@ public class TakeAShot : MonoBehaviour
             // "SavePhoto" 씬으로 이동한다.
             SceneManager.LoadScene("SavePhoto");
         }
+    }
 
-        //비디오 버튼이 눌려있을 때
-        if(CameraMode.isVideo)
+    //비디오 시작 버튼을 눌렀을 때
+    public void OnVideoStartBtn()
+    {
+        videoStartBtn.SetActive(false);
+        videoStopBtn.SetActive(true);
+        //비디오 모드면
+        if (CameraMode.isVideo)
         {
-            shotImage.sprite = videoStopShot;
             CameraMode.isVideo = false;
             CameraMode.isRecord = true;
         }
+    }
 
-        yield return null;
-
-        //비디오 촬영 버튼을 눌렀을 때
-        if(CameraMode.isRecord)
-        {         
-            CameraMode.isRecord = false;
-            CameraMode.isRecordDone = true;
-        }
-
-        yield return null;
-
-        //비디오 촬영을 끝내는 버튼을 눌렀을 때
-        if (CameraMode.isRecordDone)
+    //비디오 촬영을 끝내는 버튼을 눌렀을 때
+    public void OnRecordDoneBtn()
+    {
+        //촬영 중이면
+        if (CameraMode.isRecord)
         {
             SceneManager.LoadScene("SavePhoto");
         }
- 
     }
+
+
+
+
+
+
 
 }
 
