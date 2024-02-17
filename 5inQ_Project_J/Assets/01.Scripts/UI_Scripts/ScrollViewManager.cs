@@ -115,10 +115,12 @@ public class ScrollViewManager : MonoBehaviour
 
         }
 
-        EventTrigger trigger = element.AddComponent<EventTrigger>();
-        EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
-        entry.callback.AddListener((eventdata) => OnScrollview_ElementClicked(ARZone_poi));
-        trigger.triggers.Add(entry);
+        Button button = element.GetComponent<Button>();
+        if(button == null)
+        {
+            button = element.AddComponent<Button>();
+        }
+        button.onClick.AddListener(() => OnScrollview_ElementClicked(ARZone_poi));
 
     }
 
