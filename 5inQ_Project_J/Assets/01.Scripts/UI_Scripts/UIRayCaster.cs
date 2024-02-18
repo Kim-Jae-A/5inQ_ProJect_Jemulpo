@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -8,12 +9,15 @@ using UnityEngine.UI;
 
 public class UIRayCaster : MonoBehaviour
 {
-    [SerializeField] private Image photozone;
-    [SerializeField] private Image docent;
+
+    [Header("도슨트 포토존 상태 버튼")]
+    [SerializeField] private Toggle photozone;
+    [SerializeField] private Toggle docent;
+    [SerializeField] private ToggleGroup toggleGroup;
+
+    [Header("스크롤뷰")]
     [SerializeField] private GameObject ListPage;
     [SerializeField] private ScrollRect ListPage_Change_Content;
-    private Color photozone_Color;
-    private Color docent_Color;
 
     private ScrollViewManager scrollViewManager;
 
@@ -21,27 +25,46 @@ public class UIRayCaster : MonoBehaviour
     [SerializeField] private string PreviousScene;
     private void Start()
     {
-        photozone_Color = photozone.color;
-        docent_Color = docent.color;
         string selectedButton = PlayerPrefs.GetString("selectedButton", "Photozone");
         if(selectedButton == "Photozone")
         {
-            photozone_Color.a = 1f;
-            docent_Color.a = 0f;
+            photozone.isOn = true;
+            docent.isOn = false;
         }
         else if(selectedButton == "Docent")
         {
-            photozone_Color.a = 0f;
-            docent_Color.a = 1f;
+            photozone.isOn = false;
+            docent.isOn = true;
         }
 
-        photozone.color = photozone_Color;
-        docent.color = docent_Color;
         ListPage_Change_Content.content = ListPage.GetComponent<RectTransform>();
         scrollViewManager = GetComponentInChildren<ScrollViewManager>();
-    }
 
-    private void Update()
+        photozone.onValueChanged.AddListener(OnToggleValueChanged);
+        docent.onValueChanged.AddListener(OnToggleValueChanged);
+    }
+    
+    public void OnToggleValueChanged(bool isOn)
+    {
+        if (isOn)
+        {
+            if (photozone.isOn)
+            {
+                Debug.Log("포토존 토글 선택.");
+                PlayerPrefs.SetString("selectedButton", "Photozone");
+                scrollViewManager.OnPhotozoneButtonClicked();
+            }
+            else if (docent.isOn)
+            {
+                Debug.Log("도슨트 토글 선택");
+                PlayerPrefs.SetString("selectedButton", "Docent");
+                scrollViewManager.OnDocentButtonClicked();
+            }
+        }
+    }
+    
+
+    /*private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -91,7 +114,7 @@ public class UIRayCaster : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void OnARList_ElementClicked()
     {

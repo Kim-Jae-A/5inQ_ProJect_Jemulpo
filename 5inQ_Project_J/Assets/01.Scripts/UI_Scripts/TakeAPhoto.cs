@@ -4,37 +4,49 @@ using System;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+using UnityEngine.XR.ARFoundation.Samples;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARCore;
 using UnityEngine.Rendering.Universal;
+
 
 public class TakeAShot : MonoBehaviour
 {
-    [Header("¹öÆ° ÀÌ¹ÌÁö")]
+    [Header("ë²„íŠ¼ ì´ë¯¸ì§€")]
     [SerializeField] Image shotImage;
     [SerializeField] Sprite videoStopShot;
 
-    [Header("¹öÆ°")]
+    [Header("ë²„íŠ¼")]
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
     [SerializeField] GameObject returnBtn;
     [SerializeField] string sceneName;
 
-    [Header("Ä«¸Ş¶ó ¿µ¿ª")]
+
+    [SerializeField]private ARSession arsesion;
+    private string mp4Path;
+    [Header("ì¹´ë©”ë¼ ì˜ì—­")]
     [SerializeField] GameObject shotUI;
-
-
     Camera cam;
+
     void Start()
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);
+        
+        arsesion = GetComponent<ARSession>();
+        mp4Path = Path.Combine(Application.persistentDataPath, "arcore_session.mp4");
+        
         returnBtn.SetActive(true);
         shotUI.SetActive(true);
+
     }
 
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
-        // "SavePhoto" ¾ÀÀ¸·Î ÀÌµ¿ÇÑ´Ù.
+        // "SavePhoto" ì”¬ìœ¼ë¡œ ì´ë™í•œë‹¤.
         SceneManager.LoadScene("SavePhoto");
     }
 
@@ -46,17 +58,17 @@ public class TakeAShot : MonoBehaviour
 
         if (CameraMode.isPhoto)
         {
-            // Ä¸Ã³µÈ È­¸éÀ» Texture2D·Î »ı¼ºÇÑ´Ù
+            // ìº¡ì²˜ëœ í™”ë©´ì„ Texture2Dë¡œ ìƒì„±í•œë‹¤
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
             Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
             tex.ReadPixels(captureRect, 0, 0);
             tex.Apply();
 
-            // Ä¸Ã³µÈ È­¸éÀ» PNG Çü½ÄÀÇ byte ¹è¿­·Î º¯È¯ÇÑ´Ù.
+            // ìº¡ì²˜ëœ í™”ë©´ì„ PNG í˜•ì‹ì˜ byte ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
             byte[] bytes = tex.EncodeToPNG();
             Destroy(tex);
 
-            // byte ¹è¿­À» PNG ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
+            // byte ë°°ì—´ì„ PNG íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
             string fileName = "ImageName.png";
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             File.WriteAllBytes(filePath, bytes);
@@ -64,26 +76,56 @@ public class TakeAShot : MonoBehaviour
         }
     }
 
-    //ºñµğ¿À ½ÃÀÛ ¹öÆ°À» ´­·¶À» ¶§
+    //ë¹„ë””ì˜¤ ì‹œì‘ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
     public void OnVideoStartBtn()
     {
-        //ºñµğ¿À ¸ğµå¸é
+        //ë¹„ë””ì˜¤ ëª¨ë“œë©´
         if (CameraMode.isVideo)
         {
             videoStartBtn.SetActive(false);
             videoStopBtn.SetActive(true);
             CameraMode.isVideo = false;
             CameraMode.isRecord = true;
+           if(arsesion.subsystem is ARCoreSessionSubsystem subsystem)
+            {
+                using (var config = new ArRecordingConfig(subsystem.session))
+                {
+                    config.SetMp4DatasetFilePath(subsystem.session, mp4Path);
+                    var status = subsystem.StartRecording(config);
+                    Debug.Log($"StartRecording to {config.GetMp4DatasetFilePath(subsystem.session)} => {status}");
+                }
+            }
+           
+            
         }
     }
 
-    //ºñµğ¿À ÃÔ¿µÀ» ³¡³»´Â ¹öÆ°À» ´­·¶À» ¶§
+    //ë¹„ë””ì˜¤ ì´¬ì˜ì„ ëë‚´ëŠ” ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
     public void OnRecordDoneBtn()
     {
-        //ÃÔ¿µ ÁßÀÌ¸é
+        //ì´¬ì˜ ì¤‘ì´ë©´
         if (CameraMode.isRecord)
         {
-            SceneManager.LoadScene("SavePhoto");
+            // ë…¹í™” ì¢…ë£Œ
+            if (arsesion.subsystem is ARCoreSessionSubsystem subsystem)
+            {
+                var status = subsystem.StopRecording();
+                Debug.Log($"StopRecording() => {status}");
+
+                if (status == ArStatus.Success)
+                {
+                    Debug.Log(File.Exists(mp4Path)
+                        ? $"ARCore session saved to {mp4Path}"
+                        : "Recording completed, but no file was produced.");
+                }
+
+                // ë…¹í™”ê°€ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œë˜ë©´ ì €ì¥ ì”¬ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+                if (File.Exists(mp4Path))
+                {
+                    SceneManager.LoadScene("SavePhoto");
+                }
+            }
+            //SceneManager.LoadScene("SavePhoto");
         }
     }
 
@@ -91,17 +133,4 @@ public class TakeAShot : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
