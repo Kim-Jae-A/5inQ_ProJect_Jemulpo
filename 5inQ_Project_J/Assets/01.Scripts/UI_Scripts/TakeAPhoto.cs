@@ -4,6 +4,10 @@ using System;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation.Samples;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARCore;
+
 
 public class TakeAShot : MonoBehaviour
 {
@@ -15,10 +19,16 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
 
+    [SerializeField]private ARSession arsesion;
+    private string mp4Path;
+
+
     void Start()
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);
+        arsesion = GetComponent<ARSession>();
+        mp4Path = Path.Combine(Application.persistentDataPath, "arcore_session.mp4");
     }
 
     public void OnShotBtn()
@@ -61,6 +71,17 @@ public class TakeAShot : MonoBehaviour
         {
             CameraMode.isVideo = false;
             CameraMode.isRecord = true;
+           if(arsesion.subsystem is ARCoreSessionSubsystem subsystem)
+            {
+                using (var config = new ArRecordingConfig(subsystem.session))
+                {
+                    config.SetMp4DatasetFilePath(subsystem.session, mp4Path);
+                    var status = subsystem.StartRecording(config);
+                    Debug.Log($"StartRecording to {config.GetMp4DatasetFilePath(subsystem.session)} => {status}");
+                }
+            }
+           
+            
         }
     }
 
@@ -70,20 +91,27 @@ public class TakeAShot : MonoBehaviour
         //촬영 중이면
         if (CameraMode.isRecord)
         {
-            SceneManager.LoadScene("SavePhoto");
+            // 녹화 종료
+            if (arsesion.subsystem is ARCoreSessionSubsystem subsystem)
+            {
+                var status = subsystem.StopRecording();
+                Debug.Log($"StopRecording() => {status}");
+
+                if (status == ArStatus.Success)
+                {
+                    Debug.Log(File.Exists(mp4Path)
+                        ? $"ARCore session saved to {mp4Path}"
+                        : "Recording completed, but no file was produced.");
+                }
+
+                // 녹화가 성공적으로 완료되면 저장 씬으로 이동합니다.
+                if (File.Exists(mp4Path))
+                {
+                    SceneManager.LoadScene("SavePhoto");
+                }
+            }
+            //SceneManager.LoadScene("SavePhoto");
         }
     }
 
-
-
-
-
-
-
 }
-
-
-
-
-
-

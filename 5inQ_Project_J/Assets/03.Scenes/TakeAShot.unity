@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 544718503}
   - component: {fileID: 544718502}
   m_Layer: 5
-  m_Name: "\uCD2C\uC601 \uC911\uC9C0 \uBC84\uD2BC"
+  m_Name: StopFilimingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 572473078}
   - component: {fileID: 572473077}
   m_Layer: 5
-  m_Name: "\uCD2C\uC601 \uC2DC\uC791 \uBC84\uD2BC"
+  m_Name: StartFilmingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1719,6 +1719,7 @@ MonoBehaviour:
   videoStopShot: {fileID: 21300000, guid: 75e066b5b9e05ae4690a9398456e2a5c, type: 3}
   videoStartBtn: {fileID: 572473075}
   videoStopBtn: {fileID: 544718501}
+  arsesion: {fileID: 491511790}
 --- !u!1 &1685154355
 GameObject:
   m_ObjectHideFlags: 0
