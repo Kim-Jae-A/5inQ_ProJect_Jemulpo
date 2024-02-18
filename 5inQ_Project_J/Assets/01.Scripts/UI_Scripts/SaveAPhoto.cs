@@ -21,7 +21,7 @@ public class SavePhoto : MonoBehaviour
     public void GetImageAndShow()
     {
         // 내부 저장소에 저장된 이미지 파일 경로를 가져온다
-        string imagePath = Path.Combine(Application.persistentDataPath, "ImageName");
+        string imagePath = Path.Combine(Application.persistentDataPath, "ImageName.png");
 
         // 파일이 존재하는지 확인
         if (File.Exists(imagePath))
@@ -44,11 +44,12 @@ public class SavePhoto : MonoBehaviour
     public void SaveToGalleryBtn()
     {
         //빈 텍스쳐에 사진이 출력된 이미지의 텍스처를 저장한다
-        savephotoTexture = photoView.sprite.texture;
+        Texture2D savephotoTexture = photoView.sprite.texture;
+ 
 
         //앨범이름, 파일이름 설정
         string albumName = "Station-J";
-        string fileName = DateTime.Now.ToString("yyyyMMdd-HH:mm:ss");
+        string fileName = DateTime.Now.ToString("yyMMdd-HH-mm-ss");
 
         //NativeGallery를 사용해 갤러리에 저장
         NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(savephotoTexture, albumName, fileName + ".png",
