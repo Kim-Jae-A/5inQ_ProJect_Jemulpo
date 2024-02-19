@@ -9,6 +9,10 @@ using UnityEngine.XR.ARFoundation.Samples;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARCore;
 using UnityEngine.Rendering.Universal;
+using UnityEditor.Recorder;
+using UnityEngine.Recorder.Examples;
+using UnityEditor.Recorder.Encoder;
+using UnityEditor.Recorder.Input;
 
 
 public class TakeAShot : MonoBehaviour
@@ -23,25 +27,70 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] GameObject returnBtn;
     [SerializeField] string sceneName;
 
-
-    [SerializeField]private ARSession arsesion;
-    private string mp4Path;
-
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
-    Camera cam;
+    [SerializeField]private Camera ARcamera;
+
+    RecorderController _recorderController;
+    internal MovieRecorderSettings _settings = null;
+    private bool isRecording = false;
+    private bool shouldLoadNextScene = false;
 
     void Start()
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);
         
-        arsesion = GetComponent<ARSession>();
-        mp4Path = Path.Combine(Application.persistentDataPath, "arcore_session.mp4");
-        
         returnBtn.SetActive(true);
         shotUI.SetActive(true);
+    }
+    public FileInfo OutputFile
+    {
+        get
+        {
+            var fileName = _settings.OutputFile + ".mp4";
+            return new FileInfo(fileName);
+        }
+    }
+    private void InitializeRecord()
+    {
+        var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
+        _recorderController = new RecorderController(controllerSettings);
 
+        var OutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "SampleRecording"));
+        if (!OutputFolder.Exists)
+        {
+            OutputFolder.Create();
+        }
+
+
+        _settings = ScriptableObject.CreateInstance<MovieRecorderSettings>();
+        _settings.name = "Recorder_AR";
+        _settings.Enabled = true;
+
+        _settings.EncoderSettings = new CoreEncoderSettings
+        {
+            EncodingQuality = CoreEncoderSettings.VideoEncodingQuality.Medium,
+            Codec = CoreEncoderSettings.OutputCodec.MP4
+        };
+        _settings.CaptureAlpha = true;
+
+        var ArCamera = FindObjectOfType<ARCameraManager>().GetComponent<Camera>();
+        _settings.ImageInputSettings = new CameraInputSettings
+        {
+            CameraTag = "MainCamera",
+            OutputWidth = 1080,
+            OutputHeight = 2400
+        };
+
+        _settings.OutputFile = OutputFolder.FullName + "/" + "video";
+
+        controllerSettings.AddRecorderSettings(_settings);
+        controllerSettings.SetRecordModeToManual();
+        controllerSettings.FrameRate = 30.0f;
+
+        RecorderOptions.VerboseMode = false;
+        _recorderController.PrepareRecording();
     }
 
     public void OnShotBtn()
@@ -51,6 +100,57 @@ public class TakeAShot : MonoBehaviour
         SceneManager.LoadScene("SavePhoto");
     }
 
+
+    //비디오 시작 버튼을 눌렀을 때
+    public void OnVideoStartBtn()
+    {
+        //비디오 모드면
+        if (CameraMode.isVideo)
+        {
+            videoStartBtn.SetActive(false);
+            videoStopBtn.SetActive(true);
+            CameraMode.isVideo = false;
+            CameraMode.isRecord = true;
+            if (_recorderController == null)
+            {
+                var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
+                _recorderController = new RecorderController(controllerSettings);
+                _recorderController.PrepareRecording();
+            }
+            if (_settings == null)
+            {
+                InitializeRecord();
+            }
+            Debug.Log("녹화시작");
+            _recorderController.StartRecording();
+            Debug.Log($"Started recording for file {OutputFile.FullName}");
+            isRecording = true; 
+        }
+    }
+    void Update()
+    {
+        if (shouldLoadNextScene)
+        {
+            SceneManager.LoadScene("SavePhoto");
+        }
+    }
+
+    //비디오 촬영을 끝내는 버튼을 눌렀을 때
+    public void OnRecordDoneBtn()
+    {
+        isRecording = false;
+        //촬영 중이면
+        if (CameraMode.isRecord)
+        {
+            if (!isRecording)
+            {
+                // 녹화 종료
+                _recorderController.StopRecording();
+                Debug.Log("녹화종료");
+                shouldLoadNextScene = true;
+            }
+        }
+    }
     IEnumerator ScreenShot()
     {
         returnBtn.SetActive(false);
@@ -77,61 +177,9 @@ public class TakeAShot : MonoBehaviour
         }
     }
 
-    //비디오 시작 버튼을 눌렀을 때
-    public void OnVideoStartBtn()
-    {
-        //비디오 모드면
-        if (CameraMode.isVideo)
-        {
-            videoStartBtn.SetActive(false);
-            videoStopBtn.SetActive(true);
-            CameraMode.isVideo = false;
-            CameraMode.isRecord = true;
-           if(arsesion.subsystem is ARCoreSessionSubsystem subsystem)
-            {
-                using (var config = new ArRecordingConfig(subsystem.session))
-                {
-                    config.SetMp4DatasetFilePath(subsystem.session, mp4Path);
-                    var status = subsystem.StartRecording(config);
-                    Debug.Log($"StartRecording to {config.GetMp4DatasetFilePath(subsystem.session)} => {status}");
-                }
-            }
-           
-            
-        }
-    }
-
-    //비디오 촬영을 끝내는 버튼을 눌렀을 때
-    public void OnRecordDoneBtn()
-    {
-        //촬영 중이면
-        if (CameraMode.isRecord)
-        {
-            // 녹화 종료
-            if (arsesion.subsystem is ARCoreSessionSubsystem subsystem)
-            {
-                var status = subsystem.StopRecording();
-                Debug.Log($"StopRecording() => {status}");
-
-                if (status == ArStatus.Success)
-                {
-                    Debug.Log(File.Exists(mp4Path)
-                        ? $"ARCore session saved to {mp4Path}"
-                        : "Recording completed, but no file was produced.");
-                }
-
-                // 녹화가 성공적으로 완료되면 저장 씬으로 이동합니다.
-                if (File.Exists(mp4Path))
-                {
-                    SceneManager.LoadScene("SavePhoto");
-                }
-            }
-            //SceneManager.LoadScene("SavePhoto");
-        }
-    }
-
     public void OnReturnBtn()
     {
         SceneManager.LoadScene(sceneName);
     }
+   
 }
