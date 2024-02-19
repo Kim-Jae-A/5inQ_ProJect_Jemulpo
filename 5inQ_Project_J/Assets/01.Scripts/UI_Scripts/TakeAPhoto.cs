@@ -9,6 +9,7 @@ using UnityEngine.XR.ARFoundation.Samples;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARCore;
 using UnityEngine.Rendering.Universal;
+using System.Diagnostics.Tracing;
 
 
 public class TakeAShot : MonoBehaviour
@@ -21,14 +22,16 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
     [SerializeField] GameObject returnBtn;
-    [SerializeField] string sceneName;
 
 
-    [SerializeField]private ARSession arsesion;
-    private string mp4Path;
+
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
     Camera cam;
+
+    [Header("비디오 촬영")]
+    [SerializeField] private ARSession arsesion;
+    private string mp4Path;
 
     void Start()
     {
@@ -38,30 +41,27 @@ public class TakeAShot : MonoBehaviour
         arsesion = GetComponent<ARSession>();
         mp4Path = Path.Combine(Application.persistentDataPath, "arcore_session.mp4");
         
-        returnBtn.SetActive(true);
-        shotUI.SetActive(true);
+        //shotUI.SetActive(true);
 
     }
 
     public void OnShotBtn()
     {
+        shotUI.SetActive(false);
         StartCoroutine(ScreenShot());
+
         // "SavePhoto" 씬으로 이동한다.
         SceneManager.LoadScene("SavePhoto");
     }
 
     IEnumerator ScreenShot()
     {
-        returnBtn.SetActive(false);
-        shotUI.SetActive(false );
         yield return new WaitForEndOfFrame();
-
         if (CameraMode.isPhoto)
         {
             // 캡처된 화면을 Texture2D로 생성한다
-            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
-            tex.ReadPixels(captureRect, 0, 0);
+            Texture2D tex = new Texture2D(Screen.width, 2000, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
             tex.Apply();
 
             // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
@@ -131,6 +131,6 @@ public class TakeAShot : MonoBehaviour
 
     public void OnReturnBtn()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("PhotoZon_Docent");
     }
 }
