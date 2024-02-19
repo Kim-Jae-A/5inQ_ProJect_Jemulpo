@@ -2,67 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class CatAnimatorController : MonoBehaviour
 {
-    private Animator animator;
-    [SerializeField] Transform target; // 여러 목표 위치를 배열로 관리합니다.
-
-
-    [SerializeField]private float speed = 2.0f;
-    [SerializeField]private float rotationspeed = 5.0f;
-    [SerializeField] private float scaleUp = 0.1f;
-    [SerializeField]private float growthSpeed = 0.1f;
-    [SerializeField]private float maxScale = 2.0f;
-
-
-
-
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        animator.SetBool("IsWalking", true);
-    }
+    public ARTrackedImage trackedImage;
+    public bool isMoving = false;
+    float speed = 1.0f;
 
     private void Update()
     {
-        float step = speed * Time.deltaTime;
-        if(transform.localScale.x < maxScale )
+        if (isMoving)
         {
-            transform.localScale += new Vector3(growthSpeed, growthSpeed, growthSpeed) * Time.deltaTime;
-        }
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
-        if (Vector3.Distance(transform.position, target.position) < 0.001f)
-        {
-            if (animator)
-            {
-                animator.SetBool("IsWalking", false);
-                transform.localScale = new Vector3(maxScale, maxScale, maxScale);
-                StartCoroutine(PlayRandomAnimationAfterDelay(1.5f)); // 3초 후에 isCry를 true로 변경합니다.
-            }
         }
     }
-    IEnumerator PlayRandomAnimationAfterDelay(float delay)
+    void MoveWithinImageBounds()
     {
-        yield return new WaitForSeconds(delay);
+        GetComponent<Animator>().SetBool("IsWalking", true);
+        float step = speed * Time.deltaTime;
 
-        // 랜덤으로 'IsJumping' 또는 'IsCry' 애니메이션을 실행합니다.
-        bool isJumping = (Random.value > 0.5f);
-        if (isJumping)
+        Vector3 targetPosition = trackedImage.transform.position;
+        Vector3 nextPosition = Vector3.MoveTowards(transform.position, targetPosition, step);
+        if (Vector3.Distance(nextPosition, trackedImage.transform.position) <= trackedImage.size.x / 2) // 이미지의 반경 내에 있는지 확인
         {
-            animator.SetBool("IsJumping", true);
-            yield return new WaitForSeconds(1.5f);
-            animator.SetBool("IsJumping", false);
+            transform.position = nextPosition;
         }
         else
         {
-            animator.SetBool("IsCry", true);
-            yield return new WaitForSeconds(1.5f);
-            animator.SetBool("IsCry", false);
+            // 걷는 애니메이션 종료
+            GetComponent<Animator>().SetBool("IsWalking", false);
+            isMoving = false;
         }
-
-        animator.SetBool("IsWalking", false); // 걷는 애니메이션을 다시 시작합니다.
     }
 }

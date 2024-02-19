@@ -26,6 +26,7 @@ public class TakeAShot : MonoBehaviour
 
     [SerializeField]private ARSession arsesion;
     private string mp4Path;
+
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
     Camera cam;
