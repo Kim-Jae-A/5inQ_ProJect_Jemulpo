@@ -7,9 +7,13 @@ using UnityEngine.Android;
 
 public class StaticMapManager : MonoBehaviour
 {
-    string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster";
-    string key_ID = "yxpbvkcpme";
-    string key = "0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t";
+    [Header("API 설정")]
+    public string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster";
+    public float width;
+    public float height;
+    public int zoomLevel;
+    public string key_ID;
+    public string key;
     public RawImage map;
     string apiURL;
     bool check;
@@ -92,9 +96,9 @@ public class StaticMapManager : MonoBehaviour
 
     IEnumerator StaticMapDrawing()
     {
-        apiURL = url + $"?w=1000&h=1000&center={longitude},{latitude}&level=16&scale=2"; // 현재 위치 좌표
+        apiURL = url + $"?w={width}&h={height}&center={longitude},{latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
 #if UNITY_EDITOR
-        apiURL = url + $"?w=1000&h=1000&center=126.657566,37.466480&level=17&scale=2"; //제물포역
+        apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
 #endif
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);

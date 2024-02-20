@@ -248,17 +248,17 @@ PrefabInstance:
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -158.974
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -334.62708
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -115.96731
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
@@ -2375,8 +2375,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91669994d422894a88e04807838f8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  url: https://naveropenapi.apigw.ntruss.com/map-static/v2/raster
+  width: 1000
+  height: 1000
+  zoomLevel: 17
+  key_ID: yxpbvkcpme
+  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
   map: {fileID: 175012233}
-  apiURL: 
 --- !u!1 &2040568650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00040690106}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103070975
@@ -2974,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 7480557391544423191, guid: 6d83bea2012afa246ba4696e1acc74c4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480557391544423191, guid: 6d83bea2012afa246ba4696e1acc74c4,
         type: 3}
@@ -2999,12 +3004,12 @@ PrefabInstance:
     - target: {fileID: 7480557391544423191, guid: 6d83bea2012afa246ba4696e1acc74c4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -459.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480557391544423191, guid: 6d83bea2012afa246ba4696e1acc74c4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 360.9996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480557391544423191, guid: 6d83bea2012afa246ba4696e1acc74c4,
         type: 3}
