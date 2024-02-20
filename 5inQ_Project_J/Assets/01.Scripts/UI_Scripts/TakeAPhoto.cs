@@ -27,6 +27,7 @@ public class TakeAShot : MonoBehaviour
 
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
+    [SerializeField] RenderTexture shotTexture;
     Camera cam;
 
     [Header("비디오 촬영")]
@@ -47,7 +48,6 @@ public class TakeAShot : MonoBehaviour
 
     public void OnShotBtn()
     {
-        shotUI.SetActive(false);
         StartCoroutine(ScreenShot());
 
         // "SavePhoto" 씬으로 이동한다.
@@ -56,23 +56,32 @@ public class TakeAShot : MonoBehaviour
 
     IEnumerator ScreenShot()
     {
+        shotUI.SetActive(false);
+
         yield return new WaitForEndOfFrame();
+
         if (CameraMode.isPhoto)
         {
-            // 캡처된 화면을 Texture2D로 생성한다
-            Texture2D tex = new Texture2D(Screen.width, 2000, TextureFormat.RGB24, false);
-            tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
-            tex.Apply();
+            if(shotUI.activeSelf == false)
+            {              
+                // 캡처된 화면을 Texture2D로 생성한다
+                Texture2D tex = new Texture2D(shotTexture.width, shotTexture.height, TextureFormat.RGB24, false);
+                RenderTexture.active = shotTexture;
 
-            // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
-            byte[] bytes = tex.EncodeToPNG();
-            Destroy(tex);
+                tex.ReadPixels(new Rect(0, 0, shotTexture.width, shotTexture.height), 0, 0);
+                tex.Apply();
 
-            // byte 배열을 PNG 파일로 저장한다.
-            string fileName = "ImageName.png";
-            string filePath = Path.Combine(Application.persistentDataPath, fileName);
-            File.WriteAllBytes(filePath, bytes);
+                // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
+                byte[] bytes = tex.EncodeToPNG();
+                Destroy(tex);
 
+                // byte 배열을 PNG 파일로 저장한다.
+                string fileName = "ImageName.png";
+                string filePath = Path.Combine(Application.persistentDataPath, fileName);
+                File.WriteAllBytes(filePath, bytes);
+
+                RenderTexture.active = null;
+            }
         }
     }
 
