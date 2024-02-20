@@ -29,24 +29,17 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] GameObject shotUI;
     [SerializeField]RenderTexture shotTexture;
 
-/*    RecorderController _recorderController;
-    internal MovieRecorderSettings _settings = null;
+    private AndroidUtils androidUtils;
     private bool isRecording = false;
-    private bool shouldLoadNextScene = false;*/
+    private string VideoFilePath;
 
     void Start()
     {
         videoStartBtn.SetActive(true);
-        videoStopBtn.SetActive(false);     
+        videoStopBtn.SetActive(false);  
+        androidUtils = FindObjectOfType<AndroidUtils>();    
+        
     }
-/*    public FileInfo OutputFile
-    {
-        get
-        {
-            var fileName = _settings.OutputFile + ".mp4";
-            return new FileInfo(fileName);
-        }
-    }*/
 /*    private void InitializeRecord()
     {
         var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
@@ -95,8 +88,7 @@ public class TakeAShot : MonoBehaviour
         SceneManager.LoadScene("SavePhoto");
     }
 
-
-/*    //비디오 시작 버튼을 눌렀을 때
+   //비디오 시작 버튼을 눌렀을 때
     public void OnVideoStartBtn()
     {
         //비디오 모드면
@@ -104,29 +96,14 @@ public class TakeAShot : MonoBehaviour
         {
             videoStartBtn.SetActive(false);
             videoStopBtn.SetActive(true);
-            CameraMode.isVideo = false;
-            CameraMode.isRecord = true;
-            if (_recorderController == null)
+            isRecording = true;
+            if (isRecording)
             {
-                var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
-                _recorderController = new RecorderController(controllerSettings);
-                _recorderController.PrepareRecording();
+                //녹화시작
+                androidUtils.StartRecording();
+                Debug.Log("녹화시작");
             }
-            if (_settings == null)
-            {
-                InitializeRecord();
-            }
-            Debug.Log("녹화시작");
-            _recorderController.StartRecording();
-            Debug.Log($"Started recording for file {OutputFile.FullName}");
-            isRecording = true; 
-        }
-    }
-    void Update()
-    {
-        if (shouldLoadNextScene)
-        {
-            SceneManager.LoadScene("SavePhoto");
+ 
         }
     }
 
@@ -134,18 +111,23 @@ public class TakeAShot : MonoBehaviour
     public void OnRecordDoneBtn()
     {
         isRecording = false;
+        videoStartBtn.SetActive(true);
+        videoStopBtn.SetActive(false);
         //촬영 중이면
         if (CameraMode.isRecord)
         {
             if (!isRecording)
             {
                 // 녹화 종료
-                _recorderController.StopRecording();
+                androidUtils.StopRecording();
                 Debug.Log("녹화종료");
-                shouldLoadNextScene = true;
+                VideoFilePath = Application.persistentDataPath + "/temp_video.mp4";
+                string destinationPath = Path.Combine(Application.persistentDataPath, "RecordedVideo.mp4");
+                CopyRecordedVideo(VideoFilePath, destinationPath);
+                SceneManager.LoadScene("SavePhoto");
             }
         }
-    }*/
+    }
     IEnumerator ScreenShot()
     {
         shotUI.SetActive(false );
@@ -178,5 +160,10 @@ public class TakeAShot : MonoBehaviour
     {
         SceneManager.LoadScene("PhotoZone_Docent");
     }
-   
+    void CopyRecordedVideo(string sourcePath, string destinationPath)
+    {
+        // 녹화된 영상을 복사하는 함수
+        File.Copy(sourcePath, destinationPath, true);
+    }
+
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
+using System.IO;
 // Protection level: dangerous permissions 2015/11/25
 // http://developer.android.com/intl/ja/reference/android/Manifest.permission.html
 public enum AndroidPermission
@@ -56,9 +58,9 @@ public class AndroidUtils : MonoBehaviour
         using (AndroidJavaClass unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
             androidRecorder = unityClass.GetStatic<AndroidJavaObject>("currentActivity");
-			androidRecorder.Call("setUpSaveFolder","Tee");//custom your save folder to Movies/Tee, by defaut it will use Movies/AndroidUtils
-            int width = (int)(Screen.width > SCREEN_WIDTH ? SCREEN_WIDTH : Screen.width);
-            int height = Screen.width > SCREEN_WIDTH ? (int)(Screen.height * SCREEN_WIDTH / Screen.width) : Screen.height;
+			androidRecorder.Call("AR_Recorder","ARvideo");//custom your save folder to Movies/Tee, by defaut it will use Movies/AndroidUtils
+            int width = 1080;
+            int height = 2400;
             int bitrate = (int)(1f * width * height / 100 * 240 * 7);
             int fps = 30;
             bool audioEnable=true;
@@ -90,6 +92,30 @@ public class AndroidUtils : MonoBehaviour
 	androidRecorder.Call("stopRecording");
 #endif
     }
+    public void CopyRecordedVideo(string destinationPath)
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        string recordedVideoPath = androidRecorder.Call<string>("GetRecordFilePath");
+        if (!string.IsNullOrEmpty(recordedVideoPath))
+        {
+            try
+            {
+                // 녹화된 비디오 파일을 지정한 경로로 복사
+                File.Copy(recordedVideoPath, destinationPath, true);
+                ShowToast("Video saved to: " + destinationPath);
+            }
+            catch (Exception e)
+            {
+                ShowToast("Failed to copy video: " + e.Message);
+            }
+        }
+        else
+        {
+            ShowToast("No recorded video found.");
+        }
+#endif
+    }
+
     public void VideoRecorderCallback(string message)//this function will be call when record status change
     {
         switch (message)
@@ -104,7 +130,7 @@ public class AndroidUtils : MonoBehaviour
                 break;
         }
     }
-    #endregion
+#endregion
     #region Android Permissions
     private void OnAllow()//this function will be called when the permission has been approved
     {
