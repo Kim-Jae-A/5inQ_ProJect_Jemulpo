@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/03.Scenes/Ys_Loading.unity
     guid: b4a869071a83f724693479a877db4224
+  - enabled: 1
+    path: Assets/03.Scenes/AR_Navigation.unity
+    guid: a4e3f5ed1723bb24c9afdabc2c20f6a4
   - enabled: 0
     path: Assets/03.Scenes/Ys_Home.unity
     guid: ba958d20d0412eb4291d8c31d16cfaac
@@ -31,6 +34,8 @@ EditorBuildSettings:
     guid: d2e7428a6baa0f545ad95f97564d0b45
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e3882d1369a243a428ea05a8959602a8,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 39d8b0cdd622b904ea168bd290f861c4,
       type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: efe4d17d423f40f4abc92d48a2ee8964,
       type: 2}

@@ -36,13 +36,10 @@ public class DBManager : MonoBehaviour
                 break;
             case UnityWebRequest.Result.ConnectionError:
                 yield break;
-                break;
             case UnityWebRequest.Result.ProtocolError:
                 yield break;
-                break;
             case UnityWebRequest.Result.DataProcessingError:
                 yield break;
-                break;
         }
 
         if (data.isDone)
