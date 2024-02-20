@@ -9,7 +9,6 @@ using UnityEngine.XR.ARSubsystems;
 public class ImageDetection : MonoBehaviour
 {
     ARTrackedImageManager imageManager;
-    private Vector3 PrefabOffset;
 
     void Awake()
     {
