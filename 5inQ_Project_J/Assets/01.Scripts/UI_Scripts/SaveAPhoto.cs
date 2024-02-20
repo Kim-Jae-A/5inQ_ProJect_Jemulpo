@@ -41,6 +41,9 @@ public class SavePhoto : MonoBehaviour
         }
     }
 
+
+
+
     public void SaveToGalleryBtn()
     {
         //빈 텍스쳐에 사진이 출력된 이미지의 텍스처를 저장한다
