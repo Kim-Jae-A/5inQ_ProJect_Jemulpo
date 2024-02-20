@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-using UnityEngine.XR.ARFoundation.Samples;
+/*using UnityEngine.XR.ARFoundation.Samples;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARCore;
 using UnityEngine.Rendering.Universal;
@@ -13,7 +13,7 @@ using UnityEditor.Recorder;
 using UnityEngine.Recorder.Examples;
 using UnityEditor.Recorder.Encoder;
 using UnityEditor.Recorder.Input;
-
+*/
 
 public class TakeAShot : MonoBehaviour
 {
@@ -24,35 +24,30 @@ public class TakeAShot : MonoBehaviour
     [Header("버튼")]
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
-    [SerializeField] GameObject returnBtn;
-    [SerializeField] string sceneName;
 
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
-    [SerializeField]private Camera ARcamera;
+    [SerializeField]RenderTexture shotTexture;
 
-    RecorderController _recorderController;
+/*    RecorderController _recorderController;
     internal MovieRecorderSettings _settings = null;
     private bool isRecording = false;
-    private bool shouldLoadNextScene = false;
+    private bool shouldLoadNextScene = false;*/
 
     void Start()
     {
         videoStartBtn.SetActive(true);
-        videoStopBtn.SetActive(false);
-        
-        returnBtn.SetActive(true);
-        shotUI.SetActive(true);
+        videoStopBtn.SetActive(false);     
     }
-    public FileInfo OutputFile
+/*    public FileInfo OutputFile
     {
         get
         {
             var fileName = _settings.OutputFile + ".mp4";
             return new FileInfo(fileName);
         }
-    }
-    private void InitializeRecord()
+    }*/
+/*    private void InitializeRecord()
     {
         var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
         _recorderController = new RecorderController(controllerSettings);
@@ -91,7 +86,7 @@ public class TakeAShot : MonoBehaviour
 
         RecorderOptions.VerboseMode = false;
         _recorderController.PrepareRecording();
-    }
+    }*/
 
     public void OnShotBtn()
     {
@@ -101,7 +96,7 @@ public class TakeAShot : MonoBehaviour
     }
 
 
-    //비디오 시작 버튼을 눌렀을 때
+/*    //비디오 시작 버튼을 눌렀을 때
     public void OnVideoStartBtn()
     {
         //비디오 모드면
@@ -150,15 +145,16 @@ public class TakeAShot : MonoBehaviour
                 shouldLoadNextScene = true;
             }
         }
-    }
+    }*/
     IEnumerator ScreenShot()
     {
-        returnBtn.SetActive(false);
         shotUI.SetActive(false );
         yield return new WaitForEndOfFrame();
 
         if (CameraMode.isPhoto)
         {
+            RenderTexture.active = shotTexture;
+
             // 캡처된 화면을 Texture2D로 생성한다
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
             Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
@@ -174,12 +170,13 @@ public class TakeAShot : MonoBehaviour
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             File.WriteAllBytes(filePath, bytes);
 
+            RenderTexture.active = null;
         }
     }
 
     public void OnReturnBtn()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("PhotoZone_Docent");
     }
    
 }
