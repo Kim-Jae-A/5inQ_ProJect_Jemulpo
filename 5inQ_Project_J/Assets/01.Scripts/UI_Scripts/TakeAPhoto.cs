@@ -5,85 +5,181 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using UnityEngine.XR.ARFoundation.Samples;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARCore;
+using UnityEngine.Rendering.Universal;
+using UnityEditor.Recorder;
+using UnityEngine.Recorder.Examples;
+using UnityEditor.Recorder.Encoder;
+using UnityEditor.Recorder.Input;
+
+
 public class TakeAShot : MonoBehaviour
 {
-    [Header("¹öÆ° ÀÌ¹ÌÁö")]
+    [Header("ë²„íŠ¼ ì´ë¯¸ì§€")]
     [SerializeField] Image shotImage;
     [SerializeField] Sprite videoStopShot;
 
-    [Header("ºñµğ¿À ¸ğµå ¹öÆ°")]
+    [Header("ë²„íŠ¼")]
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
+    [SerializeField] GameObject returnBtn;
+    [SerializeField] string sceneName;
+
+    [Header("ì¹´ë©”ë¼ ì˜ì—­")]
+    [SerializeField] GameObject shotUI;
+    [SerializeField]private Camera ARcamera;
+
+    RecorderController _recorderController;
+    internal MovieRecorderSettings _settings = null;
+    private bool isRecording = false;
+    private bool shouldLoadNextScene = false;
 
     void Start()
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);
+        
+        returnBtn.SetActive(true);
+        shotUI.SetActive(true);
+    }
+    public FileInfo OutputFile
+    {
+        get
+        {
+            var fileName = _settings.OutputFile + ".mp4";
+            return new FileInfo(fileName);
+        }
+    }
+    private void InitializeRecord()
+    {
+        var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
+        _recorderController = new RecorderController(controllerSettings);
+
+        var OutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "SampleRecording"));
+        if (!OutputFolder.Exists)
+        {
+            OutputFolder.Create();
+        }
+
+
+        _settings = ScriptableObject.CreateInstance<MovieRecorderSettings>();
+        _settings.name = "Recorder_AR";
+        _settings.Enabled = true;
+
+        _settings.EncoderSettings = new CoreEncoderSettings
+        {
+            EncodingQuality = CoreEncoderSettings.VideoEncodingQuality.Medium,
+            Codec = CoreEncoderSettings.OutputCodec.MP4
+        };
+        _settings.CaptureAlpha = true;
+
+        var ArCamera = FindObjectOfType<ARCameraManager>().GetComponent<Camera>();
+        _settings.ImageInputSettings = new CameraInputSettings
+        {
+            CameraTag = "MainCamera",
+            OutputWidth = 1080,
+            OutputHeight = 2400
+        };
+
+        _settings.OutputFile = OutputFolder.FullName + "/" + "video";
+
+        controllerSettings.AddRecorderSettings(_settings);
+        controllerSettings.SetRecordModeToManual();
+        controllerSettings.FrameRate = 30.0f;
+
+        RecorderOptions.VerboseMode = false;
+        _recorderController.PrepareRecording();
     }
 
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
+        // "SavePhoto" ì”¬ìœ¼ë¡œ ì´ë™í•œë‹¤.
+        SceneManager.LoadScene("SavePhoto");
     }
 
+
+    //ë¹„ë””ì˜¤ ì‹œì‘ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
+    public void OnVideoStartBtn()
+    {
+        //ë¹„ë””ì˜¤ ëª¨ë“œë©´
+        if (CameraMode.isVideo)
+        {
+            videoStartBtn.SetActive(false);
+            videoStopBtn.SetActive(true);
+            CameraMode.isVideo = false;
+            CameraMode.isRecord = true;
+            if (_recorderController == null)
+            {
+                var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
+                _recorderController = new RecorderController(controllerSettings);
+                _recorderController.PrepareRecording();
+            }
+            if (_settings == null)
+            {
+                InitializeRecord();
+            }
+            Debug.Log("ë…¹í™”ì‹œì‘");
+            _recorderController.StartRecording();
+            Debug.Log($"Started recording for file {OutputFile.FullName}");
+            isRecording = true; 
+        }
+    }
+    void Update()
+    {
+        if (shouldLoadNextScene)
+        {
+            SceneManager.LoadScene("SavePhoto");
+        }
+    }
+
+    //ë¹„ë””ì˜¤ ì´¬ì˜ì„ ëë‚´ëŠ” ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
+    public void OnRecordDoneBtn()
+    {
+        isRecording = false;
+        //ì´¬ì˜ ì¤‘ì´ë©´
+        if (CameraMode.isRecord)
+        {
+            if (!isRecording)
+            {
+                // ë…¹í™” ì¢…ë£Œ
+                _recorderController.StopRecording();
+                Debug.Log("ë…¹í™”ì¢…ë£Œ");
+                shouldLoadNextScene = true;
+            }
+        }
+    }
     IEnumerator ScreenShot()
     {
+        returnBtn.SetActive(false);
+        shotUI.SetActive(false );
         yield return new WaitForEndOfFrame();
 
         if (CameraMode.isPhoto)
         {
-            // Ä¸Ã³µÈ È­¸éÀ» Texture2D·Î »ı¼ºÇÑ´Ù
+            // ìº¡ì²˜ëœ í™”ë©´ì„ Texture2Dë¡œ ìƒì„±í•œë‹¤
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
+            tex.ReadPixels(captureRect, 0, 0);
             tex.Apply();
 
-            // Ä¸Ã³µÈ È­¸éÀ» PNG Çü½ÄÀÇ byte ¹è¿­·Î º¯È¯ÇÑ´Ù.
+            // ìº¡ì²˜ëœ í™”ë©´ì„ PNG í˜•ì‹ì˜ byte ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
             byte[] bytes = tex.EncodeToPNG();
             Destroy(tex);
 
-            // byte ¹è¿­À» PNG ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
-            string fileName = "ImageName";
+            // byte ë°°ì—´ì„ PNG íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
+            string fileName = "ImageName.png";
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             File.WriteAllBytes(filePath, bytes);
 
-            // "SavePhoto" ¾ÀÀ¸·Î ÀÌµ¿ÇÑ´Ù.
-            SceneManager.LoadScene("SavePhoto");
         }
     }
 
-    //ºñµğ¿À ½ÃÀÛ ¹öÆ°À» ´­·¶À» ¶§
-    public void OnVideoStartBtn()
+    public void OnReturnBtn()
     {
-        videoStartBtn.SetActive(false);
-        videoStopBtn.SetActive(true);
-        //ºñµğ¿À ¸ğµå¸é
-        if (CameraMode.isVideo)
-        {
-            CameraMode.isVideo = false;
-            CameraMode.isRecord = true;
-        }
+        SceneManager.LoadScene(sceneName);
     }
-
-    //ºñµğ¿À ÃÔ¿µÀ» ³¡³»´Â ¹öÆ°À» ´­·¶À» ¶§
-    public void OnRecordDoneBtn()
-    {
-        //ÃÔ¿µ ÁßÀÌ¸é
-        if (CameraMode.isRecord)
-        {
-            SceneManager.LoadScene("SavePhoto");
-        }
-    }
-
-
-
-
-
-
-
+   
 }
-
-
-
-
-
-
