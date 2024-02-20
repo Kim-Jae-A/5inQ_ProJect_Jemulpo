@@ -8,6 +8,7 @@ using UnityEngine.Android;
 public class StaticMapManager : MonoBehaviour
 {
     [Header("API 설정")]
+    //string url = "https://api.vworld.kr/req/image?service=image&request=getmap&key=";
     public string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster";
     public float width;
     public float height;
@@ -17,6 +18,8 @@ public class StaticMapManager : MonoBehaviour
     public RawImage map;
     string apiURL;
     bool check;
+
+    //666EB69B-1D69-3338-9515-AACB9914447A
 
     public static float latitude;  // 위도
     public static float longitude; // 경도
@@ -100,6 +103,10 @@ public class StaticMapManager : MonoBehaviour
 #if UNITY_EDITOR
         apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
 #endif
+        /*        apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center={longitude},{latitude}&crs=epsg:4326&zoom={zoomLevel}&size={width},{height}";// 현재 위치 좌표
+        #if UNITY_EDITOR
+                apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center=126.657566,37.466480&crs=epsg:4326&zoom=16&size={width},{height}";
+        #endif*/
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);

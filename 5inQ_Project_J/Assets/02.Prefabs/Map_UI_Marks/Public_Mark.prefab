@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4509885765276327887}
   - component: {fileID: 6480156170110152663}
   - component: {fileID: 4511357219390406699}
+  - component: {fileID: 110055765593782104}
   m_Layer: 5
   m_Name: Public_Mark
   m_TagString: Untagged
@@ -26,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7722023421085406712}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.000015258789}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
@@ -121,3 +122,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &110055765593782104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722023421085406712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25e3933a09095a4d8808d0697fbaa81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: "\uACF5\uC6D0"
+  _description: "\uACF5\uC6D0\uC774\uB2E4"
+  _imagepath: Image/ChineseRestaurant
+  _Address: "\uCC3D\uC6D0\uC2DC \uB9C8\uC0B0\uD569\uD3EC\uAD6C"
+  _latitude: 
+  _longitude: 
