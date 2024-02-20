@@ -10,49 +10,55 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARCore;
 using UnityEngine.Rendering.Universal;
 using UnityEditor.Recorder;
-using UnityEngine.Recorder.Examples;
 using UnityEditor.Recorder.Encoder;
 using UnityEditor.Recorder.Input;
 
 
 public class TakeAShot : MonoBehaviour
 {
-    [Header("버튼 이미지")]
-    [SerializeField] Image shotImage;
-    [SerializeField] Sprite videoStopShot;
+    //[Header("버튼 이미지")]
+    //[SerializeField] Image shotImage;
+    //[SerializeField] Sprite videoStopShot;//2개 사용 X
 
     [Header("버튼")]
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
     [SerializeField] GameObject returnBtn;
-    [SerializeField] string sceneName;
 
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
     [SerializeField]private Camera ARcamera;
 
-    RecorderController _recorderController;
-    internal MovieRecorderSettings _settings = null;
-    private bool isRecording = false;
+    [SerializeField] string sceneName;
+
+    private AndroidUtils RecordingManager;
     private bool shouldLoadNextScene = false;
 
     void Start()
     {
-        videoStartBtn.SetActive(true);
+        videoStartBtn.SetActive(false);
         videoStopBtn.SetActive(false);
         
         returnBtn.SetActive(true);
         shotUI.SetActive(true);
+        RecordingManager = new AndroidUtils();
     }
-    public FileInfo OutputFile
+    void Update()
+    {
+        if (shouldLoadNextScene)
+        {
+            SceneManager.LoadScene("SaveVideo");
+        }
+    }
+   /*public FileInfo OutputFile
     {
         get
         {
             var fileName = _settings.OutputFile + ".mp4";
             return new FileInfo(fileName);
         }
-    }
-    private void InitializeRecord()
+    }*/
+    /*private void InitializeRecord()
     {
         var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
         _recorderController = new RecorderController(controllerSettings);
@@ -83,7 +89,7 @@ public class TakeAShot : MonoBehaviour
             OutputHeight = 2400
         };
 
-        _settings.OutputFile = OutputFolder.FullName + "/" + "video";
+        _settings.OutputFile = Path.Combine(Application.persistentDataPath, "SampleRecording", "video");
 
         controllerSettings.AddRecorderSettings(_settings);
         controllerSettings.SetRecordModeToManual();
@@ -91,11 +97,12 @@ public class TakeAShot : MonoBehaviour
 
         RecorderOptions.VerboseMode = false;
         _recorderController.PrepareRecording();
-    }
+    }*/
 
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
+        Debug.Log("이게왜 실행되냐");
         // "SavePhoto" 씬으로 이동한다.
         SceneManager.LoadScene("SavePhoto");
     }
@@ -111,43 +118,32 @@ public class TakeAShot : MonoBehaviour
             videoStopBtn.SetActive(true);
             CameraMode.isVideo = false;
             CameraMode.isRecord = true;
-            if (_recorderController == null)
+            if(CameraMode.isRecord == true)
             {
-                var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
-                _recorderController = new RecorderController(controllerSettings);
-                _recorderController.PrepareRecording();
+                RecordingManager.StartRecording();
+                Debug.Log("녹화시작");
             }
-            if (_settings == null)
-            {
-                InitializeRecord();
-            }
-            Debug.Log("녹화시작");
-            _recorderController.StartRecording();
-            Debug.Log($"Started recording for file {OutputFile.FullName}");
-            isRecording = true; 
-        }
-    }
-    void Update()
-    {
-        if (shouldLoadNextScene)
-        {
-            SceneManager.LoadScene("SavePhoto");
         }
     }
 
     //비디오 촬영을 끝내는 버튼을 눌렀을 때
     public void OnRecordDoneBtn()
     {
-        isRecording = false;
+        
         //촬영 중이면
         if (CameraMode.isRecord)
         {
-            if (!isRecording)
+            CameraMode.isRecord = false;
+            CameraMode.isRecordDone = true;
+            videoStartBtn.SetActive (true);
+            videoStopBtn.SetActive (false);
+            if(CameraMode.isRecordDone == true)
             {
                 // 녹화 종료
-                _recorderController.StopRecording();
+                RecordingManager.StopRecording();
                 Debug.Log("녹화종료");
                 shouldLoadNextScene = true;
+                CameraMode.isRecordDone = false;
             }
         }
     }

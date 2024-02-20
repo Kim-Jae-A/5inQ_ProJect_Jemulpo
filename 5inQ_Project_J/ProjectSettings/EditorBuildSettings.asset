@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/03.Scenes/SavePhoto.unity
     guid: da2da977f0215144b8406dbac08a6e36
+  - enabled: 1
+    path: Assets/03.Scenes/SaveVideo.unity
+    guid: d2e7428a6baa0f545ad95f97564d0b45
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e3882d1369a243a428ea05a8959602a8,
       type: 2}
