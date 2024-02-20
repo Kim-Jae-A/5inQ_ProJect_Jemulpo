@@ -31,10 +31,6 @@ public class ImageDetection : MonoBehaviour
             {
                 GameObject obj = Instantiate(prefab);
                 obj.transform.SetParent(trackedImage.transform);
-                obj.transform.Rotate(new Vector3(0, 90, -90));
-                CatAnimatorController catani = obj.GetComponent<CatAnimatorController>();
-                catani.trackedImage = trackedImage;
-                catani.isMoving = true; 
             }
         }
 
@@ -57,12 +53,6 @@ public class ImageDetection : MonoBehaviour
                     trackedImage.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
-            /*if (trackedImage.transform.childCount > 0)
-            {
-                trackedImage.transform.GetChild(0).position = trackedImage.transform.position;
-                trackedImage.transform.GetChild(0).rotation = trackedImage.transform.rotation;
-                trackedImage.transform.GetChild(0).gameObject.SetActive(true);
-            }*/
         }
 
         foreach (ARTrackedImage trackedImage in args.removed)

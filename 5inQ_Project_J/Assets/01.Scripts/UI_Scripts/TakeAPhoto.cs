@@ -5,52 +5,41 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-using UnityEngine.XR.ARFoundation.Samples;
+/*using UnityEngine.XR.ARFoundation.Samples;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARCore;
 using UnityEngine.Rendering.Universal;
 using UnityEditor.Recorder;
+using UnityEngine.Recorder.Examples;
 using UnityEditor.Recorder.Encoder;
 using UnityEditor.Recorder.Input;
-
+*/
 
 public class TakeAShot : MonoBehaviour
 {
-    //[Header("버튼 이미지")]
-    //[SerializeField] Image shotImage;
-    //[SerializeField] Sprite videoStopShot;//2개 사용 X
+    [Header("버튼 이미지")]
+    [SerializeField] Image shotImage;
+    [SerializeField] Sprite videoStopShot;
 
     [Header("버튼")]
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
-    [SerializeField] GameObject returnBtn;
 
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
-    [SerializeField]private Camera ARcamera;
+    [SerializeField]RenderTexture shotTexture;
 
-    [SerializeField] string sceneName;
-
-    private AndroidUtils RecordingManager;
-    private bool shouldLoadNextScene = false;
+/*    RecorderController _recorderController;
+    internal MovieRecorderSettings _settings = null;
+    private bool isRecording = false;
+    private bool shouldLoadNextScene = false;*/
 
     void Start()
     {
-        videoStartBtn.SetActive(false);
-        videoStopBtn.SetActive(false);
-        
-        returnBtn.SetActive(true);
-        shotUI.SetActive(true);
-        RecordingManager = new AndroidUtils();
+        videoStartBtn.SetActive(true);
+        videoStopBtn.SetActive(false);     
     }
-    void Update()
-    {
-        if (shouldLoadNextScene)
-        {
-            SceneManager.LoadScene("SaveVideo");
-        }
-    }
-   /*public FileInfo OutputFile
+/*    public FileInfo OutputFile
     {
         get
         {
@@ -58,7 +47,7 @@ public class TakeAShot : MonoBehaviour
             return new FileInfo(fileName);
         }
     }*/
-    /*private void InitializeRecord()
+/*    private void InitializeRecord()
     {
         var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
         _recorderController = new RecorderController(controllerSettings);
@@ -89,7 +78,7 @@ public class TakeAShot : MonoBehaviour
             OutputHeight = 2400
         };
 
-        _settings.OutputFile = Path.Combine(Application.persistentDataPath, "SampleRecording", "video");
+        _settings.OutputFile = OutputFolder.FullName + "/" + "video";
 
         controllerSettings.AddRecorderSettings(_settings);
         controllerSettings.SetRecordModeToManual();
@@ -102,13 +91,12 @@ public class TakeAShot : MonoBehaviour
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
-        Debug.Log("이게왜 실행되냐");
         // "SavePhoto" 씬으로 이동한다.
         SceneManager.LoadScene("SavePhoto");
     }
 
 
-    //비디오 시작 버튼을 눌렀을 때
+/*    //비디오 시작 버튼을 눌렀을 때
     public void OnVideoStartBtn()
     {
         //비디오 모드면
@@ -118,43 +106,55 @@ public class TakeAShot : MonoBehaviour
             videoStopBtn.SetActive(true);
             CameraMode.isVideo = false;
             CameraMode.isRecord = true;
-            if(CameraMode.isRecord == true)
+            if (_recorderController == null)
             {
-                RecordingManager.StartRecording();
-                Debug.Log("녹화시작");
+                var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
+                _recorderController = new RecorderController(controllerSettings);
+                _recorderController.PrepareRecording();
             }
+            if (_settings == null)
+            {
+                InitializeRecord();
+            }
+            Debug.Log("녹화시작");
+            _recorderController.StartRecording();
+            Debug.Log($"Started recording for file {OutputFile.FullName}");
+            isRecording = true; 
+        }
+    }
+    void Update()
+    {
+        if (shouldLoadNextScene)
+        {
+            SceneManager.LoadScene("SavePhoto");
         }
     }
 
     //비디오 촬영을 끝내는 버튼을 눌렀을 때
     public void OnRecordDoneBtn()
     {
-        
+        isRecording = false;
         //촬영 중이면
         if (CameraMode.isRecord)
         {
-            CameraMode.isRecord = false;
-            CameraMode.isRecordDone = true;
-            videoStartBtn.SetActive (true);
-            videoStopBtn.SetActive (false);
-            if(CameraMode.isRecordDone == true)
+            if (!isRecording)
             {
                 // 녹화 종료
-                RecordingManager.StopRecording();
+                _recorderController.StopRecording();
                 Debug.Log("녹화종료");
                 shouldLoadNextScene = true;
-                CameraMode.isRecordDone = false;
             }
         }
-    }
+    }*/
     IEnumerator ScreenShot()
     {
-        returnBtn.SetActive(false);
         shotUI.SetActive(false );
         yield return new WaitForEndOfFrame();
 
         if (CameraMode.isPhoto)
         {
+            RenderTexture.active = shotTexture;
+
             // 캡처된 화면을 Texture2D로 생성한다
             Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
             Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
@@ -170,12 +170,13 @@ public class TakeAShot : MonoBehaviour
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             File.WriteAllBytes(filePath, bytes);
 
+            RenderTexture.active = null;
         }
     }
 
     public void OnReturnBtn()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("PhotoZone_Docent");
     }
    
 }
