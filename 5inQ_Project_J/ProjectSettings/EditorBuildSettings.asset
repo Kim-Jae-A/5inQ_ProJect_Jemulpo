@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/03.Scenes/UI_AR&Docent ListPage.unity
     guid: 03f6f2f8c7d5f6245a1fbe1f8a13dbea
-  - enabled: 1
+  - enabled: 0
     path: Assets/03.Scenes/PhotoZone_Docent.unity
     guid: e0ee87fc3101ace439fc9081fb75b67d
   - enabled: 1
@@ -32,6 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/04.Resources/AR Resources/Sakura/Sakura.unity
     guid: f7d5b511ed533ee46942f0620168af4c
+
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e3882d1369a243a428ea05a8959602a8,
       type: 2}

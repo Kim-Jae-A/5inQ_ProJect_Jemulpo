@@ -367,12 +367,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1625181210}
-        m_TargetAssemblyTypeName: TakeAShot, Assembly-CSharp
-        m_MethodName: OnReturnBtn
-        m_Mode: 1
+        m_TargetAssemblyTypeName: TakeAShot
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -597,8 +597,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0
+    height: 0
 --- !u!222 &482333178
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -730,9 +730,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625181210}
-        m_TargetAssemblyTypeName: TakeAShot, Assembly-CSharp
-        m_MethodName: OnRecordDoneBtn
+      - m_Target: {fileID: 1896493078}
+        m_TargetAssemblyTypeName: VideoKit.VideoKitRecorder, VideoKit.Runtime
+        m_MethodName: PauseRecording
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1292,12 +1292,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1104080235}
-        m_TargetAssemblyTypeName: PhotoZoneUI_Btn, Assembly-CSharp
-        m_MethodName: OnVideoBtn
-        m_Mode: 1
+        m_TargetAssemblyTypeName: PhotoZoneUI_Btn
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1424,9 +1424,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625181210}
-        m_TargetAssemblyTypeName: TakeAShot, Assembly-CSharp
-        m_MethodName: OnVideoStartBtn
+      - m_Target: {fileID: 1896493078}
+        m_TargetAssemblyTypeName: VideoKit.VideoKitRecorder, VideoKit.Runtime
+        m_MethodName: ResumeRecording
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1758,50 +1758,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150921016}
   m_CullTransparentMesh: 1
---- !u!1 &1167271211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1167271213}
-  - component: {fileID: 1167271212}
-  m_Layer: 0
-  m_Name: AndroidUtil
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1167271212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167271211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4ee88b606c586429772eaae11e69c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1167271213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167271211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.013017654, y: 1, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281797747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,12 +2250,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1104080235}
-        m_TargetAssemblyTypeName: PhotoZoneUI_Btn, Assembly-CSharp
-        m_MethodName: OnPhotoBtn
-        m_Mode: 1
+        m_TargetAssemblyTypeName: PhotoZoneUI_Btn
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2343,3 +2299,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685154355}
   m_CullTransparentMesh: 1
+--- !u!1 &1896493077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1896493079}
+  - component: {fileID: 1896493078}
+  m_Layer: 0
+  m_Name: ARCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1896493078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896493077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fffa95ffc0b4c7a87ce2d4c7fd1873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  format: 0
+  prepareOnAwake: 1
+  videoMode: 1
+  resolution: 7
+  customResolution: {x: 1080, y: 2400}
+  cameras:
+  - {fileID: 736319393}
+  texture: {fileID: 0}
+  cameraManager: {fileID: 0}
+  frameRate: 10
+  frameSkip: 0
+  watermarkMode: 0
+  watermark: {fileID: 0}
+  watermarkRect:
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  audioMode: 0
+  audioManager: {fileID: 0}
+  configureAudioManager: 1
+  audioDeviceGain: 1
+  recordingAction: 2
+  OnRecordingCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  mediaPathPrefix: recordings
+  videoBitRate: 10000000
+  keyframeInterval: 2
+  audioBitRate: 64000
+--- !u!4 &1896493079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896493077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540, y: 1200, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
