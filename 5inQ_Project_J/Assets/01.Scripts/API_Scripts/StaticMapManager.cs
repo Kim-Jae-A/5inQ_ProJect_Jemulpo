@@ -19,8 +19,6 @@ public class StaticMapManager : MonoBehaviour
     string apiURL;
     bool check;
 
-    //666EB69B-1D69-3338-9515-AACB9914447A
-
     public static float latitude;  // 위도
     public static float longitude; // 경도
 
@@ -129,7 +127,7 @@ public class StaticMapManager : MonoBehaviour
         }
         if (request.isDone)
         {
-            Debug.LogWarning(request.result.ToString());
+            Debug.Log(request.result.ToString());
             map.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
         }
     }
