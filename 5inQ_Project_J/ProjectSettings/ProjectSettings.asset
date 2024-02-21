@@ -135,6 +135,11 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   bundleVersion: 0.1.0
   preloadedAssets:
+  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
+  - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
+  - {fileID: -1829285252232011348, guid: c00d74bb5b6137a4286fd66bce933f3d, type: 2}
+  - {fileID: 11400000, guid: efe4d17d423f40f4abc92d48a2ee8964, type: 2}
+  - {fileID: -736583588086103326, guid: 438781a775f7f224c8b5ca58a1edbd43, type: 2}
   - {fileID: 11400000, guid: 16c04bca3288a064680aa98d48ca8787, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -838,7 +843,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 2
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0
