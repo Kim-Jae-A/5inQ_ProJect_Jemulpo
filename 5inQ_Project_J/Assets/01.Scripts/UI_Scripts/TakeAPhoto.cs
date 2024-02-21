@@ -37,14 +37,6 @@ public class TakeAShot : MonoBehaviour
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);  
-<<<<<<< HEAD
-  
-        Test1.SetActive(false);
-        Test2.SetActive(false);
-=======
-        androidUtils = FindObjectOfType<AndroidUtils>();    
-        
->>>>>>> parent of 3d49fbe (Test Update)
     }
 /*    private void InitializeRecord()
     {
@@ -106,12 +98,6 @@ public class TakeAShot : MonoBehaviour
             if (isRecording)
             {
                 //녹화시작
-<<<<<<< HEAD
-         
-                Test1.SetActive(true);
-=======
-                androidUtils.StartRecording();
->>>>>>> parent of 3d49fbe (Test Update)
                 Debug.Log("녹화시작");
             }
  
@@ -130,12 +116,6 @@ public class TakeAShot : MonoBehaviour
             if (!isRecording)
             {
                 // 녹화 종료
-<<<<<<< HEAD
-               
-                Test2.SetActive(true);
-=======
-                androidUtils.StopRecording();
->>>>>>> parent of 3d49fbe (Test Update)
                 Debug.Log("녹화종료");
                 VideoFilePath = Application.persistentDataPath + "/temp_video.mp4";
                 string destinationPath = Path.Combine(Application.persistentDataPath, "RecordedVideo.mp4");
