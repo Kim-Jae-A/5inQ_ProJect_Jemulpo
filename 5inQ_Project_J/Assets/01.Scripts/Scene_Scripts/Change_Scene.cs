@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class Change_Scene : MonoBehaviour
 {
+    public GameObject neviPanel;
     public void NeviScene()
     {
         SceneManager.LoadScene("Map_Scene");
     }
     public void HomeScene()
     {
-        SceneManager.LoadScene("Ys_Home");
-
+        if (neviPanel.activeSelf)
+        {
+            neviPanel.SetActive(false);
+        }
+        else
+        {
+            SceneManager.LoadScene("Ys_Home");
+        }
     }
 }

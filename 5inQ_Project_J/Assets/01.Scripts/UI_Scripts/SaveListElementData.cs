@@ -9,8 +9,8 @@ public class SaveListElementData : MonoBehaviour
     public void SetARJsonData(AR_POI data)
     {
         arJsonData = data;
-        
     }
+
     public AR_POI GetARJsonData()
     {
         return arJsonData;
