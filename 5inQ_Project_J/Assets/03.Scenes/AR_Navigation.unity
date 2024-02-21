@@ -791,9 +791,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _altitudeOffset: 0
-  _latitude: 37.713754057034286
-  _longitude: 126.7441830976916
-  _altitude: 68.75322153688244
+  _latitude: 37.713754057045826
+  _longitude: 126.74418309760517
+  _altitude: 68.50000002427586
   _altitudeType: 0
   _anchorManager: {fileID: 0}
 --- !u!4 &668708212
@@ -804,7 +804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668708210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 192.58, y: -8.67, z: -63.589996}
+  m_LocalPosition: {x: 192.57999, y: -8.923222, z: -63.589993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
