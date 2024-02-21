@@ -13,7 +13,7 @@
       "url": "https://unity.pkg.cesium.com"
     },
     "com.google.ar.core.arfoundation.extensions": {
-      "version": "file:C:/Users/USER/Downloads/arcore-unity-extensions-1.40.0.tgz",
+      "version": "file:C:/Users/Yang/Downloads/arcore-unity-extensions-1.40.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
