@@ -2969,8 +2969,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1914446050}
   - component: {fileID: 1914446051}
+  - component: {fileID: 1914446052}
   m_Layer: 0
-  m_Name: StaticMapManager
+  m_Name: NaverAPIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3010,6 +3011,21 @@ MonoBehaviour:
   key_ID: yxpbvkcpme
   key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
   map: {fileID: 175012233}
+--- !u!114 &1914446052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914446049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b1b3fe078d07c4aada9a231529bfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving
+  key_ID: yxpbvkcpme
+  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
 --- !u!1 &2040568650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,7 +3303,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2093081696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1914446052}
+        m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
+        m_MethodName: OnNaviStartButtonEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2093081696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3671,6 +3699,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2103070974}
     m_Modifications:
+    - target: {fileID: 110055765593782104, guid: 6d83bea2012afa246ba4696e1acc74c4,
+        type: 3}
+      propertyPath: _latitude
+      value: 37.710519
+      objectReference: {fileID: 0}
+    - target: {fileID: 110055765593782104, guid: 6d83bea2012afa246ba4696e1acc74c4,
+        type: 3}
+      propertyPath: _longitude
+      value: 126.745253
+      objectReference: {fileID: 0}
     - target: {fileID: 7480557391544423191, guid: 6d83bea2012afa246ba4696e1acc74c4,
         type: 3}
       propertyPath: m_Pivot.x

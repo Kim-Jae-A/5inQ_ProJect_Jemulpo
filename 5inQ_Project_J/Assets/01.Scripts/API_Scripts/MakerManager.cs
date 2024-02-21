@@ -46,6 +46,11 @@ public class MakerManager : MonoBehaviour
         placeName.text = marker._name;
         placeInfo.text = marker._description;
         placeAddress.text = marker._Address;
+        Direction5Manager._endlatitude = marker._latitude;
+        Direction5Manager._endlongitude = marker._longitude;
+        Debug.Log(Direction5Manager._endlatitude);
+        Debug.Log(Direction5Manager._endlongitude);
+
         Sprite sp = Resources.Load<Sprite>(marker._imagepath);
         if (sp != null)
         {
