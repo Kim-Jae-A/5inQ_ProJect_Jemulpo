@@ -1,0 +1,44 @@
+{
+    "ARzone_List": [
+        {
+            "idx": 0,
+            "Name": "박물관",
+            "Info": "박물관",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        {
+            "idx": 1,
+            "Name": "학교동상",
+            "Info": "초대 총장 동상",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        {
+            "idx": 2,
+            "Name": "카페",
+            "Info": "학교 초기에 지어진 카페",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        {
+            "idx": 3,
+            "Name": "피조물",
+            "Info": "기부받은 피조물",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "",
+            "latitude": "",
+            "longitude": ""
+        }
+    ]
+}

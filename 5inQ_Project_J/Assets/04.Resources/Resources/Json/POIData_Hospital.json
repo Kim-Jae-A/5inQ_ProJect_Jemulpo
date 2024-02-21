@@ -1,0 +1,44 @@
+{
+    "ARzone_List": [
+        {
+            "idx": 0,
+            "Name": "cafe 07 am",
+            "Info": "카페\n영업시간: 09시~20시",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "경기 파주시 와석순환로192번길 14-38 1층",
+            "latitude": "37.714779",
+            "longitude": "126.741800"
+        },
+        {
+            "idx": 1,
+            "Name": "더브래드 36.5도",
+            "Info": "운정점 \n식당\n영업시간: 09시~20시",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "경기 파주시 와석순환로192번길 14-43",
+            "latitude": "37.714277",
+            "longitude": "126.740820"
+        },
+        {
+            "idx": 2,
+            "Name": "마장동뚝배기&1인한우육회",
+            "Info": "식당\n영업시간: 09시~20시",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "경기 파주시 와석순환로172번길 3",
+            "latitude": "37.714145",
+            "longitude": "126.741080"
+        },
+        {
+            "idx": 3,
+            "Name": "홍익돈까스",
+            "Info": "파주운정점\n식당\n영업시간: 09시~20시",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "경기 파주시 와석순환로172번길 3",
+            "latitude": "37.714277",
+            "longitude": "126.740820"
+        }
+    ]
+}
