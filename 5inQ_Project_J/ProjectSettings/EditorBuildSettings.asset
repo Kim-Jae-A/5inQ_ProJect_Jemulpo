@@ -6,30 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/03.Scenes/Ys_Loading.unity
+    path: Assets/03.Scenes/Loading.unity
     guid: b4a869071a83f724693479a877db4224
-  - enabled: 0
+  - enabled: 1
+    path: Assets/03.Scenes/Home.unity
+    guid: ba958d20d0412eb4291d8c31d16cfaac
+  - enabled: 1
     path: Assets/03.Scenes/AR_Navigation.unity
     guid: a4e3f5ed1723bb24c9afdabc2c20f6a4
   - enabled: 1
-    path: Assets/03.Scenes/Ys_Home.unity
-    guid: ba958d20d0412eb4291d8c31d16cfaac
-  - enabled: 1
     path: Assets/03.Scenes/Map_Scene.unity
     guid: e8d3dfcad09cb20428b98174c9ded4b9
-  - enabled: 0
+  - enabled: 1
     path: Assets/03.Scenes/UI_AR&Docent ListPage.unity
     guid: 03f6f2f8c7d5f6245a1fbe1f8a13dbea
   - enabled: 1
     path: Assets/03.Scenes/PhotoZone_Docent.unity
     guid: e0ee87fc3101ace439fc9081fb75b67d
-  - enabled: 0
+  - enabled: 1
     path: Assets/03.Scenes/TakeAShot.unity
     guid: dae3a791ca40b9846a117b45f3216a7e
   - enabled: 1
     path: Assets/03.Scenes/SavePhoto.unity
     guid: da2da977f0215144b8406dbac08a6e36
-  - enabled: 0
+  - enabled: 1
     path: Assets/03.Scenes/SaveVideo.unity
     guid: d2e7428a6baa0f545ad95f97564d0b45
   m_configObjects:
