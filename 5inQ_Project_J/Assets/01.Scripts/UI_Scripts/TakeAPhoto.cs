@@ -32,55 +32,17 @@ public class TakeAShot : MonoBehaviour
     private AndroidUtils androidUtils;
     private bool isRecording = false;
     private string VideoFilePath;
+    [SerializeField] private GameObject Test1;
+    [SerializeField] private GameObject Test2;
 
     void Start()
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);  
-        androidUtils = FindObjectOfType<AndroidUtils>();    
-        
+        androidUtils = FindObjectOfType<AndroidUtils>();  
+        Test1.SetActive(false);
+        Test2.SetActive(false);
     }
-/*    private void InitializeRecord()
-    {
-        var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
-        _recorderController = new RecorderController(controllerSettings);
-
-        var OutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "SampleRecording"));
-        if (!OutputFolder.Exists)
-        {
-            OutputFolder.Create();
-        }
-
-
-        _settings = ScriptableObject.CreateInstance<MovieRecorderSettings>();
-        _settings.name = "Recorder_AR";
-        _settings.Enabled = true;
-
-        _settings.EncoderSettings = new CoreEncoderSettings
-        {
-            EncodingQuality = CoreEncoderSettings.VideoEncodingQuality.Medium,
-            Codec = CoreEncoderSettings.OutputCodec.MP4
-        };
-        _settings.CaptureAlpha = true;
-
-        var ArCamera = FindObjectOfType<ARCameraManager>().GetComponent<Camera>();
-        _settings.ImageInputSettings = new CameraInputSettings
-        {
-            CameraTag = "MainCamera",
-            OutputWidth = 1080,
-            OutputHeight = 2400
-        };
-
-        _settings.OutputFile = OutputFolder.FullName + "/" + "video";
-
-        controllerSettings.AddRecorderSettings(_settings);
-        controllerSettings.SetRecordModeToManual();
-        controllerSettings.FrameRate = 30.0f;
-
-        RecorderOptions.VerboseMode = false;
-        _recorderController.PrepareRecording();
-    }*/
-
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
@@ -101,6 +63,7 @@ public class TakeAShot : MonoBehaviour
             {
                 //녹화시작
                 androidUtils.StartRecording();
+                Test1.SetActive(true);
                 Debug.Log("녹화시작");
             }
  
@@ -120,6 +83,7 @@ public class TakeAShot : MonoBehaviour
             {
                 // 녹화 종료
                 androidUtils.StopRecording();
+                Test2.SetActive(true);
                 Debug.Log("녹화종료");
                 VideoFilePath = Application.persistentDataPath + "/temp_video.mp4";
                 string destinationPath = Path.Combine(Application.persistentDataPath, "RecordedVideo.mp4");

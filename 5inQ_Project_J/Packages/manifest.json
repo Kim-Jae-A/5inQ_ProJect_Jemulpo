@@ -1,5 +1,21 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Cesium",
+      "url": "https://unity.pkg.cesium.com",
+      "scopes": [
+        "com.cesium.unity"
+      ]
+    },{
+      "name": "NatML",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "ai.natml", "ai.fxn"
+      ]
+    }
+  ],
   "dependencies": {
+    "ai.natml.videokit": "0.0.17",
     "com.cesium.unity": "1.7.1",
     "com.google.ar.core.arfoundation.extensions": "file:C:/Users/USER/Downloads/arcore-unity-extensions-1.40.0.tgz",
     "com.unity.2d.sprite": "1.0.0",
@@ -53,14 +69,6 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "scopedRegistries": [
-    {
-      "name": "Cesium",
-      "url": "https://unity.pkg.cesium.com",
-      "scopes": [
-        "com.cesium.unity"
-      ]
-    }
-  ]
+  }
+
 }
