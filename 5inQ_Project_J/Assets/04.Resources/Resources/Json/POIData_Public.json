@@ -1,0 +1,14 @@
+{
+    "ARzone_List":[
+        {
+            "idx":0,
+            "Name":"식당",
+            "Info":"중식당",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "창원시 마산합포구",
+            "latitude":"37.710519",
+            "longitude":"126.745253"
+        }
+    ]
+}
