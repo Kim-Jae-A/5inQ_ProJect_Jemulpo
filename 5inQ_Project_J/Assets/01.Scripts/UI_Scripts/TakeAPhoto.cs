@@ -29,7 +29,7 @@ public class TakeAShot : MonoBehaviour
     [SerializeField] GameObject shotUI;
     [SerializeField]RenderTexture shotTexture;
 
-    private AndroidUtils androidUtils;
+
     private bool isRecording = false;
     private string VideoFilePath;
     [SerializeField] private GameObject Test1;
@@ -39,7 +39,7 @@ public class TakeAShot : MonoBehaviour
     {
         videoStartBtn.SetActive(true);
         videoStopBtn.SetActive(false);  
-        androidUtils = FindObjectOfType<AndroidUtils>();  
+  
         Test1.SetActive(false);
         Test2.SetActive(false);
     }
@@ -62,7 +62,7 @@ public class TakeAShot : MonoBehaviour
             if (isRecording)
             {
                 //녹화시작
-                androidUtils.StartRecording();
+         
                 Test1.SetActive(true);
                 Debug.Log("녹화시작");
             }
@@ -82,7 +82,7 @@ public class TakeAShot : MonoBehaviour
             if (!isRecording)
             {
                 // 녹화 종료
-                androidUtils.StopRecording();
+               
                 Test2.SetActive(true);
                 Debug.Log("녹화종료");
                 VideoFilePath = Application.persistentDataPath + "/temp_video.mp4";
