@@ -57,4 +57,27 @@ public class SoundManager : MonoBehaviour
 
         soundSource.Play();
     }
+
+    public void ButterflyAppearSfx()
+    {
+        // AudioClip을 에셋에서 불러와서 할당
+        soundClip = Resources.Load<AudioClip>("AR_Sounds/ButterflyAppear"); // 파일이름은 에셋 폴더 내의 경로를 기준으로 함
+
+        // AudioClip을 AudioSource에 할당
+        soundSource.clip = soundClip;
+
+        soundSource.Play();
+    }
+
+    public void ButterflyMoveSfx()
+    {
+        // AudioClip을 에셋에서 불러와서 할당
+        soundClip = Resources.Load<AudioClip>("AR_Sounds/ButterflyMove"); // 파일이름은 에셋 폴더 내의 경로를 기준으로 함
+
+        // AudioClip을 AudioSource에 할당
+        soundSource.clip = soundClip;
+
+        soundSource.Play();
+    }
+
 }
