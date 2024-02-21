@@ -24,7 +24,7 @@ public class ImageDetection : MonoBehaviour
             //Reference Image Library·Î Á¢±Ù
             string imageName = trackedImage.referenceImage.name;
 
-            GameObject prefab = Resources.Load<GameObject>(imageName);
+            GameObject prefab = Resources.Load<GameObject>($"AR_Model/{imageName}");
 
             if(prefab != null)
             {
@@ -47,7 +47,7 @@ public class ImageDetection : MonoBehaviour
             {
                 if (trackedImage.transform.childCount > 0)
                 {
-                    trackedImage.transform.GetChild(0).position = trackedImage.transform.position;
+                    trackedImage.transform.GetChild(0).position = trackedImage.transform.position - (Vector3.up * 0.1f);
                     trackedImage.transform.GetChild(0).rotation = trackedImage.transform.rotation;
                     trackedImage.transform.GetChild(0).gameObject.SetActive(true);
                 }

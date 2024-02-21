@@ -479,10 +479,24 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 14.533334
-    functionName: SetEmissionRate
+  - time: 0
+    functionName: TrainMoveSound
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 8
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.733333
+    functionName: TrainIdleSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.533334
+    functionName: TrainMoveSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
