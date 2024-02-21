@@ -1,0 +1,14 @@
+{
+    "ARzone_List": [
+        {
+            "idx": 0,
+            "Name": "대한상공회의소 경기인력개발원",
+            "Info": "대한상공회의소 소속 경기인력개발원이다.",
+            "shooting": "설명의 이미지를 카메라로찍어주세요.",
+            "imagepath": "Image/ChineseRestaurant",
+            "Address": "파주시 와석순환로172번길 16",
+            "latitude": "37.710519",
+            "longitude": "126.745253"
+        }
+    ]
+}

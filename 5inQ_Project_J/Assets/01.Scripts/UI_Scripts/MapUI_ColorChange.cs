@@ -34,14 +34,14 @@ public class MapUI_ColorChange : MonoBehaviour
             selectedButton.GetComponent<Image>().color = grayColor;
             _text = selectedButton.GetComponentInChildren<Text>();
             _text.color = grayColor;
-            EnumSetActive((int)selectedButton.GetComponent<MapUI_Enum>().type);
+            EnumSetActive((int)selectedButton.GetComponent<MakerManager>().type);
         }
 
         // 현재 선택된 버튼의 색상을 선택 색상으로 변경
         button.GetComponent<Image>().color = buleColor;
         _text = button.GetComponentInChildren<Text>();
         _text.color = buleColor;
-        EnumSetActive((int)button.GetComponent<MapUI_Enum>().type);
+        EnumSetActive((int)button.GetComponent<MakerManager>().type);
 
         // 선택된 버튼 업데이트
         selectedButton = button;
@@ -90,9 +90,13 @@ public class MapUI_ColorChange : MonoBehaviour
                     {
                         m.gameObject.SetActive(true);
                     }
-                    else
+                    else if ((int)m.type == 4)
                     {
-                        m.gameObject.SetActive(false);
+                        m.gameObject.SetActive(true);
+                    }
+                    else 
+                    { 
+                        m.gameObject.SetActive(false); 
                     }
                 }
                 break;

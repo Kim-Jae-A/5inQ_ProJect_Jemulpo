@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 862021341}
   - component: {fileID: 862021340}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Loading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 1236291264}
   - component: {fileID: 1236291263}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 1611207019}
   - component: {fileID: 1611207018}
   m_Layer: 5
-  m_Name: "\uB85C\uACE0"
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
