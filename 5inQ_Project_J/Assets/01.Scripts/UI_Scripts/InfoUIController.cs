@@ -38,7 +38,7 @@ public class InfoUIController : MonoBehaviour
             {
                 Title.text = "AR 포토존";
             }
-            if(selectedButton == "Docent")
+            else if(selectedButton == "Docent")
             {
                 Title.text = "AR 도슨트";
             }
@@ -47,7 +47,15 @@ public class InfoUIController : MonoBehaviour
 
     public void OnShootingButton()
     {
-        SceneManager.LoadScene("TakeAShot");
+        string selectedButton_ChangeScene = PlayerPrefs.GetString("selectedButton", "Photozone");
+        if(selectedButton_ChangeScene == "Photozone")
+        {
+            SceneManager.LoadScene("TakeAShot");
+        }
+        else if(selectedButton_ChangeScene == "Docent")
+        {
+            SceneManager.LoadScene("Docent_Animation");
+        }
     }
 
     public void OnReturnButton()
