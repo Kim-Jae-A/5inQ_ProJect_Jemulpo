@@ -1,18 +1,19 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.IO;
+using System.Collections;
 
 public class PhotoZoneUI_Btn : MonoBehaviour
 {
     [Header("ÃÔ¿µ ¸ðµå")]
     [SerializeField] Text photoText;
     [SerializeField] Text videoText;
-    //[SerializeField] Image shotImage;
-    //[SerializeField] Sprite videoStartShot;
-    //[SerializeField] Sprite photoShot;
+
     [SerializeField] private GameObject CameraBtn; 
     [SerializeField] private GameObject RecordBtn; 
-    [SerializeField] private GameObject RecordDoneBtn; 
+    [SerializeField] private GameObject RecordDoneBtn;
+
 
     Color Highlightcolor = new Color(0, 0.6f, 1);
     Color Normalcolor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
@@ -56,6 +57,18 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         RecordBtn.SetActive(true);
         RecordDoneBtn.SetActive(false);
         
+    }
+
+    public void OnGalleryBtn()
+    {
+        AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaClass intentStaticClass = new AndroidJavaClass("android.content.Intent");
+        string actionView = intentStaticClass.GetStatic<string>("ACTION_VIEW");
+        AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
+        AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "content://media/external/images/media");
+        AndroidJavaObject intent = new AndroidJavaObject("android.content.Intent", actionView, uriObject);
+        unityActivity.Call("startActivity", intent);
     }
 
    
