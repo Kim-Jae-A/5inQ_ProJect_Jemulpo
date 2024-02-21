@@ -16,15 +16,15 @@ PlayerSettings:
   productName: 5inQ_Project_J
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_ShowUnitySplashScreen: 1
-  m_ShowUnitySplashLogo: 1
+  m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
-  m_SplashScreenLogoStyle: 1
-  m_SplashScreenDrawMode: 0
+  m_SplashScreenLogoStyle: 0
+  m_SplashScreenDrawMode: 1
   m_SplashScreenBackgroundAnimationZoom: 1
-  m_SplashScreenLogoAnimationZoom: 1
+  m_SplashScreenLogoAnimationZoom: 0
   m_SplashScreenBackgroundLandscapeAspect: 1
   m_SplashScreenBackgroundPortraitAspect: 1
   m_SplashScreenBackgroundLandscapeUvs:
@@ -39,7 +39,9 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: 4d877ece5ff4c294fb6a340197006183, type: 3}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -137,11 +139,8 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
   - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
-  - {fileID: 11400000, guid: 96b2cf3e52ba3f148b92be613c5166a9, type: 2}
   - {fileID: -1829285252232011348, guid: c00d74bb5b6137a4286fd66bce933f3d, type: 2}
   - {fileID: 11400000, guid: efe4d17d423f40f4abc92d48a2ee8964, type: 2}
-  - {fileID: 11400000, guid: 465059b1c02999945a944c7171b0ac3f, type: 2}
-  - {fileID: 11400000, guid: b61643dba6c047e41abc48e25b9848a4, type: 2}
   - {fileID: -736583588086103326, guid: 438781a775f7f224c8b5ca58a1edbd43, type: 2}
   - {fileID: 11400000, guid: 16c04bca3288a064680aa98d48ca8787, type: 2}
   metroInputSource: 0
@@ -779,7 +778,7 @@ PlayerSettings:
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
-  blurSplashScreenBackground: 1
+  blurSplashScreenBackground: 0
   spritePackerPolicy: 
   webGLMemorySize: 32
   webGLExceptionSupport: 1
