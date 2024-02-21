@@ -9,11 +9,15 @@ using UnityEngine.UI;
 public class AR_POI
 {
     public int idx;
-    public string Landmark;
-    public string LandmarkInfo;
+    public string Name;
+    public string Info;
     public string shooting;
     public string imagepath;
+    public string Address;
+    public string latitude;
+    public string longitude;
 }
+
 [System.Serializable]
 public class AR_DataList
 {
@@ -97,12 +101,12 @@ public class ScrollViewManager : MonoBehaviour
 
         if (title != null)
         {
-            title.text = ARZone_poi.Landmark;
+            title.text = ARZone_poi.Name;
         }
 
         if (info != null)
         {
-            info.text = ARZone_poi.LandmarkInfo;
+            info.text = ARZone_poi.Info;
         }
 
         if (image != null)
@@ -131,7 +135,7 @@ public class ScrollViewManager : MonoBehaviour
             Debug.Log("arData is null.");
             return;
         }
-        Debug.Log("OnScrollview_ElementClicked - Data received: " + (arData != null ? arData.Landmark : "null"));
+        Debug.Log("OnScrollview_ElementClicked - Data received: " + (arData != null ? arData.Name : "null"));
         JsonDataHolder.Instance.SetSelectedARData(arData);
         SceneManager.LoadScene("PhotoZone_Docent", LoadSceneMode.Single);
     }

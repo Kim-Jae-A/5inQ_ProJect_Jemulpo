@@ -24,11 +24,11 @@ public class JsonDataHolder : MonoBehaviour
     public void SetSelectedARData(AR_POI data)
     {
         selectedARData = data;
-        Debug.Log("SetSelectedARData: " + (selectedARData != null ? selectedARData.Landmark : "null"));
+        Debug.Log("SetSelectedARData: " + (selectedARData != null ? selectedARData.Name : "null"));
     }
     public AR_POI GetSelectedARData()
     {
-        Debug.Log("GetSelectedARData: " + (selectedARData != null ? selectedARData.Landmark : "null"));
+        Debug.Log("GetSelectedARData: " + (selectedARData != null ? selectedARData.Name : "null"));
         return selectedARData;
     }
 }

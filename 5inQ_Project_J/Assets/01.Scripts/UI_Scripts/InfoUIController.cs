@@ -23,10 +23,10 @@ public class InfoUIController : MonoBehaviour
 
         if (selectedARData != null)
         {
-            Debug.Log("Selected Landmark: " + selectedARData.Landmark);
-            Debug.Log("Selected LandmarkInfo: " + selectedARData.LandmarkInfo);
-            Info_name.text = selectedARData.Landmark;
-            Info_Description.text = selectedARData.LandmarkInfo;
+            Debug.Log("Selected Landmark: " + selectedARData.Name);
+            Debug.Log("Selected LandmarkInfo: " + selectedARData.Info);
+            Info_name.text = selectedARData.Name;
+            Info_Description.text = selectedARData.Info;
 
             Sprite sprite = Resources.Load<Sprite>(selectedARData.imagepath);
             if (sprite != null)
@@ -43,8 +43,6 @@ public class InfoUIController : MonoBehaviour
                 Title.text = "AR µµ½¼Æ®";
             }
         }
-        
-
     }
 
     public void OnShootingButton()
