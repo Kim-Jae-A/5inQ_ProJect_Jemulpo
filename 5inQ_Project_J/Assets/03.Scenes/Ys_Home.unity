@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 38842077}
   - component: {fileID: 38842076}
   m_Layer: 5
-  m_Name: "Text-\uB3CB\uBCF4\uAE30"
+  m_Name: ZoomBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 80587819}
   - component: {fileID: 80587818}
   m_Layer: 5
-  m_Name: "Text-\uC751\uAE09\uC2E0\uACE0"
+  m_Name: Text-119
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 126560178}
   - component: {fileID: 126560177}
   m_Layer: 5
-  m_Name: "\uB85C\uACE0"
+  m_Name: Logo Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 240842814}
   - component: {fileID: 240842813}
   m_Layer: 5
-  m_Name: "Text-\uC2DC\uAC04\uC5EC\uD589"
+  m_Name: Text-AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 288373058}
   - component: {fileID: 288373057}
   m_Layer: 5
-  m_Name: "AR\uCCB4\uD5D8\uC874"
+  m_Name: AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 688778925}
   - component: {fileID: 688778924}
   m_Layer: 5
-  m_Name: "Text-\uB178\uB798 \uAD50\uC2E4"
+  m_Name: Text-vr drama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -886,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 699253077}
   m_Layer: 5
-  m_Name: "\uB85C\uACE0,\uD14D\uC2A4\uD2B8"
+  m_Name: Logo/Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 700481093}
   - component: {fileID: 700481092}
   m_Layer: 5
-  m_Name: "\uAE38\uCC3E\uAE30"
+  m_Name: ARNavigation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 742478822}
   - component: {fileID: 742478821}
   m_Layer: 5
-  m_Name: "\uC2A4\uB9C8\uD2B8\uACBD\uB85C\uB2F9"
+  m_Name: SmartSilver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 766550047}
   - component: {fileID: 766550046}
   m_Layer: 5
-  m_Name: "\uC751\uAE09\uC2E0\uACE0"
+  m_Name: 119
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 1001235963}
   - component: {fileID: 1001235962}
   m_Layer: 5
-  m_Name: "\uB3CB\uBCF4\uAE30"
+  m_Name: ZoomBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,7 +1472,7 @@ GameObject:
   - component: {fileID: 1132969808}
   - component: {fileID: 1132969807}
   m_Layer: 5
-  m_Name: "\uB85C\uACE0\uD14D\uC2A4\uD2B8"
+  m_Name: LogoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 1404861511}
   - component: {fileID: 1404861510}
   m_Layer: 5
-  m_Name: "VR\uCCB4\uD5D8\uC874"
+  m_Name: VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1703,7 +1703,7 @@ GameObject:
   - component: {fileID: 1418161574}
   - component: {fileID: 1418161573}
   m_Layer: 5
-  m_Name: "Text-\uD3EC\uD1A0\uC874/\uB3C4\uC2A8\uD2B8"
+  m_Name: Text-Photozone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1784,7 +1784,7 @@ GameObject:
   - component: {fileID: 1448638011}
   - component: {fileID: 1448638010}
   m_Layer: 5
-  m_Name: "\uBC84\uD2BC"
+  m_Name: Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1893,7 +1893,7 @@ GameObject:
   - component: {fileID: 1647168320}
   - component: {fileID: 1647168319}
   m_Layer: 5
-  m_Name: "Text-\uC2A4\uB9C8\uD2B8\uACBD\uB85C\uB2F9"
+  m_Name: TitleText-SmartSilver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2171,7 +2171,7 @@ GameObject:
   - component: {fileID: 1938536951}
   - component: {fileID: 1938536950}
   m_Layer: 5
-  m_Name: "Text-\uB178\uB798\uAD50\uC2E4"
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2251,7 +2251,7 @@ GameObject:
   - component: {fileID: 1949556808}
   - component: {fileID: 1949556807}
   m_Layer: 5
-  m_Name: "Text-VR\uCCB4\uD5D8\uC874"
+  m_Name: Text-VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
