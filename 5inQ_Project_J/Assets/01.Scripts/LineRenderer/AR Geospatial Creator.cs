@@ -47,9 +47,9 @@ JsonManager.instance.data.route.trafast.Count > 0)
             ARGeospatialCreatorAnchor anchorComponent = clone.AddComponent<ARGeospatialCreatorAnchor>();
             clone.transform.SetParent(transform);
             // Latitude¿Í Longitude ¼³Á¤
-            anchorComponent.SetLatitude(Latitude[i]);
-            anchorComponent.SetLongitude(Longitude[i]);
-            anchorComponent.SetAltitude(68);
+            //anchorComponent.SetLatitude(Latitude[i]);
+            //anchorComponent.SetLongitude(Longitude[i]);
+            //anchorComponent.SetAltitude(68);
             Vector3 unityPosition = ConvertGeoToUnityCoordinates(Latitude[i], Longitude[i], 68);
             clone.transform.position = unityPosition;
         }
