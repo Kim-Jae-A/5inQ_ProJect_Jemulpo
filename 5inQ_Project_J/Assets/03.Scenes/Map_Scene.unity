@@ -324,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
@@ -976,10 +976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 251731085075768620, guid: 7625f8efe13f7694ca10213ab5b85736, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
@@ -1488,7 +1484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!1 &1258632428
+--- !u!1 &1344265676
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1496,9 +1492,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1258632431}
-  - component: {fileID: 1258632430}
-  - component: {fileID: 1258632429}
+  - component: {fileID: 1344265679}
+  - component: {fileID: 1344265678}
+  - component: {fileID: 1344265677}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1506,13 +1502,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1258632429
+--- !u!114 &1344265677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258632428}
+  m_GameObject: {fileID: 1344265676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
@@ -1526,13 +1522,13 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &1258632430
+--- !u!114 &1344265678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258632428}
+  m_GameObject: {fileID: 1344265676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
@@ -1541,20 +1537,20 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!4 &1258632431
+--- !u!4 &1344265679
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258632428}
+  m_GameObject: {fileID: 1344265676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352975641
 GameObject:
@@ -1992,10 +1988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 4187929469829707279, guid: 21a37cfa192604440991c0e9b1af6a72, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
@@ -3099,7 +3091,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1914446051
 MonoBehaviour:
@@ -3225,10 +3217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 4286775350227559812, guid: fc93f07848edf0341900c42fd1ffc588, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
@@ -3524,10 +3512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 7722023421085406712, guid: 6d83bea2012afa246ba4696e1acc74c4, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
