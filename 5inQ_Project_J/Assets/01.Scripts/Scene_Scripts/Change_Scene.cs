@@ -18,7 +18,7 @@ public class Change_Scene : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Home");
+            SceneManager.LoadScene("Ys_Home");
         }
     }
 }
