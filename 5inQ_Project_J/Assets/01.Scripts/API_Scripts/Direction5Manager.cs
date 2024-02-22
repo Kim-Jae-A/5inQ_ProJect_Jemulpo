@@ -15,7 +15,8 @@ public class Direction5Manager : MonoBehaviour
 
     public static string _endlongitude;
     public static string _endlatitude;
-    
+
+    public Image panel;
 
     public void OnNaviStartButtonEnter()
     {
@@ -36,28 +37,37 @@ public class Direction5Manager : MonoBehaviour
         yield return request.SendWebRequest();
         switch (request.result)
         {
+            case UnityWebRequest.Result.Success:
+                //text.text = request.result.ToString();
+                Debug.Log(request.result.ToString());
+                break;
             case UnityWebRequest.Result.ConnectionError:
                 Debug.LogWarning(request.result.ToString());
-                yield break;
-            case UnityWebRequest.Result.Success:
-                Debug.LogWarning(request.result.ToString());
-                break;
+                //text.text = request.result.ToString();
+                yield break;           
             case UnityWebRequest.Result.ProtocolError:
+                //text.text = request.result.ToString();
                 Debug.LogWarning(request.result.ToString());
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
+                //text.text = request.result.ToString();
                 Debug.LogWarning(request.result.ToString());
                 yield break;
         }
         if (request.isDone)
         {
-            Debug.Log(request.result.ToString());
+            panel.gameObject.SetActive(true);
             string json = request.downloadHandler.text;
-            //string json = JsonUtility.ToJson(request.downloadHandler.text);
-            System.IO.File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);
-
-            print(json);
-            SceneManager.LoadScene("AR_Navigation");
+            System.IO.File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);          
+            yield break;
         }
+    }
+    public void NextScene()
+    {
+        SceneManager.LoadScene("AR_LIneRenderer");
+    }
+    public void ExitPanel()
+    {
+        panel.gameObject.SetActive(false);
     }
 }

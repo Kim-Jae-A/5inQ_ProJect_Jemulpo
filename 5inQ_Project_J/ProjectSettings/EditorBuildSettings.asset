@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/03.Scenes/Map_Scene.unity
     guid: e8d3dfcad09cb20428b98174c9ded4b9
   - enabled: 1
-    path: Assets/03.Scenes/AR_Navigation.unity
-    guid: a4e3f5ed1723bb24c9afdabc2c20f6a4
+    path: Assets/03.Scenes/AR_LIneRenderer.unity
+    guid: 76a358f0e43b8314fa5c770f0ee63290
   - enabled: 1
     path: Assets/03.Scenes/UI_AR&Docent ListPage.unity
     guid: 03f6f2f8c7d5f6245a1fbe1f8a13dbea
@@ -27,5 +27,11 @@ EditorBuildSettings:
     path: Assets/03.Scenes/SavePhoto.unity
     guid: da2da977f0215144b8406dbac08a6e36
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e3882d1369a243a428ea05a8959602a8,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 39d8b0cdd622b904ea168bd290f861c4,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: efe4d17d423f40f4abc92d48a2ee8964,
+      type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 438781a775f7f224c8b5ca58a1edbd43,
       type: 2}
