@@ -383,7 +383,7 @@ MonoBehaviour:
   ListPage: {fileID: 1160032381}
   ListPage_Change_Content: {fileID: 963548796}
   AR_InfoScene: PhotoZone_Docent
-  PreviousScene: Ys_Home
+  PreviousScene: Home
 --- !u!114 &115225542
 MonoBehaviour:
   m_ObjectHideFlags: 0
