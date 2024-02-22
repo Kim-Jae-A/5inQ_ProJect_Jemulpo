@@ -23,13 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/03.Scenes/PhotoZone_Docent.unity
     guid: e0ee87fc3101ace439fc9081fb75b67d
-  - enabled: 1
+  - enabled: 0
     path: Assets/03.Scenes/TakeAShot.unity
     guid: dae3a791ca40b9846a117b45f3216a7e
-  - enabled: 1
-    path: Assets/03.Scenes/Docent_Animation.unity
-    guid: 743b32e6db8fd08449d5e57a554886c7
-  - enabled: 1
     path: Assets/03.Scenes/SavePhoto.unity
     guid: da2da977f0215144b8406dbac08a6e36
   - enabled: 0
