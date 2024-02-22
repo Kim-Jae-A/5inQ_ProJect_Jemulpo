@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,7 @@ public class MapUI_Enum : MonoBehaviour
                 json = Resources.Load<TextAsset>("Json/POIData_Docent");
                 break;
         }
-        LoadAndCreate(json);        
+        LoadAndCreate(json);
     }
     private void Start()
     {
@@ -47,7 +48,6 @@ public class MapUI_Enum : MonoBehaviour
 
         foreach (Button b in panelButton)
         {
-            Debug.Log(b.name);
             b.onClick.AddListener(delegate { OnButtonEnter(b); });
         }
     }
@@ -87,11 +87,7 @@ public class MapUI_Enum : MonoBehaviour
     {
         if (ARZone_poi.Name != null)
         {
-            GameObject a = Instantiate(marker);         
-            a.transform.SetParent(transform);
-            a.transform.position = transform.position;
-            a.transform.rotation = new Quaternion(0, 0, 0, 0);
-            a.transform.localScale = new Vector3(2, 2, 1);
+            GameObject a = Instantiate(marker);       
             MarkerInFo _marker = a.GetComponent<MarkerInFo>();
             _marker._name = ARZone_poi.Name;
             _marker._description = ARZone_poi.Info;
@@ -99,6 +95,36 @@ public class MapUI_Enum : MonoBehaviour
             _marker._latitude = ARZone_poi.latitude;
             _marker._longitude = ARZone_poi.longitude;
             _marker._imagepath = ARZone_poi.imagepath;
+            Vector2 v = ConvertGeoToUnityCoordinate(Convert.ToDouble(_marker._latitude), Convert.ToDouble(_marker._longitude));
+            a.transform.rotation = new Quaternion(0, 0, 0, 0);
+            a.transform.position = new Vector3(v.x, v.y, 0);
+            a.transform.SetParent(transform, false);
+            a.transform.localScale = new Vector3(1, 1, 1);
         }
+    }
+    private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
+    {
+        // 기준 위도, 경도
+        double originLatitude = StaticMapManager.latitude;
+        double originLongitude = StaticMapManager.longitude;
+
+#if UNITY_EDITOR
+        originLatitude = 37.713675f;
+        originLongitude = 126.743572f;
+#endif
+        // 기준 x, y
+        double originX = 0;
+        double originY = 0;
+
+        // 위도, 경도에 대한 x, y의 변화 비율
+        /*double xRatio = 559092.4f;
+        double yRatio = 714178.2f;*/
+        double xRatio = 172238.37f;
+        double yRatio = 265780.73f;
+
+        double x = originX + (longitude - originLongitude) * xRatio;
+        double y = originY + (latitude - originLatitude) * yRatio;
+
+        return new Vector2((float)x, (float)y);
     }
 }
