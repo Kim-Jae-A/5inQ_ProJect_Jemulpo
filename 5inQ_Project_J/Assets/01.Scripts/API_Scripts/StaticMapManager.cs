@@ -99,7 +99,8 @@ public class StaticMapManager : MonoBehaviour
     {
         apiURL = url + $"?w={width}&h={height}&center={longitude},{latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
 #if UNITY_EDITOR
-        apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
+        //apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
+        apiURL = url + $"?w={width}&h={height}&center=126.743572,37.713675&level={zoomLevel}&scale=2"; // 경기인력
 #endif
         /*        apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center={longitude},{latitude}&crs=epsg:4326&zoom={zoomLevel}&size={width},{height}";// 현재 위치 좌표
         #if UNITY_EDITOR
