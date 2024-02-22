@@ -61,19 +61,34 @@ public class PhotoZoneUI_Btn : MonoBehaviour
 
     public void OnGalleryBtn()
     {
+        // READ_EXTERNAL_STORAGE 권한이 이미 부여되었는지 확인
+        if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.ExternalStorageRead))
+        {
+            // 권한이 없다면, 권한 요청
+            UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.ExternalStorageRead);
+
+            if (UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.ExternalStorageRead))
+            {
+                LoadGallery();
+            }
+        }
+        else
+        {
+            LoadGallery();
+        }
+    }
+
+    void LoadGallery()
+    {
         AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
         AndroidJavaClass intentStaticClass = new AndroidJavaClass("android.content.Intent");
         string actionView = intentStaticClass.GetStatic<string>("ACTION_VIEW");
         AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
-        AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "content://media/external/images/media");
+        AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "content://media/internal/DCIM");
         AndroidJavaObject intent = new AndroidJavaObject("android.content.Intent", actionView, uriObject);
         unityActivity.Call("startActivity", intent);
     }
-
-   
-
-
 
     #region TextStyle
     public void HighlightPhotoText()
