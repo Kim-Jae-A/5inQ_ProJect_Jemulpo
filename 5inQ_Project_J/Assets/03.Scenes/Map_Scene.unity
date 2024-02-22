@@ -976,10 +976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 251731085075768620, guid: 7625f8efe13f7694ca10213ab5b85736, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
@@ -1992,10 +1988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 4187929469829707279, guid: 21a37cfa192604440991c0e9b1af6a72, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
@@ -3225,10 +3217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 4286775350227559812, guid: fc93f07848edf0341900c42fd1ffc588, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}
@@ -3524,10 +3512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  rawImageWidth: 3000
-  rawImageHeight: 3000
-  xRatio: 559092.375
-  yRatio: 714178.1875
   marker: {fileID: 7722023421085406712, guid: 6d83bea2012afa246ba4696e1acc74c4, type: 3}
   naviPanel: {fileID: 1604012300}
   placeName: {fileID: 266206727}

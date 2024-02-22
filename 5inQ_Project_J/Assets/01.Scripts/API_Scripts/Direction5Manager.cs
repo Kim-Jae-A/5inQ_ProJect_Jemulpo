@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Direction5Manager : MonoBehaviour
@@ -56,6 +57,7 @@ public class Direction5Manager : MonoBehaviour
             System.IO.File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);
 
             print(json);
+            SceneManager.LoadScene("AR_Navigation");
         }
     }
 }
