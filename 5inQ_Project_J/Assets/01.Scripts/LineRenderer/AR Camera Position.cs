@@ -18,13 +18,14 @@ public class ARCameraPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         UpdateARCameraPosition(); // 초기화할 때 한 번 호출하여 AR 카메라의 위치를 설정합니다.
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateARCameraPosition(); // 매 프레임마다 AR 카메라의 위치를 업데이트합니다.
+
     }
 
     void UpdateARCameraPosition()
@@ -33,12 +34,18 @@ public class ARCameraPosition : MonoBehaviour
         {
             // LinRendererManager에서 AR 카메라의 위치를 가져옵니다.
             Vector3 arCameraPosition = lineRenderer.ARCameraPosition;
+            Vector3 direction = arCameraPosition - transform.position;
+
+            // 방향 벡터를 회전하여 타겟 방향으로 오브젝트를 회전시킵니다.
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
             // y 값을 5로 설정합니다.
-            arCameraPosition.y = 5f;
+            arCameraPosition.y = 1f;
 
             // 이 오브젝트의 로컬 위치로 설정합니다.
+            transform.rotation = targetRotation;
             transform.localPosition = arCameraPosition;
+            
         }
     }
 }
