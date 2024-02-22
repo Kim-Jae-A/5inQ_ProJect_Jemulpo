@@ -22,7 +22,7 @@ public class TakeAShot : MonoBehaviour
 
     [Header("비디오 녹화")]
     [SerializeField]private ARSession m_Session;
-    [SerializeField]Camera m_ARCamera;//추가
+    //[SerializeField]Camera m_ARCamera;//추가
     //[SerializeField] RenderTexture m_RenderTexture;//추가
     private bool isRecording = false;
     private string VideoFilePath;
@@ -30,7 +30,7 @@ public class TakeAShot : MonoBehaviour
     private void Awake()
     {
         m_Session = GetComponent<ARSession>();
-        m_ARCamera = GetComponent<Camera>();//추가
+        //m_ARCamera = GetComponent<Camera>();//추가
 
         //m_RenderTexture = new RenderTexture(Screen.width, Screen.height, 24);
 

@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 1773222646}
   - component: {fileID: 1773222645}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 UI"
+  m_Name: Save UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
