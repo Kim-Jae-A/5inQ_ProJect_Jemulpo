@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _altitudeOffset: 0
-  _latitude: 37.71363917620617
+  _latitude: 37.71363917620616
   _longitude: 126.74457720210243
   _altitude: 68.75450426315956
   _altitudeType: 0
