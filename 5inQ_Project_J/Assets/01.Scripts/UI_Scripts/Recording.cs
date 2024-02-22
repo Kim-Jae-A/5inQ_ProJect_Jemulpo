@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_ANDROID
@@ -14,8 +15,8 @@ public class Recording : MonoBehaviour
     [SerializeField] private Button StartRecordBtn;
     [SerializeField] private Button EndRecordBtn;
 
-    ARSession m_Session;
-    Camera m_ARCamera;//추가
+    [SerializeField]private ARSession m_Session;
+    private Camera m_ARCamera;//추가
     RenderTexture m_RenderTexture;//추가
 
 #if UNITY_ANDROID
@@ -29,11 +30,19 @@ public class Recording : MonoBehaviour
     void Awake()
     {
         m_Session = GetComponent<ARSession>();
-        m_ARCamera = GetComponentInChildren<Camera>();//추가
+        m_ARCamera = GetComponent<Camera>();//추가
 
-        // 추가: 렌더 텍스처 생성
-        m_RenderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-        m_ARCamera.targetTexture = m_RenderTexture;
+        XROrigin m_xrorigin = FindObjectOfType<XROrigin>();
+        if(m_xrorigin != null)
+        {
+            m_ARCamera = m_xrorigin.Camera;
+            if(m_ARCamera != null)
+            {
+                // 추가: 렌더 텍스처 생성
+                m_RenderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+                m_ARCamera.targetTexture = m_RenderTexture;
+            }
+        }
 
     }
 
@@ -92,4 +101,5 @@ public class Recording : MonoBehaviour
         }
 #endif
     }
+
 }
