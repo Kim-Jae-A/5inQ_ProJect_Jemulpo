@@ -9,13 +9,13 @@ public class StaticMapManager : MonoBehaviour
 {
     [Header("API 설정")]
     //string url = "https://api.vworld.kr/req/image?service=image&request=getmap&key=";
-    public string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster";
-    public float width;
-    public float height;
-    public int zoomLevel;
-    public string key_ID;
-    public string key;
-    public RawImage map;
+    public string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster"; // API 요청 URL
+    public float width; // 요청 받을 이미지의 폭
+    public float height; // 요청 받을 이미지의 높이
+    public int zoomLevel; // 요청 받을 이미지의 확대 정도
+    public string key_ID; // API 아이디
+    public string key;    // API 키
+    public RawImage map;  // 받아온 텍스쳐를 적용할 공간
     string apiURL;
     bool check;
 
@@ -80,7 +80,7 @@ public class StaticMapManager : MonoBehaviour
 
                 if (!check)
                 {
-                    StartCoroutine(StaticMapDrawing());
+                    StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
                 }
                 check = true;
             }
@@ -111,6 +111,8 @@ public class StaticMapManager : MonoBehaviour
         request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);
 
         yield return request.SendWebRequest();
+
+        // 예외처리 스위치문
         switch (request.result)
         {
             case UnityWebRequest.Result.ConnectionError:

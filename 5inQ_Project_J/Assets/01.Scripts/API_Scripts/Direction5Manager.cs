@@ -8,13 +8,13 @@ using UnityEngine.UI;
 public class Direction5Manager : MonoBehaviour
 {
     [Header("API 설정")]
-    public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving";
-    public string key_ID;
-    public string key;
+    public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"; // API 요청 URL
+    public string key_ID; // API 아이디
+    public string key; // API 키
     string apiURL;
 
-    public static string _endlongitude;
-    public static string _endlatitude;
+    public static string _endlongitude; // 경도
+    public static string _endlatitude; // 위도
 
     public Image panel;
 
@@ -34,7 +34,9 @@ public class Direction5Manager : MonoBehaviour
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);
 
-        yield return request.SendWebRequest();
+        yield return request.SendWebRequest(); // 요청결과값
+
+        // 예외처리
         switch (request.result)
         {
             case UnityWebRequest.Result.Success:
@@ -54,11 +56,12 @@ public class Direction5Manager : MonoBehaviour
                 Debug.LogWarning(request.result.ToString());
                 yield break;
         }
+
         if (request.isDone)
         {
             panel.gameObject.SetActive(true);
             string json = request.downloadHandler.text;
-            System.IO.File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);          
+            System.IO.File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);   // 요청 결과값 데이터
             yield break;
         }
     }

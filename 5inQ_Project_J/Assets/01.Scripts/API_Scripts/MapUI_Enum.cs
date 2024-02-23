@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MapUI_Enum : MonoBehaviour
 {
-    public MapUI_Enum_Interface.Type type;
+    public MapUI_Enum_Interface.Type type; // 이넘 타입의 종류
 
     private TextAsset json;
     [SerializeField] private GameObject marker;
@@ -25,6 +25,8 @@ public class MapUI_Enum : MonoBehaviour
     private void Awake()
     {
         panel = GetComponent<Image>();
+
+        // 이넘 종류에 따른 JSON 데이터 파싱
         switch (type)
         {
             case MapUI_Enum_Interface.Type.Publicplaces:
@@ -54,6 +56,7 @@ public class MapUI_Enum : MonoBehaviour
 
     void OnButtonEnter(Button b)
     {
+        // 정보 작성 버튼 이벤트
         MarkerInFo marker = b.GetComponent<MarkerInFo>();
         placeName.text = marker._name;
         placeInfo.text = marker._description;
@@ -75,14 +78,16 @@ public class MapUI_Enum : MonoBehaviour
     {
         if (jsonfile != null)
         {
-            AR_DataList ar_dataList = JsonUtility.FromJson<AR_DataList>(jsonfile.text);
+            AR_DataList ar_dataList = JsonUtility.FromJson<AR_DataList>(jsonfile.text); // JSON 데이터 파싱
 
+            // 제이슨 데이터 갯수 만큼 생성 및 위도 경도에 따라 위치 변환
             foreach (AR_POI ARZone_ in ar_dataList.ARzone_List)
             {
                 CreateScrollviewContent(ARZone_);                
             }
         }
     }
+
     private void CreateScrollviewContent(AR_POI ARZone_poi)
     {
         if (ARZone_poi.Name != null)
@@ -102,6 +107,8 @@ public class MapUI_Enum : MonoBehaviour
             a.transform.localScale = new Vector3(1, 1, 1);
         }
     }
+    
+    // 위도 경도에 따라 유니티 좌표계로 치환
     private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
     {
         // 기준 위도, 경도
@@ -117,8 +124,6 @@ public class MapUI_Enum : MonoBehaviour
         double originY = 0;
 
         // 위도, 경도에 대한 x, y의 변화 비율
-        /*double xRatio = 559092.4f;
-        double yRatio = 714178.2f;*/
         double xRatio = 172238.37f;
         double yRatio = 265780.73f;
 
