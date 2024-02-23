@@ -8,32 +8,24 @@ public class Docent_Player : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Slider Docent_slider;
+    [SerializeField] private AudioClip gaebalone;
     [SerializeField] private Button BackToDescription;
-
-    float AnimationTotalLength = 0;
-    float currentLength = 0;
+    public AudioSource narration;
     // Start is called before the first frame update
     void Start()
     {
-        BackToDescription.onClick.AddListener(Return_Docent_Description);
-        AnimatorClipInfo[] clipInfos = animator.GetCurrentAnimatorClipInfo(0);
-        foreach (var info in clipInfos)
-        {
-            AnimationTotalLength += info.clip.length;
-        }
-
+        BackToDescription.onClick.AddListener(Return_Docent_Description);//뒤로가기버튼 이벤트 추가.
+        narration.Play();
+        Docent_slider.maxValue = gaebalone.length;
     }
     void Update()
     {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float clipProgress = stateInfo.normalizedTime % 1;
-        float clipLength = stateInfo.length * clipProgress;
-        if(clipLength < currentLength)
+        float narrationProgress = narration.time;
+        if (narration.isPlaying)
         {
-            currentLength += stateInfo.length;
+            Docent_slider.value = narrationProgress;
         }
-        float totalProgress = currentLength + clipLength;
-        Docent_slider.value = totalProgress;
+
         /*
         //애니메이션의 state정보를 슬라이더바에 적용
         //하지만 state가 변경될 때 마다 슬라이더바가 최신화 됨.
@@ -48,6 +40,4 @@ public class Docent_Player : MonoBehaviour
     {
         SceneManager.LoadScene("PhotoZone_Docent");
     }
-
-    // Update is called once per frame
 }
