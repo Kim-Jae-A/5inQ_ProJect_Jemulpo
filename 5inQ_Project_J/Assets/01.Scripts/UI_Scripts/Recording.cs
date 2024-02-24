@@ -5,10 +5,11 @@ using System.IO;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
-#if UNITY_ANDROID
+//#if UNITY_ANDROID
 using UnityEngine.XR.ARCore;
 using UnityEngine.XR.ARFoundation;
-#endif
+//#endif
+
 [RequireComponent(typeof(ARSession))]
 public class Recording : MonoBehaviour
 {
