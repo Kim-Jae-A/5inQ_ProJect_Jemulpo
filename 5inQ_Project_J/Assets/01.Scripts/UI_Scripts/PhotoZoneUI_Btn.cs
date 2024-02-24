@@ -77,17 +77,14 @@ public class PhotoZoneUI_Btn : MonoBehaviour
             LoadGallery();
         }
     }
-
+    
     void LoadGallery()
     {
-        AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaClass intentStaticClass = new AndroidJavaClass("android.content.Intent");
-        string actionView = intentStaticClass.GetStatic<string>("ACTION_VIEW");
-        AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
-        AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "content://media/internal/DCIM");
-        AndroidJavaObject intent = new AndroidJavaObject("android.content.Intent", actionView, uriObject);
-        unityActivity.Call("startActivity", intent);
+        AndroidJavaClass javaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject javaObject = javaClass.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaObject packageManager = javaObject.Call<AndroidJavaObject>("getPackageManager");
+        AndroidJavaObject intent = packageManager.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.sec.android.gallery3d");
+        javaObject.Call("startActivity", intent);
     }
 
     #region TextStyle
