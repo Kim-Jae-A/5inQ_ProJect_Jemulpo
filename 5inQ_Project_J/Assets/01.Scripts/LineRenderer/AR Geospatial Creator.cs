@@ -44,7 +44,7 @@ JsonManager.instance.data.route.trafast.Count > 0)
             // AR Geospatial Creator 게임 오브젝트 생성
             GameObject clone = Instantiate(AnchorPrefab, Vector3.zero, Quaternion.identity);
             // AR Geospatial Creator 게임 오브젝트의 자식으로 Anchor 스크립트를 추가
-            ARGeospatialCreatorAnchor anchorComponent = clone.AddComponent<ARGeospatialCreatorAnchor>();
+            //ARGeospatialCreatorAnchor anchorComponent = clone.AddComponent<ARGeospatialCreatorAnchor>();
             clone.transform.SetParent(transform);
             // Latitude와 Longitude 설정
             //anchorComponent.SetLatitude(Latitude[i]);
