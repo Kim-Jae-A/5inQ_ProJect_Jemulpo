@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/03.Scenes/Home.unity
     guid: ba958d20d0412eb4291d8c31d16cfaac
-  - enabled: 0
+  - enabled: 1
     path: Assets/03.Scenes/Map_Scene.unity
     guid: e8d3dfcad09cb20428b98174c9ded4b9
-  - enabled: 0
+  - enabled: 1
     path: Assets/03.Scenes/AR_LIneRenderer.unity
     guid: 76a358f0e43b8314fa5c770f0ee63290
   - enabled: 1

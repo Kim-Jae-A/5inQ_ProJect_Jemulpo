@@ -72,11 +72,11 @@ public class TakeAShot : MonoBehaviour
         if (CameraMode.isPhoto)
         {
             // 캡처된 화면을 Texture2D로 생성한다
-            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            Texture2D tex = new Texture2D(shotTexture.width, shotTexture.height, TextureFormat.RGB24, false);
 
             RenderTexture.active = shotTexture;
 
-            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            tex.ReadPixels(new Rect(0, 0, shotTexture.width, shotTexture.height), 0, 0);
             tex.Apply();
 
             // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
