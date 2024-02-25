@@ -107,30 +107,6 @@ public class TakeAShot : MonoBehaviour
             {
                 videoStartBtn.gameObject.SetActive(false);
                 videoStopBtn.gameObject.SetActive(true);
-#if UNITY_ANDROID
-                if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-                {
-                    var session = subsystem.session;
-                    if (session == null)
-                        return;
-
-                    var playbackStatus = subsystem.playbackStatus;
-                    var recordingStatus = subsystem.recordingStatus;
-
-                    if (!playbackStatus.Playing() && !recordingStatus.Recording())
-                    {
-                        using (var config = new ArRecordingConfig(session))
-                        {
-                            string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "ar-video.mp4";
-                            VideoFilePath = Path.Combine(Application.persistentDataPath, fileName);
-                            config.SetMp4DatasetFilePath(session, VideoFilePath);
-                            config.SetRecordingRotation(session, GetRotation());
-
-                            subsystem.StartRecording(config);
-                        }
-                    }
-                }
-#endif
                 Debug.Log("녹화시작");
                 Debug.Log(isRecording);
             }
@@ -156,17 +132,6 @@ public class TakeAShot : MonoBehaviour
                 // 녹화 종료
                 videoStartBtn.gameObject.SetActive(true);
                 videoStopBtn.gameObject.SetActive(false);
-#if UNITY_ANDROID
-                if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-                {
-                    var recordingStatus = subsystem.recordingStatus;
-
-                    if (recordingStatus.Recording())
-                    {
-                        subsystem.StopRecording();
-                    }
-                }
-#endif
                 CameraMode.isRecord = false;
                 SceneManager.LoadScene("SavePhoto");
             }
