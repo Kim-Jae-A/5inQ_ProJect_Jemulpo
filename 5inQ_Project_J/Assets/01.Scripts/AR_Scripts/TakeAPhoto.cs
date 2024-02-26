@@ -137,7 +137,6 @@ public class TakeAShot : MonoBehaviour
         }
     }
 
-
     public void OnReturnBtn()
     {
         SceneManager.LoadScene("PhotoZone_Docent");

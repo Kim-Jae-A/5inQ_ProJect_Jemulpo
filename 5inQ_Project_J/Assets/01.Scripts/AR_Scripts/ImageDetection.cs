@@ -54,13 +54,13 @@ public class ImageDetection : MonoBehaviour
             }
         }
 
-        foreach (ARTrackedImage trackedImage in args.removed)
-        {
-            if (trackedImage.transform.childCount > 0)
-            {
-                Destroy(trackedImage.transform.GetChild(0).gameObject);
-            }
-        }
+        //foreach (ARTrackedImage trackedImage in args.removed)
+        //{
+        //    if (trackedImage.transform.childCount > 0)
+        //    {
+        //        Destroy(trackedImage.transform.GetChild(0).gameObject);
+        //    }
+        //}
     }
 
     private void OnDisable()
