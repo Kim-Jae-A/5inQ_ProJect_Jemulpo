@@ -14,6 +14,8 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     [SerializeField] private GameObject RecordDoneBtn;
 
 
+
+
     Color Highlightcolor = new Color(0, 0.6f, 1);
     Color Normalcolor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
 
@@ -26,6 +28,9 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         RecordDoneBtn.SetActive(false);
 
     }
+
+
+
     public void OnPhotoBtn()
     {
         //버튼을 누르면 사진 모드가 켜지고 그에 맞는 텍스트 변경 
