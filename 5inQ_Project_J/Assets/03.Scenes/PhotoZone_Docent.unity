@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 53327722}
   - component: {fileID: 53327721}
   m_Layer: 5
-  m_Name: "\uD3EC\uD1A0\uC874\uC5D0 \uB300\uD55C \uC124\uBA85 txt"
+  m_Name: Description_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 260690780}
   - component: {fileID: 260690779}
   m_Layer: 5
-  m_Name: "\uD0C0\uC774\uD2C0 txt"
+  m_Name: Title_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 293056601}
   - component: {fileID: 293056605}
   m_Layer: 5
-  m_Name: "\uD3EC\uD1A0\uC874 & \uB3C4\uC2A8\uD2B8 UI"
+  m_Name: PhotoZone/Docent UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 504554328}
   - component: {fileID: 504554327}
   m_Layer: 5
-  m_Name: "\uC704\uCE58\uBCF4\uAE30 txt"
+  m_Name: Position_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 843802050}
   - component: {fileID: 843802049}
   m_Layer: 5
-  m_Name: "\uC704\uCE58\uBCF4\uAE30 \uBC84\uD2BC"
+  m_Name: Position_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 979127595}
   - component: {fileID: 979127594}
   m_Layer: 5
-  m_Name: "\uC608\uC2DC\uD654\uBA74"
+  m_Name: Example Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 986479942}
   - component: {fileID: 986479941}
   m_Layer: 5
-  m_Name: "\uCD2C\uC601\uD558\uAE30 \uBC84\uD2BC"
+  m_Name: TakeAPhoto_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 1297056517}
   - component: {fileID: 1297056516}
   m_Layer: 5
-  m_Name: "\uCD2C\uC601\uD558\uAE30 txt"
+  m_Name: TakeAPhoto_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 1406385267}
   - component: {fileID: 1406385266}
   m_Layer: 5
-  m_Name: "\uD3EC\uD1A0\uC874 \uC0C1\uC138\uC124\uBA85\uCC3D"
+  m_Name: Detailed Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 1411662734}
   - component: {fileID: 1411662733}
   m_Layer: 5
-  m_Name: "\uC608\uC2DC\uD654\uBA74 \uBC30\uACBD\uC774\uBBF8\uC9C0"
+  m_Name: Example Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 1474621827}
   - component: {fileID: 1474621826}
   m_Layer: 5
-  m_Name: "\uB4A4\uB85C\uAC00\uAE30 \uBC84\uD2BC"
+  m_Name: Return_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1465,7 +1465,7 @@ GameObject:
   - component: {fileID: 1515381799}
   - component: {fileID: 1515381798}
   m_Layer: 5
-  m_Name: "AR \uD3EC\uD1A0\uC874 \uBA85\uCE6D txt"
+  m_Name: Name_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1682,7 +1682,7 @@ GameObject:
   - component: {fileID: 2043142459}
   - component: {fileID: 2043142458}
   m_Layer: 5
-  m_Name: "\uBC30\uACBD\uC774\uBBF8\uC9C0"
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

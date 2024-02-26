@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 115225541}
   - component: {fileID: 115225542}
   m_Layer: 5
-  m_Name: "\uB3C4\uC2A8\uD2B8/\uD3EC\uD1A0\uC874 \uB9AC\uC2A4\uD2B8 \uD398\uC774\uC9C0"
+  m_Name: ListPage UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 963548796}
   - component: {fileID: 963548797}
   m_Layer: 5
-  m_Name: "\uB3C4\uC2A8\uD2B8 & \uD3EC\uD1A0\uC874 \uB9AC\uC2A4\uD2B8 \uD398\uC774\uC9C0"
+  m_Name: Docent/PhotoZone_ListPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 1295694088}
   - component: {fileID: 1295694087}
   m_Layer: 5
-  m_Name: "AR\uCCB4\uD5D8\uC874(Text)"
+  m_Name: AR(Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 1320520239}
   - component: {fileID: 1320520238}
   m_Layer: 5
-  m_Name: "\uBC30\uACBD\uC774\uBBF8\uC9C0"
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 1442996753}
   - component: {fileID: 1442996754}
   m_Layer: 5
-  m_Name: "\uD3EC\uD1A0\uC874 \uBC84\uD2BC(\uD1A0\uAE00)"
+  m_Name: PhotozoneBtn(toggle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1544,7 +1544,7 @@ GameObject:
   - component: {fileID: 1747871655}
   - component: {fileID: 1747871656}
   m_Layer: 5
-  m_Name: "\uB3C4\uC2A8\uD2B8 \uBC84\uD2BC(\uD1A0\uAE00) "
+  m_Name: 'DocentBtn(toggle) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1633,7 +1633,7 @@ GameObject:
   - component: {fileID: 1952249681}
   - component: {fileID: 1952249680}
   m_Layer: 5
-  m_Name: "\uB4A4\uB85C\uAC00\uAE30\uBC84\uD2BC"
+  m_Name: Return_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

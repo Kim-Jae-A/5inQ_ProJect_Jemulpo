@@ -24,17 +24,18 @@ public class TakeAShot : MonoBehaviour
     [SerializeField]private ARSession m_Session;
     [SerializeField]Camera m_ARCamera;//추가
     //[SerializeField] RenderTexture m_RenderTexture;//추가
+
     private bool isRecording = false;
     private string VideoFilePath;
 
     private void Awake()
     {
-        m_Session = GetComponent<ARSession>();
-        m_ARCamera = GetComponent<Camera>();//추가
+       // m_Session = GetComponent<ARSession>();
+       // m_ARCamera = GetComponent<Camera>();//추가
 
         //m_RenderTexture = new RenderTexture(Screen.width, Screen.height, 24);
 
-        XROrigin m_xrorigin = FindObjectOfType<XROrigin>();
+       // XROrigin m_xrorigin = FindObjectOfType<XROrigin>();
         /*
         if (m_xrorigin != null)
         {
@@ -46,6 +47,7 @@ public class TakeAShot : MonoBehaviour
             }
         }*/
     }
+
     static int GetRotation() => Screen.orientation switch
     {
         ScreenOrientation.Portrait => 0,
@@ -54,6 +56,7 @@ public class TakeAShot : MonoBehaviour
         ScreenOrientation.LandscapeRight => 270,
         _ => 0
     };
+
     public void OnShotBtn()
     {
         StartCoroutine(ScreenShot());
@@ -61,7 +64,35 @@ public class TakeAShot : MonoBehaviour
         SceneManager.LoadScene("SavePhoto");
     }
 
-   //비디오 시작 버튼을 눌렀을 때
+    IEnumerator ScreenShot()
+    {
+        shotUI.SetActive(false);
+        yield return new WaitForEndOfFrame();
+
+        if (CameraMode.isPhoto)
+        {
+            // 캡처된 화면을 Texture2D로 생성한다
+            Texture2D tex = new Texture2D(shotTexture.width, shotTexture.height, TextureFormat.RGB24, false);
+
+            RenderTexture.active = shotTexture;
+
+            tex.ReadPixels(new Rect(0, 0, shotTexture.width, shotTexture.height), 0, 0);
+            tex.Apply();
+
+            // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
+            byte[] bytes = tex.EncodeToPNG();
+            Destroy(tex);
+
+            // byte 배열을 PNG 파일로 저장한다.
+            string fileName = "ImageName.png";
+            string filePath = Path.Combine(Application.persistentDataPath, fileName);
+            File.WriteAllBytes(filePath, bytes);
+
+            RenderTexture.active = null;
+        }
+    }
+
+    //비디오 시작 버튼을 눌렀을 때
     public void OnVideoStartBtn()
     {
         //비디오 모드면
@@ -76,30 +107,6 @@ public class TakeAShot : MonoBehaviour
             {
                 videoStartBtn.gameObject.SetActive(false);
                 videoStopBtn.gameObject.SetActive(true);
-#if UNITY_ANDROID
-                if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-                {
-                    var session = subsystem.session;
-                    if (session == null)
-                        return;
-
-                    var playbackStatus = subsystem.playbackStatus;
-                    var recordingStatus = subsystem.recordingStatus;
-
-                    if (!playbackStatus.Playing() && !recordingStatus.Recording())
-                    {
-                        using (var config = new ArRecordingConfig(session))
-                        {
-                            string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "ar-video.mp4";
-                            VideoFilePath = Path.Combine(Application.persistentDataPath, fileName);
-                            config.SetMp4DatasetFilePath(session, VideoFilePath);
-                            config.SetRecordingRotation(session, GetRotation());
-
-                            subsystem.StartRecording(config);
-                        }
-                    }
-                }
-#endif
                 Debug.Log("녹화시작");
                 Debug.Log(isRecording);
             }
@@ -125,49 +132,12 @@ public class TakeAShot : MonoBehaviour
                 // 녹화 종료
                 videoStartBtn.gameObject.SetActive(true);
                 videoStopBtn.gameObject.SetActive(false);
-#if UNITY_ANDROID
-                if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-                {
-                    var recordingStatus = subsystem.recordingStatus;
-
-                    if (recordingStatus.Recording())
-                    {
-                        subsystem.StopRecording();
-                    }
-                }
-#endif
                 CameraMode.isRecord = false;
                 SceneManager.LoadScene("SavePhoto");
             }
         }
     }
-    IEnumerator ScreenShot()
-    {
-        shotUI.SetActive(false );
-        yield return new WaitForEndOfFrame();
 
-        if (CameraMode.isPhoto)
-        {
-            RenderTexture.active = shotTexture;
-
-            // 캡처된 화면을 Texture2D로 생성한다
-            Texture2D tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            Rect captureRect = new Rect(0, 0, Screen.width, Screen.height);
-            tex.ReadPixels(captureRect, 0, 0);
-            tex.Apply();
-
-            // 캡처된 화면을 PNG 형식의 byte 배열로 변환한다.
-            byte[] bytes = tex.EncodeToPNG();
-            Destroy(tex);
-
-            // byte 배열을 PNG 파일로 저장한다.
-            string fileName = "ImageName.png";
-            string filePath = Path.Combine(Application.persistentDataPath, fileName);
-            File.WriteAllBytes(filePath, bytes);
-
-            RenderTexture.active = null;
-        }
-    }
 
     public void OnReturnBtn()
     {
