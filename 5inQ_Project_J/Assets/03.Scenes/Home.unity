@@ -1783,6 +1783,7 @@ GameObject:
   - component: {fileID: 1448638012}
   - component: {fileID: 1448638011}
   - component: {fileID: 1448638010}
+  - component: {fileID: 1448638014}
   m_Layer: 5
   m_Name: Btn_UI
   m_TagString: Untagged
@@ -1881,6 +1882,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1448638014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448638009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c950596f8d8aae54bb371491554e1daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1647168317
 GameObject:
   m_ObjectHideFlags: 0
