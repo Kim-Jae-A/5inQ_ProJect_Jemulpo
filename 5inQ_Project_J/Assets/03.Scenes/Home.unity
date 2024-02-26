@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 80587819}
   - component: {fileID: 80587818}
   m_Layer: 5
-  m_Name: Text-119
+  m_Name: Text-112
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 240842814}
   - component: {fileID: 240842813}
   m_Layer: 5
-  m_Name: Text-AR
+  m_Name: MainText-AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -830,8 +830,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.469986, y: -215.53003}
-  m_SizeDelta: {x: 337, y: 173.93}
+  m_AnchoredPosition: {x: 78.65599, y: -278.64423}
+  m_SizeDelta: {x: 471.372, y: 300.158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688778924
 MonoBehaviour:
@@ -1350,6 +1350,7 @@ GameObject:
   - component: {fileID: 1001235964}
   - component: {fileID: 1001235963}
   - component: {fileID: 1001235962}
+  - component: {fileID: 1001235965}
   m_Layer: 5
   m_Name: ZoomBtn
   m_TagString: Untagged
@@ -1373,9 +1374,9 @@ RectTransform:
   m_Father: {fileID: 1448638013}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -127, y: 134}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 413, y: -1006}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1001235962
@@ -1421,7 +1422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001235963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1001235965}
+        m_TargetAssemblyTypeName: SizeController, Assembly-CSharp
+        m_MethodName: ToggleTextSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1001235963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,6 +1473,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001235960}
   m_CullTransparentMesh: 1
+--- !u!114 &1001235965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001235960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d959aedb3076ec40bba07899322b1be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponentsToEnlarge1:
+  - {fileID: 1997828528}
+  - {fileID: 1647168319}
+  - {fileID: 240842813}
+  - {fileID: 1949556807}
+  textComponentsToEnlarge2:
+  - {fileID: 1860012556}
+  - {fileID: 1938536950}
+  - {fileID: 1418161573}
+  - {fileID: 688778924}
+  - {fileID: 80587818}
+  - {fileID: 38842076}
+  textComponentsToMove:
+  - {fileID: 1997828528}
+  - {fileID: 1860012556}
+  - {fileID: 1647168319}
+  - {fileID: 1938536950}
+  - {fileID: 240842813}
+  - {fileID: 1418161573}
+  - {fileID: 1949556807}
+  - {fileID: 688778924}
+  enlargedSize1: 70
+  enlargedSize2: 40
+  yOffset1: 0
+  yOffset2: 0
 --- !u!1 &1132969805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1801,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1893,7 +1943,7 @@ GameObject:
   - component: {fileID: 1647168320}
   - component: {fileID: 1647168319}
   m_Layer: 5
-  m_Name: TitleText-SmartSilver
+  m_Name: MainTitleText-SmartSilver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1973,7 +2023,7 @@ GameObject:
   - component: {fileID: 1860012557}
   - component: {fileID: 1860012556}
   m_Layer: 5
-  m_Name: "Text-(AR \uB124\uBE44\uAC8C\uC774\uC158)"
+  m_Name: Text-AR Navigation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1996,8 +2046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -204}
-  m_SizeDelta: {x: 293.85, y: 58.87}
+  m_AnchoredPosition: {x: 77, y: -232.53}
+  m_SizeDelta: {x: 433.905, y: 115.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860012556
 MonoBehaviour:
@@ -2021,7 +2071,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2032,7 +2082,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "(AR \uB124\uBE44\uAC8C\uC774\uC158)"
+  m_Text: "AR \uB0B4\uBE44\uAC8C\uC774\uC158"
 --- !u!222 &1860012557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2194,7 +2244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.99997, y: -266}
+  m_AnchoredPosition: {x: -15, y: -267}
   m_SizeDelta: {x: 293.85, y: 58.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1938536950
@@ -2219,7 +2269,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2251,7 +2301,7 @@ GameObject:
   - component: {fileID: 1949556808}
   - component: {fileID: 1949556807}
   m_Layer: 5
-  m_Name: Text-VR
+  m_Name: MainText-VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2331,7 +2381,7 @@ GameObject:
   - component: {fileID: 1997828529}
   - component: {fileID: 1997828528}
   m_Layer: 5
-  m_Name: "Text-\uAE38\uCC3E\uAE30"
+  m_Name: MainText-AR Navigation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
