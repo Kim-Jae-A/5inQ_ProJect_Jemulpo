@@ -16,23 +16,23 @@ public class CameraCotroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 1)  // 화면 터치 1개
         {
-            Touch touch = Input.GetTouch(0);
+            Touch touch = Input.GetTouch(0); // 첫번째 터치 지점
 
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began)  // 움직임 시작
             {
-                prePos = touch.position - touch.deltaPosition;
+                prePos = touch.position - touch.deltaPosition;  // 처음 지점에서 움직인 지점까지의 차이
             }
-            else if (touch.phase == TouchPhase.Moved)
+            else if (touch.phase == TouchPhase.Moved) // 움직임 끝날때
             {
                 nowPos = touch.position - touch.deltaPosition;
                 movePos = Time.deltaTime * speed * (Vector3)(prePos - nowPos);
-                transform.Translate(movePos);
+                transform.Translate(movePos);  // 이동한 만큼 화면 이동
                 prePos = touch.position - touch.deltaPosition;
             }
         }
-        else if(Input.touchCount == 2)
+        else if(Input.touchCount == 2) // 화면 터치 2개
         {
             Vector2 vecPreTouchPos0 = Input.touches[0].position - Input.touches[0].deltaPosition;
             Vector2 vecPreTouchPos1 = Input.touches[1].position - Input.touches[1].deltaPosition;
