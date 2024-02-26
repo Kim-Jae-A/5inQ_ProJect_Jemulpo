@@ -92,13 +92,13 @@ public class ScrollViewManager : MonoBehaviour
     //연결하여 정보를 띄운다!
     private void CreateScrollviewContent(AR_POI ARZone_poi)
     {
+        //스크롤뷰의 요소를 생성.
         GameObject element = Instantiate(List_element, content.transform);
-
         Text title = element.transform.Find("Title and descripttion/Title").GetComponent<Text>();
         Text info = element.transform.Find("Title and descripttion/Description").GetComponent<Text>();
         Image image = element.transform.Find("DescripImage").GetComponent<Image>();
 
-
+        //json데이터로 요소의 이름과 정보, 이미지를 설정
         if (title != null)
         {
             title.text = ARZone_poi.Name;
@@ -118,7 +118,7 @@ public class ScrollViewManager : MonoBehaviour
             }
 
         }
-
+        //요소의 버튼 기능과 이벤트 추가.
         Button button = element.GetComponent<Button>();
         if(button == null)
         {
@@ -128,6 +128,7 @@ public class ScrollViewManager : MonoBehaviour
 
     }
 
+    //요소를 클릭하면 dataholder의 인스턴스에 json데이터를 설정하여 다음씬으로 데이터를 넘겨주기 위한 준비.
     private void OnScrollview_ElementClicked(AR_POI arData)
     {
         if (arData == null)
@@ -135,7 +136,6 @@ public class ScrollViewManager : MonoBehaviour
             Debug.Log("arData is null.");
             return;
         }
-        Debug.Log("OnScrollview_ElementClicked - Data received: " + (arData != null ? arData.Name : "null"));
         JsonDataHolder.Instance.SetSelectedARData(arData);
         SceneManager.LoadScene("PhotoZone_Docent", LoadSceneMode.Single);
     }
