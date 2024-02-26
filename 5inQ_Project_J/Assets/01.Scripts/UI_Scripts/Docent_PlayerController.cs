@@ -26,15 +26,18 @@ public class Docent_PlayerController : MonoBehaviour
             Replay.gameObject.SetActive(true);
             Docent_slider.gameObject.SetActive(true);
             Docent_slider.maxValue = animationController.narration.clip.length;//gaebalone.length;  
+            Replay.onClick.AddListener(animationController.RePlay_Docent);
         };
         //animationController = GetComponent<Docent_AnimationController>();   
-        Replay.onClick.AddListener(animationController.RePlay_Docent);
         BackToDescription.onClick.AddListener(Return_Docent_Description);//뒤로가기버튼 이벤트 추가.
     }
     void Update()
     {
-        if (animationController == null) //프리팹이 생성되지 않으면 return
-            return;
+        //프리팹이 생성되지 않으면 
+        if (animationController != null && !Replay.gameObject.activeSelf)
+        {
+            OnARDocentCreated?.Invoke();
+        }
 
         //프리팹이 생성되면 애니메이션의 오디오소스의 시간을 슬라이더바의 value로 지정해줘. 진행률을 나타낸다.
         float narrationProgress = animationController.narration.time;
