@@ -1,15 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
-
-[RequireComponent(typeof(GPSmanager))]
 public class DistanceCalculator : MonoBehaviour
 {
-    public Text distanceText;
-    public GPSmanager gpsExample;
-    public InputField latInputField;
-    public InputField lonInputField;
-
     // 위도와 경도를 사용하여 두 지점 사이의 거리 계산 (단위: m)
     static double Distance(double lat1, double lon1, double lat2, double lon2)
     {
@@ -26,45 +18,23 @@ public class DistanceCalculator : MonoBehaviour
         return distance;
     }
 
-    private void Awake()
+    public string DC(double lat2, double lon2)
     {
-        gpsExample = GetComponent<GPSmanager>();
-        latInputField.onValueChanged.AddListener(delegate { UpdateDistance(); });
-        lonInputField.onValueChanged.AddListener(delegate { UpdateDistance(); });
-    }
-
-    void Start()
-    {
-        // 시작 시 거리 업데이트
-        UpdateDistance();
-    }
-
-    void UpdateDistance()
-    {
-        // 현재 위치의 위도와 경도
-        float lat1 = gpsExample.latitude;
-        float lon1 = gpsExample.longitude;
-
-        // 입력 필드에 입력된 위도와 경도
-        float lat2 = 0f;
-        float lon2 = 0f;
-        float.TryParse(latInputField.text, out lat2);
-        float.TryParse(lonInputField.text, out lon2);
-
-        // 거리 계산
-        var distance = Distance(lat1, lon1, lat2, lon2);
-
+        // 두 지점 사이의 거리 계산
+        double distance = Distance(StaticMapManager.latitude, StaticMapManager.longitude, lat2, lon2);
         // 거리를 변환하여 텍스트로 표시
         string distanceString = "";
-        if (distance < 0.1f)
+        if (distance < 1f)
         {
+            // 거리가 1km 미만인 경우, 미터 단위로 표시
             distanceString = $"{distance * 1000:F0}m";
         }
         else
         {
+            // 거리가 0.1km 이상인 경우, 킬로미터 단위로 표시
             distanceString = $"{distance:F0}km";
         }
 
-        distanceText.text = distanceString;
+        return distanceString;
     }
 }

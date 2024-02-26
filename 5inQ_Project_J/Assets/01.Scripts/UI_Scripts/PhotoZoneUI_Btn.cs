@@ -1,8 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-using System.IO;
-using System.Collections;
+
 
 public class PhotoZoneUI_Btn : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     }
     public void OnPhotoBtn()
     {
+        //버튼을 누르면 사진 모드가 켜지고 그에 맞는 텍스트 변경 
         CameraMode.isPhoto = true;
         CameraMode.isVideo = false;
         CameraMode.isRecord = false;
@@ -36,6 +36,7 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         HighlightPhotoText();
         NormalVideoText();
 
+        //사진 모드 버튼 활성화/ 비디오 모드 버튼 비활성화
         CameraBtn.SetActive(true);   
         RecordBtn.SetActive(false);
         RecordDoneBtn.SetActive(false);
@@ -45,6 +46,7 @@ public class PhotoZoneUI_Btn : MonoBehaviour
 
     public void OnVideoBtn()
     {
+        //버튼 누르면 비디오 모드가 켜지고 그에 맞는 텍스트 변경
         CameraMode.isVideo = true;
         CameraMode.isPhoto = false;
         CameraMode.isRecord = false;
@@ -53,6 +55,7 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         HighlightVideoText();
         NormalPhotoText();
 
+        //비디오 모드 버튼 활성화/ 사진 모드 버튼 비활성화
         CameraBtn.SetActive(false);
         RecordBtn.SetActive(true);
         RecordDoneBtn.SetActive(false);
@@ -77,20 +80,18 @@ public class PhotoZoneUI_Btn : MonoBehaviour
             LoadGallery();
         }
     }
-
+    
     void LoadGallery()
     {
-        AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaClass intentStaticClass = new AndroidJavaClass("android.content.Intent");
-        string actionView = intentStaticClass.GetStatic<string>("ACTION_VIEW");
-        AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
-        AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "content://media/internal/DCIM");
-        AndroidJavaObject intent = new AndroidJavaObject("android.content.Intent", actionView, uriObject);
-        unityActivity.Call("startActivity", intent);
+        AndroidJavaClass javaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject javaObject = javaClass.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaObject packageManager = javaObject.Call<AndroidJavaObject>("getPackageManager");
+        AndroidJavaObject intent = packageManager.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.sec.android.gallery3d");
+        javaObject.Call("startActivity", intent);
     }
 
     #region TextStyle
+    //하이라이트될 때의 텍스트와 기본 상태의 텍스트를 Photo와 Video를 나누어 작성
     public void HighlightPhotoText()
     {
         photoText.fontStyle = FontStyle.Bold;

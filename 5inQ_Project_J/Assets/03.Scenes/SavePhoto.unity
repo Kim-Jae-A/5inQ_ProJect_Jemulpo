@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 260041664}
   - component: {fileID: 260041663}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uBC84\uD2BC"
+  m_Name: SaveBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 409506572}
   - component: {fileID: 409506571}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uCC3D"
+  m_Name: SaveBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 454882130}
   - component: {fileID: 454882129}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uC644\uB8CC \uCC3D"
+  m_Name: Saved Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 1312800831}
   - component: {fileID: 1312800832}
   m_Layer: 5
-  m_Name: "\uC0AC\uC9C4 \uBDF0"
+  m_Name: Photo View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1052,7 @@ GameObject:
   - component: {fileID: 1773222646}
   - component: {fileID: 1773222645}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 UI"
+  m_Name: Save UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 1878592047}
   - component: {fileID: 1878592046}
   m_Layer: 5
-  m_Name: "\uACF5\uC720 \uBC84\uD2BC"
+  m_Name: ShareBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1280,7 +1280,7 @@ GameObject:
   - component: {fileID: 1992166829}
   - component: {fileID: 1992166828}
   m_Layer: 5
-  m_Name: "\uB4A4\uB85C\uAC00\uAE30 \uBC84\uD2BC"
+  m_Name: ReturnBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
