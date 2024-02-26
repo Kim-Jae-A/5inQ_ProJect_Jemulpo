@@ -22,11 +22,9 @@ public class TakeAShot : MonoBehaviour
 
     [Header("비디오 녹화")]
     [SerializeField]private ARSession m_Session;
-    [SerializeField]Camera m_ARCamera;//추가
-    //[SerializeField] RenderTexture m_RenderTexture;//추가
-
     private bool isRecording = false;
-    private string VideoFilePath;
+    
+
 
     private void Awake()
     {
@@ -46,6 +44,7 @@ public class TakeAShot : MonoBehaviour
                 m_ARCamera.targetTexture = m_RenderTexture;
             }
         }*/
+        var process = new System.Diagnostics.Process();
     }
 
     static int GetRotation() => Screen.orientation switch
