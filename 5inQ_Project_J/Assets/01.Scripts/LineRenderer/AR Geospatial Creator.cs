@@ -45,9 +45,11 @@ JsonManager.instance.data.route.trafast.Count > 0)
     // 위도, 경도, 고도를 Unity 좌표로 변환하여 반환하는 메서드
     public Vector3 ConvertGeoToUnityCoordinates(double latitude, double longitude, double altitude)
     {
+        Start startPoint = JsonManager.instance.data.route.trafast[0].summary.start;
+        List<float> startLocation = startPoint.location;
         // 위도와 경도를 월드 좌표로 변환
-        float worldX = (float)((StaticMapManager.longitude - longitude) * 100000); // 경도 변환
-        float worldZ = (float)((StaticMapManager.latitude - latitude) * 100000); // 위도 변환
+        float worldX = (float)((startLocation[0] - longitude) * 100000); // 경도 변환
+        float worldZ = (float)((startLocation[1] - latitude) * 100000); // 위도 변환
         float worldY = 1; // 고도 변환
 
         return new Vector3(worldX, worldY, worldZ);
