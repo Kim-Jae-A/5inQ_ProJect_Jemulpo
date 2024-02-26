@@ -6,18 +6,19 @@ using UnityEngine.UI;
 public class DocentController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private AudioSource narration;
-
-    // Start is called before the first frame update
-
+    [SerializeField] private Button RePlayBtn;
+    //SerializeField] public AudioSource narration;
+    Docent_Player docent_player;
     void Start()
     {
-        //replay.onClick.AddListener(RePlay_Docent);
+
+        RePlayBtn.onClick.AddListener(RePlay_Docent);
         StartCoroutine(DocentAnimation());
+        docent_player = GetComponent<Docent_Player>();
     }
     IEnumerator DocentAnimation()
     {
-        narration.Play();
+        //narration.Play();
         yield return new WaitForSeconds(1.2f);
         animator.SetBool("Climb", true);
         yield return new WaitForSeconds(3F);
@@ -35,7 +36,7 @@ public class DocentController : MonoBehaviour
         yield return new WaitForSeconds(5.6f);
         animator.SetBool("Many", false);
         animator.SetBool("Explain", true);
-        yield return new WaitForSeconds(8.3f);
+        yield return new WaitForSeconds(7.3f);
         animator.SetBool("Explain", false);
         animator.SetBool("Good", true);
         yield return new WaitForSeconds(4);
@@ -44,7 +45,8 @@ public class DocentController : MonoBehaviour
         yield return new WaitForSeconds(6.5f);
         animator.SetBool("Guide", false);
         animator.SetBool("Hello", true);
-
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("Hello", false);
     }
 
 
@@ -52,5 +54,6 @@ public class DocentController : MonoBehaviour
     {
 
         StartCoroutine(DocentAnimation());
+        docent_player.narration.Play();
     }
 }
