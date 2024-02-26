@@ -86,15 +86,14 @@ public class JsonManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //LoadData();
+            LoadData();
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
-    /*void Start()
+    void Start()
     {
         LoadData();
 
@@ -103,21 +102,15 @@ public class JsonManager : MonoBehaviour
         {
             TraFast firstTraFast = data.route.trafast[0];
         }
-    }*/
-
+    }
     // 데이터 로드 함수
-    public void LoadData()
+    void LoadData()
     {
         // Resources 폴더에서 JSON 파일 로드
         TextAsset json = Resources.Load<TextAsset>("Data");
 
         // JSON 파일을 RouteData 객체로 변환
         data = JsonConvert.DeserializeObject<RouteData>(json.text);
-    }
-
-    public void OnNeviStartButtonEnter()
-    {
-        LoadData();
     }
 
 }
