@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 60154125}
   - component: {fileID: 60154127}
   - component: {fileID: 60154128}
+  - component: {fileID: 60154130}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -203,6 +204,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c885e04b5e97f4ca6c9704a1986394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &60154130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60154124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AttemptUpdate: 1
+  m_MatchFrameRate: 1
+  m_TrackingMode: 2
 --- !u!1 &83134354
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,8 +613,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0
+    height: 0
 --- !u!222 &482333178
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -685,7 +701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &544718502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,7 +1375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &911217992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1758,50 +1774,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150921016}
   m_CullTransparentMesh: 1
---- !u!1 &1167271211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1167271213}
-  - component: {fileID: 1167271212}
-  m_Layer: 0
-  m_Name: AndroidUtil
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1167271212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167271211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4ee88b606c586429772eaae11e69c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1167271213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167271211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.013017654, y: 1, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281797747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,6 +2141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1625181209}
   - component: {fileID: 1625181210}
+  - component: {fileID: 1625181211}
   m_Layer: 0
   m_Name: TakeAShot
   m_TagString: Untagged
@@ -2203,12 +2176,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c224166b7b7cdd428cb4eb2ddcbdaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotImage: {fileID: 572473078}
-  videoStopShot: {fileID: 21300000, guid: 75e066b5b9e05ae4690a9398456e2a5c, type: 3}
-  videoStartBtn: {fileID: 572473075}
+  PictureBtn: {fileID: 572473075}
+  videoStartBtn: {fileID: 911217991}
   videoStopBtn: {fileID: 544718501}
   shotUI: {fileID: 1104080230}
   shotTexture: {fileID: 8400000, guid: 25bdc7e75e86be74f9b01c328bb51814, type: 2}
+  m_Session: {fileID: 491511790}
+  m_ARCamera: {fileID: 736319393}
+--- !u!114 &1625181211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625181207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AttemptUpdate: 1
+  m_MatchFrameRate: 1
+  m_TrackingMode: 2
 --- !u!1 &1685154355
 GameObject:
   m_ObjectHideFlags: 0
