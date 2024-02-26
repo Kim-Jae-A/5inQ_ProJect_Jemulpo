@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:5inQ_Project_J/Assets/FFmpegUnityBind2/Plugins/Android/FFmpegUnityBind2.aar.meta
 guid: 9c3e01c1b11b2004f91742e0f2ae8f77
+=======
+guid: a519b01b98bbeba4fb6d7e36516575ac
+labels:
+- gpsr
+>>>>>>> main:5inQ_Project_J/Assets/Plugins/Android/androidx.annotation.annotation-1.1.0.jar.meta
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2

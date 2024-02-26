@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:5inQ_Project_J/Assets/FFmpegUnityBind2/Plugins/IOS/CallbackNotifier.mm.meta
 guid: 064b4d33d64dc4a3bad44b05116b545a
+=======
+guid: c2fb68bf04065ba42bb9a44db7cc8a5d
+labels:
+- gpsr
+>>>>>>> main:5inQ_Project_J/Assets/Plugins/Android/androidx.arch.core.core-runtime-2.0.0.aar.meta
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2

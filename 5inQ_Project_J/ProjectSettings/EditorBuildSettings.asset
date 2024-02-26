@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/03.Scenes/TakeAShot.unity
     guid: dae3a791ca40b9846a117b45f3216a7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/03.Scenes/Docent_Animation.unity
     guid: 743b32e6db8fd08449d5e57a554886c7
   - enabled: 0
