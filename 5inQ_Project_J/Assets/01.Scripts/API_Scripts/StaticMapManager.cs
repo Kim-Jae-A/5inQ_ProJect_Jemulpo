@@ -7,6 +7,8 @@ using UnityEngine.Android;
 
 public class StaticMapManager : MonoBehaviour
 {
+    public static StaticMapManager instance;
+
     [Header("API 설정")]
     //string url = "https://api.vworld.kr/req/image?service=image&request=getmap&key=";
     public string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster"; // API 요청 URL
@@ -19,8 +21,24 @@ public class StaticMapManager : MonoBehaviour
     string apiURL;
     bool check;
 
+    [Header("마커 띄우기용")]
+    [SerializeField]private MapUI_Enum[] mapui;
+
     public static float latitude;  // 위도
     public static float longitude; // 경도
+
+    void Awake()
+    {
+        // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -80,6 +98,10 @@ public class StaticMapManager : MonoBehaviour
 
                 if (!check)
                 {
+                    for (int i = 0; i< mapui.Length; i++)
+                    {
+                        mapui[i].LoadingMarker();
+                    }                
                     StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
                 }
                 check = true;

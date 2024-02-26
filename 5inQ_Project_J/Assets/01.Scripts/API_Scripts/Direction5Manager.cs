@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 public class Direction5Manager : MonoBehaviour
 {
+    public static Direction5Manager instance;
+
     [Header("API 설정")]
     public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"; // API 요청 URL
     public string key_ID; // API 아이디
@@ -16,7 +19,24 @@ public class Direction5Manager : MonoBehaviour
     public static string _endlongitude; // 경도
     public static string _endlatitude; // 위도
 
-    public Image panel;
+    public Image nevipanel;
+    public Image infopanel;
+    public Image markerpanel;
+    public GameObject[] marker;
+
+    void Awake()
+    {
+        // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
+        if (instance == null)
+        {
+            instance = this;
+            //LoadData();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void OnNaviStartButtonEnter()
     {
@@ -58,10 +78,16 @@ public class Direction5Manager : MonoBehaviour
         }
 
         if (request.isDone)
-        {
-            panel.gameObject.SetActive(true);
+        {           
             string json = request.downloadHandler.text;
-            System.IO.File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);   // 요청 결과값 데이터
+            nevipanel.gameObject.SetActive(true);
+            infopanel.gameObject.SetActive(false);
+            markerpanel.gameObject.SetActive(false);
+            foreach (GameObject obj in marker)
+            {
+                obj.SetActive(false);
+            }
+            File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);   // 요청 결과값 데이터
             yield break;
         }
     }
@@ -71,6 +97,6 @@ public class Direction5Manager : MonoBehaviour
     }
     public void ExitPanel()
     {
-        panel.gameObject.SetActive(false);
+        nevipanel.gameObject.SetActive(false);
     }
 }

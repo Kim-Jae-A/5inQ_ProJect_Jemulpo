@@ -21,6 +21,7 @@ public class MapUI_Enum : MonoBehaviour
     public Image placeImage;
 
     Button[] panelButton;
+    public Image endPoint;
 
     private void Awake()
     {
@@ -42,16 +43,9 @@ public class MapUI_Enum : MonoBehaviour
                 json = Resources.Load<TextAsset>("Json/POIData_Docent");
                 break;
         }
-        LoadAndCreate(json);
-    }
-    private void Start()
-    {
-        panelButton = panel.GetComponentsInChildren<Button>();
-
-        foreach (Button b in panelButton)
-        {
-            b.onClick.AddListener(delegate { OnButtonEnter(b); });
-        }
+#if UNITY_EDITOR
+        LoadingMarker();
+#endif
     }
 
     void OnButtonEnter(Button b)
@@ -71,9 +65,22 @@ public class MapUI_Enum : MonoBehaviour
         {
             placeImage.sprite = sp;
         }
+        endPoint.transform.position = b.transform.position;
+        endPoint.gameObject.SetActive(true);
         naviPanel.SetActive(true);
     }
 
+    public void LoadingMarker()
+    {
+        LoadAndCreate(json);
+        panelButton = panel.GetComponentsInChildren<Button>();
+
+        foreach (Button b in panelButton)
+        {
+            //b.onClick.AddListener(delegate { OnButtonEnter(b); });
+            b.onClick.AddListener(() => OnButtonEnter(b));
+        }
+    }
     private void LoadAndCreate(TextAsset jsonfile)
     {
         if (jsonfile != null)
@@ -83,12 +90,12 @@ public class MapUI_Enum : MonoBehaviour
             // 제이슨 데이터 갯수 만큼 생성 및 위도 경도에 따라 위치 변환
             foreach (AR_POI ARZone_ in ar_dataList.ARzone_List)
             {
-                CreateScrollviewContent(ARZone_);                
+                CreateMarker(ARZone_);                
             }
         }
     }
 
-    private void CreateScrollviewContent(AR_POI ARZone_poi)
+    private void CreateMarker(AR_POI ARZone_poi)
     {
         if (ARZone_poi.Name != null)
         {
