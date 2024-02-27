@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ public class Change_Scene : MonoBehaviour
     {
         SceneManager.LoadScene("Map_Scene");
     }
+
     public void HomeScene()
     {
         if (neviPanel.activeSelf)
@@ -42,7 +44,6 @@ public class Change_Scene : MonoBehaviour
                 }
                 lineObj.GetComponent<LineRenderer>().positionCount = 0;
             }
-            return;
         }
         else
         {
