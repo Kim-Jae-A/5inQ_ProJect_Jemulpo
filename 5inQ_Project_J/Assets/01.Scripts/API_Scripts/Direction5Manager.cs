@@ -10,7 +10,6 @@ using UnityEngine.UI;
 public class Direction5Manager : MonoBehaviour
 {
     public static Direction5Manager instance;
-    public static string jsonData;
 
     Map_DrawingLine drawingLine;
     JsonManager jsonManager;
