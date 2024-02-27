@@ -96,8 +96,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.37646616, g: 0.36077988, b: 0.34117204, a: 1}
-    - _Color: {r: 0.37646613, g: 0.36077985, b: 0.341172, a: 1}
+<<<<<<< HEAD
+    - _BaseColor: {r: 0.37646595, g: 0.3607797, b: 0.34117186, a: 1}
+    - _Color: {r: 0.37646592, g: 0.36077967, b: 0.34117183, a: 1}
+=======
+    - _BaseColor: {r: 0.37646672, g: 0.36078045, b: 0.3411726, a: 1}
+    - _Color: {r: 0.3764667, g: 0.36078042, b: 0.34117258, a: 1}
+>>>>>>> parent of b3cf5393 (Fix_Line_and_Data_Error)
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
