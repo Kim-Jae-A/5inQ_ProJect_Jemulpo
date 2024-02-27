@@ -16,6 +16,7 @@ public class ARGuide : MonoBehaviour
     int nowGuide = 0;
     int targetNum;
     bool targetPositionCoroutineCompleted = false;
+    bool check = false;
     private void Awake()
     {
         LRM = GetComponent<LinRendererManager>();
@@ -45,6 +46,7 @@ public class ARGuide : MonoBehaviour
 
     private void Update()
     {
+        
         if (!targetPositionCoroutineCompleted)
         {
             return;
@@ -56,20 +58,34 @@ public class ARGuide : MonoBehaviour
 
             // 만약 거리가 1미터 이내라면
             if (distance <= 3f)
+            {                
+                check = true;
+                text.text = instructions[nowGuide];               
+            }
+            else
             {
-                nowGuide++;
-                if (nowGuide < pointIndex.Count)
+                if (check == true)
                 {
-                    targetNum = pointIndex[nowGuide];
+                    nowGuide++;
+                    if (nowGuide < pointIndex.Count)
+                    {
+                        targetNum = pointIndex[nowGuide];
+                    }
+                    else
+                    {
+                        // 모든 가이드 포인트를 도달했을 때의 처리
+                        text.text = "안내를 종료합니다.";
+                        return;
+                    }
+                    check = false;
                 }
                 else
                 {
-                    // 모든 가이드 포인트를 도달했을 때의 처리
-                    text.text = "안내를 종료합니다.";
-                    return;
+                    text.text = distance.ToString("F0") + "m " + "직진";
                 }
-            }       
-            text.text = distance.ToString("F0") + "m " + "이동 후\n" + instructions[nowGuide];
+                
+            }
+            
         }
 
     }
@@ -82,7 +98,7 @@ public class ARGuide : MonoBehaviour
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
             foreach (Guide guideInfo in firstTraFast.guide)
             {
-                pointIndex.Add(guideInfo.pointIndex);
+                pointIndex.Add(guideInfo.pointIndex-1);
                 instructions.Add(guideInfo.instructions);
             }
         }
