@@ -102,7 +102,10 @@ public class InfoUIController : MonoBehaviour
         naviPanel.gameObject.SetActive(true);
         //photo_Docent_static.DrawingStart();
         Photo_Docent_Static.instance.DrawingStart();
-        Photo_Docent_Direction.instance.DirectionStart(_endlongitude, _endlatitude);
-        
+        Photo_Docent_Direction.instance.DirectionStart(_endlongitude, _endlatitude);      
+    }
+    public void NeviStartButton()
+    {
+        SceneManager.LoadScene("AR_LIneRenderer");
     }
 }
