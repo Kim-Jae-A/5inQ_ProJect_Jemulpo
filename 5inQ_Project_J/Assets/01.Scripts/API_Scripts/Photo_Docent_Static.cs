@@ -21,8 +21,17 @@ public class Photo_Docent_Static : MonoBehaviour
     public RawImage map;  // 받아온 텍스쳐를 적용할 공간
     string apiURL;
 
+    [Header("내위치")]
+    [SerializeField] private Image myPoint;
+    Vector2 myVector;
+
+    private double center_lat;
+    private double center_log;
+
     double latitude;
     double longitude;
+
+    bool check;
 
     private void Awake()
     {
@@ -83,11 +92,53 @@ public class Photo_Docent_Static : MonoBehaviour
                 // 현재 위치 정보를 구조체에 저장
                 latitude = Input.location.lastData.latitude;
                 longitude = Input.location.lastData.longitude;
-                StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
-            }
+                if (!check)
+                {
+                    StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
+                }
+                check = true;
+
+                myVector = ConvertGeoToUnityCoordinate(latitude, longitude);
+
+                myPoint.transform.localPosition = new Vector3(myVector.x, myVector.y, 0);
+            }      
             // 잠시 대기 후 다시 위치 업데이트
             yield return new WaitForSeconds(1);
         }
+    }
+
+    private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
+    {
+        // 기준 위도, 경도
+        double originLatitude = center_lat;
+        double originLongitude = center_log;
+
+#if UNITY_EDITOR
+        originLatitude = 37.713675f;
+        originLongitude = 126.743572f;
+#endif
+        // 기준 x, y
+        double originX = 0;
+        double originY = 0;
+
+        // 위도, 경도에 대한 x, y의 변화 비율
+        double xRatio = 172238.37f;
+        double yRatio = 265780.73f;
+
+        double x;
+        double y;
+
+        if (longitude - originLongitude == 0)
+        {
+            x = 0; y = 0;
+        }
+        else
+        {
+            x = originX + (longitude - originLongitude) * xRatio;
+            y = originY + (latitude - originLatitude) * yRatio;
+        }
+
+        return new Vector2((float)x, (float)y);
     }
 
     void OnDestroy()
