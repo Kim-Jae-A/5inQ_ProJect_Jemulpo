@@ -1,0 +1,147 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Android;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using static UnityEngine.XR.ARSubsystems.XRCpuImage;
+
+public class Photo_Docent_Static : MonoBehaviour
+{
+    public static Photo_Docent_Static instance;
+
+    [Header("API 설정")]
+    //string url = "https://api.vworld.kr/req/image?service=image&request=getmap&key=";
+    public string url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster"; // API 요청 URL
+    public float width; // 요청 받을 이미지의 폭
+    public float height; // 요청 받을 이미지의 높이
+    public int zoomLevel; // 요청 받을 이미지의 확대 정도
+    public string key_ID; // API 아이디
+    public string key;    // API 키
+    public RawImage map;  // 받아온 텍스쳐를 적용할 공간
+    string apiURL;
+
+    double latitude;
+    double longitude;
+
+    private void Awake()
+    {
+        // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator RequestLocationPermission()
+    {
+#if UNITY_ANDROID
+        // 안드로이드에서는 위치 정보 권한을 요청
+        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            Permission.RequestUserPermission(Permission.FineLocation);
+        }
+#endif
+
+        // 권한 요청 대기
+        while (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            yield return null;
+        }
+
+        // 위치 서비스 초기화 및 위치 정보 가져오기
+        InitializeLocationService();
+    }
+
+    void InitializeLocationService()
+    {
+        // 위치 서비스 초기화
+        Input.location.Start();
+
+        // 위치 서비스 초기화를 기다림
+        StartCoroutine(UpdateLocation());
+        //StartCoroutine(StaticMapDrawing());
+    }
+
+    IEnumerator UpdateLocation()
+    {
+        while (true)
+        {
+            // 위치 정보를 가져올 때까지 대기
+            while (Input.location.status == LocationServiceStatus.Initializing)
+            {
+                yield return new WaitForSeconds(1);
+            }
+
+            // 위치 정보 가져오기 성공 시
+            if (Input.location.status == LocationServiceStatus.Running)
+            {
+                // 현재 위치 정보를 구조체에 저장
+                latitude = Input.location.lastData.latitude;
+                longitude = Input.location.lastData.longitude;
+                StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
+            }
+            // 잠시 대기 후 다시 위치 업데이트
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    void OnDestroy()
+    {
+        // 스크립트가 파괴될 때 위치 서비스 종료
+        Input.location.Stop();
+    }
+
+    public void DrawingStart()
+    {
+#if UNITY_ANDROID
+        StartCoroutine(RequestLocationPermission());
+#endif
+#if UNITY_EDITOR
+        StartCoroutine(StaticMapDrawing());
+#endif
+    }
+
+    IEnumerator StaticMapDrawing()
+    {
+        apiURL = url + $"?w={width}&h={height}&center={longitude},{latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
+
+#if UNITY_EDITOR
+        //apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
+        apiURL = url + $"?w={width}&h={height}&center=126.743572,37.713675&level={zoomLevel}&scale=2"; // 경기인력
+#endif
+
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
+        request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
+        request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);
+
+        yield return request.SendWebRequest();
+
+        // 예외처리 스위치문
+        switch (request.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+                Debug.LogWarning(request.result.ToString());
+                yield break;
+            case UnityWebRequest.Result.Success:
+                Debug.LogWarning(request.result.ToString());
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogWarning(request.result.ToString());
+                yield break;
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogWarning(request.result.ToString());
+                yield break;
+        }
+
+        if (request.isDone)
+        {
+            Debug.Log(request.result.ToString());
+            map.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+        }
+    }
+}
