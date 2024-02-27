@@ -203,6 +203,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38439289}
   m_CullTransparentMesh: 1
+--- !u!1 &121783751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121783753}
+  - component: {fileID: 121783752}
+  m_Layer: 0
+  m_Name: Video Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!328 &121783752
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121783751}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 1
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!4 &121783753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121783751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 125.08506, y: 1356.0829, z: 9.008682}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &260041661
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +284,7 @@ GameObject:
   - component: {fileID: 260041664}
   - component: {fileID: 260041663}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uBC84\uD2BC"
+  m_Name: SaveBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,9 +355,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SavePhoto, Assembly-CSharp
-        m_MethodName: SaveToGalleryBtn
+      - m_Target: {fileID: 477621933}
+        m_TargetAssemblyTypeName: SaveVideo, Assembly-CSharp
+        m_MethodName: SaveToGallery_Video
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -349,7 +417,7 @@ GameObject:
   - component: {fileID: 409506572}
   - component: {fileID: 409506571}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uCC3D"
+  m_Name: SavePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,7 +495,7 @@ GameObject:
   - component: {fileID: 454882130}
   - component: {fileID: 454882129}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uC644\uB8CC \uCC3D"
+  m_Name: SaveDonePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,7 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviewZone: {fileID: 1312800832}
   saveMessage: {fileID: 454882127}
-  videoPlayer: {fileID: 0}
+  videoPlayer: {fileID: 121783752}
 --- !u!1 &683566559
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +787,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1109421514
 GameObject:
@@ -851,7 +919,7 @@ GameObject:
   - component: {fileID: 1169639683}
   - component: {fileID: 1169639682}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 \uBA54\uC138\uC9C0"
+  m_Name: SaveMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,7 +1088,7 @@ GameObject:
   - component: {fileID: 1312800831}
   - component: {fileID: 1312800832}
   m_Layer: 5
-  m_Name: "\uC0AC\uC9C4 \uBDF0"
+  m_Name: Video View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1094,7 +1162,7 @@ GameObject:
   - component: {fileID: 1773222646}
   - component: {fileID: 1773222645}
   m_Layer: 5
-  m_Name: "\uC800\uC7A5 UI"
+  m_Name: Save UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,7 +1268,7 @@ GameObject:
   - component: {fileID: 1878592047}
   - component: {fileID: 1878592046}
   m_Layer: 5
-  m_Name: "\uACF5\uC720 \uBC84\uD2BC"
+  m_Name: ShareBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1322,7 +1390,7 @@ GameObject:
   - component: {fileID: 1992166829}
   - component: {fileID: 1992166828}
   m_Layer: 5
-  m_Name: "\uB4A4\uB85C\uAC00\uAE30 \uBC84\uD2BC"
+  m_Name: BackBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1392,9 +1460,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SavePhoto, Assembly-CSharp
-        m_MethodName: ReturnBtn
+      - m_Target: {fileID: 477621933}
+        m_TargetAssemblyTypeName: SaveVideo, Assembly-CSharp
+        m_MethodName: OnReturnBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

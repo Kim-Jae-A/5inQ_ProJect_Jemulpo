@@ -1960,6 +1960,7 @@ GameObject:
   - component: {fileID: 1286441791}
   - component: {fileID: 1286441793}
   - component: {fileID: 1286441795}
+  - component: {fileID: 1286441796}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -2026,6 +2027,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0c885e04b5e97f4ca6c9704a1986394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1286441796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286441790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6359bfb6fc9d24ee2bd78491ee3d2fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1341671943
@@ -2449,6 +2462,25 @@ MonoBehaviour:
   shotUI: {fileID: 1104080230}
   shotTexture: {fileID: 8400000, guid: 25bdc7e75e86be74f9b01c328bb51814, type: 2}
   m_Session: {fileID: 491511790}
+<<<<<<< HEAD
+  cameraManager: {fileID: 1229720913}
+--- !u!114 &1625181211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625181207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AttemptUpdate: 1
+  m_MatchFrameRate: 1
+  m_TrackingMode: 2
+=======
+>>>>>>> main
 --- !u!1 &1685154355
 GameObject:
   m_ObjectHideFlags: 0
