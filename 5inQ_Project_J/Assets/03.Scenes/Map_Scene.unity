@@ -223,7 +223,7 @@ RectTransform:
   - {fileID: 106808647}
   - {fileID: 1894326379}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -403,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
@@ -1805,6 +1805,7 @@ MonoBehaviour:
   placeAddress: {fileID: 44135759}
   placeImage: {fileID: 1352975645}
   endPoint: {fileID: 518414847}
+  endText: {fileID: 472809220}
 --- !u!114 &547938328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,7 +1893,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &658301159
 MonoBehaviour:
@@ -1938,7 +1939,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &710430412
 LineRenderer:
@@ -1982,9 +1983,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 10
@@ -2337,6 +2336,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041560757}
   m_CullTransparentMesh: 1
+--- !u!1 &1074340609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1074340610}
+  - component: {fileID: 1074340611}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1074340610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074340609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1899440621}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074340611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074340609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f5a002e8d011547960539a034e5316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1079996450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,7 +2912,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352975641
 GameObject:
@@ -3468,6 +3512,7 @@ MonoBehaviour:
   placeAddress: {fileID: 44135759}
   placeImage: {fileID: 1352975645}
   endPoint: {fileID: 518414847}
+  endText: {fileID: 472809220}
 --- !u!114 &1538986485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3949,7 +3994,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1676531814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1914446052}
+        m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
+        m_MethodName: NextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1676531814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4572,13 +4629,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899440618}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1074340610}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1899440622
 MonoBehaviour:
@@ -4806,7 +4863,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1913948348
 MonoBehaviour:
@@ -4862,7 +4919,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1914446051
 MonoBehaviour:
@@ -4911,6 +4968,7 @@ MonoBehaviour:
   - {fileID: 2040568650}
   - {fileID: 547938325}
   - {fileID: 1538986481}
+  endText: {fileID: 0}
 --- !u!1 &2040568650
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,6 +5066,7 @@ MonoBehaviour:
   placeAddress: {fileID: 44135759}
   placeImage: {fileID: 1352975645}
   endPoint: {fileID: 518414847}
+  endText: {fileID: 472809220}
 --- !u!1 &2082889841
 GameObject:
   m_ObjectHideFlags: 0
@@ -5104,7 +5163,7 @@ RectTransform:
   m_Children:
   - {fileID: 175012235}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5123,6 +5182,7 @@ GameObject:
   - component: {fileID: 2093081697}
   - component: {fileID: 2093081696}
   - component: {fileID: 2093081695}
+  - component: {fileID: 2093081698}
   m_Layer: 5
   m_Name: NaviStartButton
   m_TagString: Untagged
@@ -5194,43 +5254,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2093081696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1914446052}
-        m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
-        m_MethodName: OnNaviStartButtonEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 658301157}
-        m_TargetAssemblyTypeName: JsonManager, Assembly-CSharp
-        m_MethodName: OnNeviStartButtonEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 658301159}
-        m_TargetAssemblyTypeName: Map_DrawingLine, Assembly-CSharp
-        m_MethodName: OnButtonEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2093081696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5269,6 +5293,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093081693}
   m_CullTransparentMesh: 1
+--- !u!114 &2093081698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093081693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3458c35576b9641b0bb737b01f41e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2103070973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,6 +5364,7 @@ MonoBehaviour:
   placeAddress: {fileID: 44135759}
   placeImage: {fileID: 1352975645}
   endPoint: {fileID: 518414847}
+  endText: {fileID: 472809220}
 --- !u!114 &2103070976
 MonoBehaviour:
   m_ObjectHideFlags: 0
