@@ -29,7 +29,7 @@ public class Direction5Manager : MonoBehaviour
     public Image infopanel;
     public Image markerpanel;
     public GameObject[] marker;
-    public Text endText;
+    
 
     void Awake()
     {
@@ -87,8 +87,16 @@ public class Direction5Manager : MonoBehaviour
         {
             jsonData = request.downloadHandler.text;
             print(jsonData);
-            jsonManager.LoadData();
-            drawingLine.OnButtonEnter();                
+            string test = "{\"code\":1,\"message\":\"출발지와 도착지가 동일합니다. 확인 후 다시 지정해주세요.\"}";
+            if (jsonData == test)
+            {
+                Debug.LogError("출발지와 목적지가 같습니다");
+            }
+            else
+            {
+                jsonManager.LoadData();
+                drawingLine.OnButtonEnter();
+            }                       
         }
     }
 
