@@ -152,12 +152,12 @@ TextureImporter:
       name: "BG_\uAE30\uBCF8\uD31D\uC5C5\uCC3D_0"
       rect:
         serializedVersion: 2
-        x: 113
-        y: 36
-        width: 226
-        height: 186
+        x: 0
+        y: 0
+        width: 339
+        height: 294
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,7 +178,7 @@ TextureImporter:
         width: 339
         height: 236
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

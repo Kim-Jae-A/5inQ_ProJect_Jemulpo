@@ -19,35 +19,72 @@ public class Change_Scene : MonoBehaviour
         SceneManager.LoadScene("Map_Scene");
     }
 
-    public void HomeScene()
+    private void Update()
     {
         if (neviPanel.activeSelf)
         {
-            neviPanel.SetActive(false);
-            markerPanel.SetActive(true);
-            foreach (GameObject obj in marker)
+            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
             {
-                obj.SetActive(true);
+                OffNeviPanel();
+                return;
             }
-            endPoint.SetActive(false);        
-            return;
         }
         if (infoPanel.activeSelf)
         {
-            neviPanel.SetActive(true);
-            infoPanel.SetActive(false);
-            if (lineObj.transform.childCount > 0)
+            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
             {
-                for (int i = 0; i < lineObj.transform.childCount; i++)
-                {
-                    Destroy(lineObj.transform.GetChild(i).gameObject);
-                }
-                lineObj.GetComponent<LineRenderer>().positionCount = 0;
+                OffInfoPanel();
             }
         }
         else
         {
+            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            {
+                SceneManager.LoadScene("Home");
+            }
+        }
+
+    }
+
+    public void HomeScene()
+    {
+        if (neviPanel.activeSelf)
+        {
+            OffNeviPanel();      
+            return;
+        }
+        if (infoPanel.activeSelf)
+        {
+            OffInfoPanel();
+        }
+        else
+        {
             SceneManager.LoadScene("Home");
+        }
+    }
+
+    void OffNeviPanel()
+    {
+        neviPanel.SetActive(false);
+        markerPanel.SetActive(true);
+        foreach (GameObject obj in marker)
+        {
+            obj.SetActive(true);
+        }
+        endPoint.SetActive(false);
+    }
+
+    void OffInfoPanel()
+    {
+        neviPanel.SetActive(true);
+        infoPanel.SetActive(false);
+        if (lineObj.transform.childCount > 0)
+        {
+            for (int i = 0; i < lineObj.transform.childCount; i++)
+            {
+                Destroy(lineObj.transform.GetChild(i).gameObject);
+            }
+            lineObj.GetComponent<LineRenderer>().positionCount = 0;
         }
     }
 }

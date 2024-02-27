@@ -10,11 +10,18 @@ public class InfoUIController : MonoBehaviour
 {
     [SerializeField] private Text Title; 
     [SerializeField] private Text Info_name;
+    [SerializeField] private Text End_name;
     [SerializeField] private Text Info_Description;
     [SerializeField] private Image Info_Image;
     [SerializeField] private Button Shooting;
 
+    public Image mainPanel;
+    public Image naviPanel;
+    public GameObject lineObj;
+
     [SerializeField] private string PreviousScene;
+    private double _endlongitude;
+    private double _endlatitude;
 
 
     private void Start()
@@ -26,8 +33,13 @@ public class InfoUIController : MonoBehaviour
         if (selectedARData != null)
         {
             //받아온 json데이터들을 text에 할당
+
             Info_name.text = selectedARData.Name;
+            End_name.text = Info_name.text;
             Info_Description.text = selectedARData.Info;
+            _endlongitude = Convert.ToDouble(selectedARData.longitude);
+            _endlatitude = Convert.ToDouble(selectedARData.latitude);
+
 
             //이미지 또한 받아온 데이터의 이미지 경로를 할당
             Sprite sprite = Resources.Load<Sprite>(selectedARData.imagepath);
@@ -67,6 +79,35 @@ public class InfoUIController : MonoBehaviour
 
     public void OnReturnButton()
     {
-        SceneManager.LoadScene(PreviousScene);
+        if (mainPanel.gameObject.activeSelf)
+        {
+            SceneManager.LoadScene(PreviousScene);
+            return;
+        }
+        else if (naviPanel.gameObject.activeSelf)
+        {
+            mainPanel.gameObject.SetActive(true);
+            if (lineObj.transform.childCount > 0)
+            {
+                for (int i = 0; i < lineObj.transform.childCount; i++)
+                {
+                    Destroy(lineObj.transform.GetChild(i).gameObject);
+                }
+                lineObj.GetComponent<LineRenderer>().positionCount = 0;
+            }
+            naviPanel.gameObject.SetActive(false);           
+        }
+    }
+    public void DirectionButton()
+    {
+        mainPanel.gameObject.SetActive(false);
+        naviPanel.gameObject.SetActive(true);
+        //photo_Docent_static.DrawingStart();
+        Photo_Docent_Static.instance.DrawingStart();
+        Photo_Docent_Direction.instance.DirectionStart(_endlongitude, _endlatitude);      
+    }
+    public void NeviStartButton()
+    {
+        SceneManager.LoadScene("AR_LIneRenderer");
     }
 }

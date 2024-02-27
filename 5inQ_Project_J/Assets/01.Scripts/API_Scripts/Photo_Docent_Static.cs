@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using UnityEngine.Android;
+using static UnityEngine.XR.ARSubsystems.XRCpuImage;
 
-public class StaticMapManager : MonoBehaviour
+public class Photo_Docent_Static : MonoBehaviour
 {
-    public static StaticMapManager instance;
+    public static Photo_Docent_Static instance;
 
     [Header("API 설정")]
     //string url = "https://api.vworld.kr/req/image?service=image&request=getmap&key=";
@@ -19,10 +20,7 @@ public class StaticMapManager : MonoBehaviour
     public string key;    // API 키
     public RawImage map;  // 받아온 텍스쳐를 적용할 공간
     string apiURL;
-    bool check;
 
-    [Header("마커 띄우기용")]
-    [SerializeField]private MapUI_Enum[] mapui;
     [Header("내위치")]
     [SerializeField] private Image myPoint;
     Vector2 myVector;
@@ -30,10 +28,12 @@ public class StaticMapManager : MonoBehaviour
     private double center_lat;
     private double center_log;
 
-    public static float latitude;  // 위도
-    public static float longitude; // 경도
+    double latitude;
+    double longitude;
 
-    void Awake()
+    bool check;
+
+    private void Awake()
     {
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
@@ -44,15 +44,6 @@ public class StaticMapManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start()
-    {
-        // 위치 정보 권한 요청
-        StartCoroutine(RequestLocationPermission());
-#if UNITY_EDITOR
-        StartCoroutine(StaticMapDrawing());
-#endif
     }
 
     IEnumerator RequestLocationPermission()
@@ -101,31 +92,21 @@ public class StaticMapManager : MonoBehaviour
                 // 현재 위치 정보를 구조체에 저장
                 latitude = Input.location.lastData.latitude;
                 longitude = Input.location.lastData.longitude;
-
                 if (!check)
                 {
-                    for (int i = 0; i< mapui.Length; i++)
-                    {
-                        mapui[i].LoadingMarker();
-                    }                
                     StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
                 }
                 check = true;
 
                 myVector = ConvertGeoToUnityCoordinate(latitude, longitude);
-                
+
                 myPoint.transform.localPosition = new Vector3(myVector.x, myVector.y, 0);
-            }
+            }      
             // 잠시 대기 후 다시 위치 업데이트
             yield return new WaitForSeconds(1);
         }
     }
 
-    void OnDestroy()
-    {
-        // 스크립트가 파괴될 때 위치 서비스 종료
-        Input.location.Stop();
-    }
     private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
     {
         // 기준 위도, 경도
@@ -160,19 +141,31 @@ public class StaticMapManager : MonoBehaviour
         return new Vector2((float)x, (float)y);
     }
 
+    void OnDestroy()
+    {
+        // 스크립트가 파괴될 때 위치 서비스 종료
+        Input.location.Stop();
+    }
+
+    public void DrawingStart()
+    {
+#if UNITY_ANDROID
+        StartCoroutine(RequestLocationPermission());
+#endif
+#if UNITY_EDITOR
+        StartCoroutine(StaticMapDrawing());
+#endif
+    }
+
     IEnumerator StaticMapDrawing()
     {
-        center_lat = latitude;
-        center_log = longitude;
         apiURL = url + $"?w={width}&h={height}&center={longitude},{latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
+
 #if UNITY_EDITOR
         //apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
         apiURL = url + $"?w={width}&h={height}&center=126.743572,37.713675&level={zoomLevel}&scale=2"; // 경기인력
 #endif
-        /*        apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center={longitude},{latitude}&crs=epsg:4326&zoom={zoomLevel}&size={width},{height}";// 현재 위치 좌표
-        #if UNITY_EDITOR
-                apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center=126.657566,37.466480&crs=epsg:4326&zoom=16&size={width},{height}";
-        #endif*/
+
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);
@@ -195,6 +188,7 @@ public class StaticMapManager : MonoBehaviour
                 Debug.LogWarning(request.result.ToString());
                 yield break;
         }
+
         if (request.isDone)
         {
             Debug.Log(request.result.ToString());
