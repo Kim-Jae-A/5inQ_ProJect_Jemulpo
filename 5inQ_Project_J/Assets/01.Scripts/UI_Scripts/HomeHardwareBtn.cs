@@ -12,7 +12,7 @@ public class HomeHardwareBtn : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+        if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
         {
             appQuitMessage.SetActive(true);
             greyPanel.SetActive(true);

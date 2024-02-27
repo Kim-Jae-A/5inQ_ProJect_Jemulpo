@@ -10,14 +10,14 @@ public class HardwareBtn : MonoBehaviour
         {
             if(SceneManager.GetActiveScene().name == "Home")
             {
-                if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+                if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
                 {
                     Application.Quit();//앱 종료
                 }
             }
             else
             {
-                if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+                if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
                 {
                     SceneManager.LoadScene(previousScene);
                 }
