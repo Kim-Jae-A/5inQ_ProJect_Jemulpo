@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Direction5Manager : MonoBehaviour
 {
     public static Direction5Manager instance;
+    public static string jsonData;
 
     [Header("API 설정")]
     public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"; // API 요청 URL
