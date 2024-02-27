@@ -104,6 +104,9 @@ public class TakeAShot : MonoBehaviour
                 videoStopBtn.gameObject.SetActive(true);
                 Debug.Log("녹화시작");
                 Debug.Log(isRecording);
+                //Arcore 라이브러리를 사용해서 안드로이드 환경에서 Arsession을 기록.
+                //현재 실행중인 AR 세션의 서브시스템이 ARCoreSessionSubsystem인지 확인합니다.
+                //ARCoreSessionSubsystem은 ARCore의 기능을 제어하는 클래스입니다.
 #if UNITY_ANDROID
                 if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
                 {
@@ -129,8 +132,8 @@ public class TakeAShot : MonoBehaviour
                 }
 #endif
             }
-        }
             isRecording = false;
+        }
     }
 
     //비디오 촬영을 끝내는 버튼을 눌렀을 때
@@ -171,32 +174,4 @@ public class TakeAShot : MonoBehaviour
     {
         SceneManager.LoadScene("PhotoZone_Docent"); //그 전 씬으로 돌아간다
     }
-
-    //IEnumerator StopRecordingCoroutine()
-    //{
-    //    if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-    //    {
-    //        yield return new WaitUntil(() => subsystem.recordingStatus == ArRecordingStatus.Ok);
-
-    //        session.StopRecording();
-    //        yield return new WaitForSeconds(2);
-    //    }
-    //}
-
-    //private void OnApplicationPause(bool pause)
-    //{
-    //    if (pause)
-    //    {
-    //        if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-    //        {
-    //            session = subsystem.session;
-
-    //            using (var config = new ArRecordingConfig(session))
-    //            {
-    //                config.SetAutoStopOnPause(session, isPaused);
-    //            }
-    //        }
-    //    }
-    //}
-
 }
