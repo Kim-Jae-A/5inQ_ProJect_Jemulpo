@@ -101,10 +101,10 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     
     void LoadGallery()
     {
-        AndroidJavaClass javaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaClass javaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"); 
         AndroidJavaObject javaObject = javaClass.GetStatic<AndroidJavaObject>("currentActivity");
         AndroidJavaObject packageManager = javaObject.Call<AndroidJavaObject>("getPackageManager");
-        AndroidJavaObject intent = packageManager.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.sec.android.gallery3d");
+        AndroidJavaObject intent = packageManager.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.sec.android.gallery3d"); //안드로이드 갤러리 패키지명
         javaObject.Call("startActivity", intent);
     }
 
