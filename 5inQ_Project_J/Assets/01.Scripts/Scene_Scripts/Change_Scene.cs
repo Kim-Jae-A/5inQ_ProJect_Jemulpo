@@ -23,7 +23,7 @@ public class Change_Scene : MonoBehaviour
     {
         if (neviPanel.activeSelf)
         {
-            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
             {
                 OffNeviPanel();
                 return;
@@ -31,14 +31,14 @@ public class Change_Scene : MonoBehaviour
         }
         if (infoPanel.activeSelf)
         {
-            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
             {
                 OffInfoPanel();
             }
         }
         else
         {
-            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
             {
                 SceneManager.LoadScene("Home");
             }
