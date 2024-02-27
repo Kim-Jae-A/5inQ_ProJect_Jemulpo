@@ -7,8 +7,9 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using Unity.XR.CoreUtils;
 using UnityEngine.XR.ARCore;
-
-[RequireComponent(typeof(ARSession))]
+using Google.XR.ARCoreExtensions;
+using Unity.Collections;
+using UnityEngine.XR.ARSubsystems;
 public class TakeAShot : MonoBehaviour
 {
     [Header("버튼")]
@@ -22,39 +23,36 @@ public class TakeAShot : MonoBehaviour
 
     [Header("비디오 녹화")]
     [SerializeField]private ARSession m_Session;
+    string m_Mp4Path;
+    public static string recordPath;
     private bool isRecording = false;
-    
+    string path = $"/storage/emulated/0/DCIM";
 
-
-    private void Awake()
-    {
-       // m_Session = GetComponent<ARSession>();
-       // m_ARCamera = GetComponent<Camera>();//추가
-
-        //m_RenderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-
-       // XROrigin m_xrorigin = FindObjectOfType<XROrigin>();
-        /*
-        if (m_xrorigin != null)
-        {
-            m_ARCamera = m_xrorigin.Camera;
-            if (m_ARCamera != null)
-            {
-                // 추가: 렌더 텍스처 생성
-                m_ARCamera.targetTexture = m_RenderTexture;
-            }
-        }*/
-        var process = new System.Diagnostics.Process();
-    }
+#if UNITY_ANDROID
+    ArStatus? m_SetMp4DatasetResult;
+    ArPlaybackStatus m_PlaybackStatus = (ArPlaybackStatus)(-1);
+    ArRecordingStatus m_RecordingStatus = (ArRecordingStatus)(-1);
+#endif
 
     static int GetRotation() => Screen.orientation switch
     {
         ScreenOrientation.Portrait => 0,
         ScreenOrientation.LandscapeLeft => 90,
         ScreenOrientation.PortraitUpsideDown => 180,
-        ScreenOrientation.LandscapeRight => 270,
+        ScreenOrientation.LandscapeRight => 0,
         _ => 0
     };
+
+
+    private void Awake()
+    {
+        m_Session = GetComponent<ARSession>();
+        bool isExist = Directory.Exists(path);
+        if (!isExist)
+        {
+            Directory.CreateDirectory(path);
+        }
+    }
 
     public void OnShotBtn()
     {
@@ -90,7 +88,6 @@ public class TakeAShot : MonoBehaviour
             RenderTexture.active = null;
         }
     }
-
     //비디오 시작 버튼을 눌렀을 때
     public void OnVideoStartBtn()
     {
@@ -108,10 +105,33 @@ public class TakeAShot : MonoBehaviour
                 videoStopBtn.gameObject.SetActive(true);
                 Debug.Log("녹화시작");
                 Debug.Log(isRecording);
-            }
-            isRecording = false;
+#if UNITY_ANDROID
+                if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
+                {
+                    var session = subsystem.session;
+                    if (session == null)
+                        return;
 
+                    var playbackStatus = subsystem.playbackStatus;
+                    var recordingStatus = subsystem.recordingStatus;
+
+                    if (!playbackStatus.Playing() && !recordingStatus.Recording())
+                    {
+                        using (var config = new ArRecordingConfig(session))
+                        {
+                            string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "ar-video.mp4";
+                            m_Mp4Path = Path.Combine(path, fileName);
+                            recordPath = m_Mp4Path;
+                            config.SetMp4DatasetFilePath(session, m_Mp4Path);
+                            config.SetRecordingRotation(session,0);
+                            subsystem.StartRecording(config);
+                        }
+                    }
+                }
+#endif
+            }
         }
+            isRecording = false;
     }
 
     //비디오 촬영을 끝내는 버튼을 눌렀을 때
@@ -127,12 +147,23 @@ public class TakeAShot : MonoBehaviour
         {
             if (!isRecording)
             {
-                Debug.Log("녹화종료");
                 // 녹화 종료
+                Debug.Log("녹화종료");
                 videoStartBtn.gameObject.SetActive(true);
                 videoStopBtn.gameObject.SetActive(false);
                 CameraMode.isRecord = false;
-                SceneManager.LoadScene("SavePhoto");
+                #if UNITY_ANDROID
+        if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
+        {
+            var recordingStatus = subsystem.recordingStatus;
+
+            if (recordingStatus.Recording())
+            {
+                subsystem.StopRecording();
+            }
+        }
+#endif
+                SceneManager.LoadScene("SaveVideo");
             }
         }
     }
@@ -141,4 +172,32 @@ public class TakeAShot : MonoBehaviour
     {
         SceneManager.LoadScene("PhotoZone_Docent");
     }
+
+    //IEnumerator StopRecordingCoroutine()
+    //{
+    //    if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
+    //    {
+    //        yield return new WaitUntil(() => subsystem.recordingStatus == ArRecordingStatus.Ok);
+
+    //        session.StopRecording();
+    //        yield return new WaitForSeconds(2);
+    //    }
+    //}
+
+    //private void OnApplicationPause(bool pause)
+    //{
+    //    if (pause)
+    //    {
+    //        if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
+    //        {
+    //            session = subsystem.session;
+
+    //            using (var config = new ArRecordingConfig(session))
+    //            {
+    //                config.SetAutoStopOnPause(session, isPaused);
+    //            }
+    //        }
+    //    }
+    //}
+
 }

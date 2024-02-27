@@ -28,7 +28,7 @@ public class Docent_PlayerController : MonoBehaviour
             Docent_slider.maxValue = animationController.narration.clip.length;//gaebalone.length;  
             Replay.onClick.AddListener(animationController.RePlay_Docent);
         };
-        //animationController = GetComponent<Docent_AnimationController>();   
+        animationController = GetComponent<Docent_AnimationController>();   
         BackToDescription.onClick.AddListener(Return_Docent_Description);//뒤로가기버튼 이벤트 추가.
     }
     void Update()
