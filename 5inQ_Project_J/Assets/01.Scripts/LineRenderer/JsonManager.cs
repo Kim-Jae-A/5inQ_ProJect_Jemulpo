@@ -100,14 +100,8 @@ public class JsonManager : MonoBehaviour
     // 데이터 로드 함수
     public void LoadData()
     {
-<<<<<<< HEAD
         string jsonData = Direction5Manager.jsonData;
 
-=======
-
-        string jsonData = Direction5Manager.jsonData;
-
->>>>>>> parent of b3cf5393 (Fix_Line_and_Data_Error)
         data = JsonConvert.DeserializeObject<RouteData>(jsonData);
     }
 }
