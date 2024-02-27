@@ -1,20 +1,15 @@
 using UnityEngine;
 using System.Collections;
-using System;
 using System.IO;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
-using Unity.XR.CoreUtils;
-using UnityEngine.XR.ARCore;
 
-public class TakeAShot : MonoBehaviour
+public class TakeAPhoto : MonoBehaviour
 {
     [Header("버튼")]
     [SerializeField] GameObject PictureBtn;
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
-    public Text debug;
 
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
@@ -139,6 +134,6 @@ public class TakeAShot : MonoBehaviour
 
     public void OnReturnBtn()
     {
-        SceneManager.LoadScene("PhotoZone_Docent");
+        SceneManager.LoadScene("PhotoZone_Docent"); //그 전 씬으로 돌아간다
     }
 }
