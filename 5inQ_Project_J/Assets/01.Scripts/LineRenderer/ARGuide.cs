@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ARGuide : MonoBehaviour
 {
     LinRendererManager LRM;
-    DistanceCalculator distanceCalculator;
     public Transform ARcamera; // 
-
+    
     public Text text;
+
     public List<Vector3> target = new List<Vector3>();
     public List<int> pointIndex = new List<int>();
     public List<string> instructions = new List<string>();
@@ -19,7 +19,6 @@ public class ARGuide : MonoBehaviour
     private void Awake()
     {
         LRM = GetComponent<LinRendererManager>();
-        distanceCalculator = GetComponent<DistanceCalculator>();
 
     }
     // Start is called before the first frame update
@@ -69,11 +68,10 @@ public class ARGuide : MonoBehaviour
                     text.text = "안내를 종료합니다.";
                     return;
                 }
-            }
-
-            string distanceString = distanceCalculator.DC(LRM.Latitude[targetNum], LRM.Longitude[targetNum]);
-            text.text = distanceString + "이동 후\n" + instructions[nowGuide];
+            }       
+            text.text = distance.ToString("F0") + "m " + "이동 후\n" + instructions[nowGuide];
         }
+
     }
 
     void JsonCall()
@@ -84,7 +82,7 @@ public class ARGuide : MonoBehaviour
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
             foreach (Guide guideInfo in firstTraFast.guide)
             {
-                pointIndex.Add(guideInfo.pointIndex - 1);
+                pointIndex.Add(guideInfo.pointIndex);
                 instructions.Add(guideInfo.instructions);
             }
         }

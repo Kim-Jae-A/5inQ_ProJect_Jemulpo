@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class LinRendererManager : MonoBehaviour
 {
-    public Transform XROrigin;
+    public Transform ARCamera;
     private LineRenderer lineRenderer;
-    public Text text;
     // 위도와 경도
     public Vector3[] LongLat;
     public List<double> Longitude = new List<double>();
@@ -24,12 +23,6 @@ public class LinRendererManager : MonoBehaviour
         LineRenderDraw();
         UpdateARCameraPosition();     
     }
-    private void Update()
-    {
-        GameObject ARCamera = GameObject.Find("AR Session Origin");
-        text.text = $"{ARCamera.transform.position}";
-    }
-
     void LineRenderDraw()
     {
         // JsonManager 클래스의 인스턴스를 통해 데이터에 접근
@@ -74,17 +67,19 @@ public class LinRendererManager : MonoBehaviour
 
     void UpdateARCameraPosition()
     {
-        GameObject ARCamera = GameObject.Find("AR Session Origin");
-        // AR 카메라의 위치를 설정
-        Vector3 newPosition = LongLat[0];
-        newPosition.y = 2f; 
-        ARCamera.transform.position = newPosition;
+        // AR 카메라가 바라보는 방향을 설정합니다.
+        Vector3 cameraForward = LongLat[2] - LongLat[0];
+        ARCamera.rotation = Quaternion.LookRotation(cameraForward, Vector3.up);
 
-        // LinRendererManager에서 AR 카메라의 위치를 가져옵니다.
-        Vector3 direction = LongLat[1] - ARCamera.transform.position;
+        // AR 카메라의 위치를 AR 카메라 화면의 중앙에 LongLat[0]가 보이도록 조정합니다.
+        // AR 카메라의 위치와 방향을 역으로 계산하여 조정합니다.
+        Vector3 cameraPosition = LongLat[0] - cameraForward.normalized;
+        ARCamera.position = cameraPosition;
 
-        // 방향 벡터를 회전하여 타겟 방향으로 오브젝트를 회전시킵니다.
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        ARCamera.transform.rotation = targetRotation;
+        // AR 카메라의 y 값을 2로 보정합니다.
+        Vector3 newPosition = ARCamera.position;
+        newPosition.y = 2f;
+        ARCamera.position = newPosition;
     }
 }
+

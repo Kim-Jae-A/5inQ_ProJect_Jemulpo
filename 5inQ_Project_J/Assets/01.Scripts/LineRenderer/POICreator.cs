@@ -2,11 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ARGeospatialCreator : MonoBehaviour
+public class POICreator : MonoBehaviour
 {
     public GameObject AnchorPrefab;
     public List<double> Longitude = new List<double>();
     public List<double> Latitude = new List<double>();
+    public List<string> Name = new List<string>();
+    POIManager poiManager;
+    private void Awake()
+    {
+        poiManager = GetComponent<POIManager>();
+    }
     void Start()
     {
         JsonCall();
@@ -15,17 +21,30 @@ public class ARGeospatialCreator : MonoBehaviour
     }
     void JsonCall()
     {
-        if (JsonManager.instance != null && JsonManager.instance.data != null &&
-JsonManager.instance.data.route.trafast.Count > 0)
+        if (poiManager.jsonFile != null)
         {
-            TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
-
-            // Path 데이터 확인
-            foreach (var point in firstTraFast.path)
+            for (int i = 0; i < poiManager.jsonFile.Count; i++)
             {
-                Longitude.Add(point[0]);
-                Latitude.Add(point[1]);
+                poiManager.arZoneList = JsonUtility.FromJson<ARZoneList>(poiManager.jsonFile[i].text);
+                if (poiManager.arZoneList != null)
+                {
+                    foreach (var zone in poiManager.arZoneList.ARzone_List)
+                    {
+                        Name.Add(zone.Name);
+                        Longitude.Add(zone.longitude);
+                        Latitude.Add(zone.latitude);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Failed to parse JSON file.");
+                }
             }
+
+        }
+        else
+        {
+            Debug.LogError("JSON file is missing.");
         }
     }
 
@@ -37,13 +56,14 @@ JsonManager.instance.data.route.trafast.Count > 0)
             // AR Geospatial Creator 게임 오브젝트 생성
             GameObject clone = Instantiate(AnchorPrefab, Vector3.zero, Quaternion.identity);
             clone.transform.SetParent(transform);
-            Vector3 unityPosition = ConvertGeoToUnityCoordinates(Latitude[i], Longitude[i], 68);
+            clone.name = Name[i];
+            Vector3 unityPosition = ConvertGeoToUnityCoordinates(Latitude[i], Longitude[i]);
             clone.transform.position = unityPosition;
         }
 
     }
     // 위도, 경도, 고도를 Unity 좌표로 변환하여 반환하는 메서드
-    public Vector3 ConvertGeoToUnityCoordinates(double latitude, double longitude, double altitude)
+    public Vector3 ConvertGeoToUnityCoordinates(double latitude, double longitude)
     {
         Start startPoint = JsonManager.instance.data.route.trafast[0].summary.start;
         List<float> startLocation = startPoint.location;
