@@ -1,46 +1,34 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class Direction5Manager : MonoBehaviour
+public class Photo_Docent_Direction : MonoBehaviour
 {
-    public static Direction5Manager instance;
-
+    public static Photo_Docent_Direction instance;
     Map_DrawingLine drawingLine;
     JsonManager jsonManager;
+
+    public static string jsonData;
+    double _endlongitude;
+    double _endlatitude;
 
     [Header("API 설정")]
     public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"; // API 요청 URL
     public string key_ID; // API 아이디
     public string key; // API 키
     string apiURL;
-    
-    public static string _endlongitude; // 경도
-    public static string _endlatitude; // 위도
-    public static string jsonData;
 
-    [Header("UI Panel InFo")]
-    public Image nevipanel;
-    public Image infopanel;
-    public Image markerpanel;
-    public GameObject[] marker;
-    public Text endText;
-
-    void Awake()
+    private void Awake()
     {
         drawingLine = JsonManager.instance.gameObject.GetComponent<Map_DrawingLine>();
         jsonManager = JsonManager.instance;
-        
 
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
         {
             instance = this;
+            //LoadData();
         }
         else
         {
@@ -48,8 +36,11 @@ public class Direction5Manager : MonoBehaviour
         }
     }
 
-    public void OnNaviStartButtonEnter()
+    public void DirectionStart(double lo, double la)
     {
+        _endlatitude = la;
+        _endlongitude = lo;
+
         StartCoroutine(DirectionStart());
     }
 
@@ -74,7 +65,7 @@ public class Direction5Manager : MonoBehaviour
                 break;
             case UnityWebRequest.Result.ConnectionError:
                 Debug.LogWarning(request.result.ToString());
-                yield break;           
+                yield break;
             case UnityWebRequest.Result.ProtocolError:
                 Debug.LogWarning(request.result.ToString());
                 yield break;
@@ -86,30 +77,8 @@ public class Direction5Manager : MonoBehaviour
         if (request.isDone)
         {
             jsonData = request.downloadHandler.text;
-            print(jsonData);
-            jsonManager.LoadData();
-            drawingLine.OnButtonEnter();                
+            jsonManager.LoadData(jsonData);
+            drawingLine.OnButtonEnter();
         }
-    }
-
-    public void SomeFunction()
-    {
-        nevipanel.gameObject.SetActive(true);
-        infopanel.gameObject.SetActive(false);
-        markerpanel.gameObject.SetActive(false);
-        foreach (GameObject obj in marker)
-        {
-            obj.SetActive(false);
-        }
-    }
-
-    public void NextScene()
-    {
-        SceneManager.LoadScene("AR_LIneRenderer");
-    }
-
-    public void ExitPanel()
-    {
-        nevipanel.gameObject.SetActive(false);
     }
 }
