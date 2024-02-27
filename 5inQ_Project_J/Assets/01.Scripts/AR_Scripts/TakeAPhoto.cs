@@ -8,13 +8,13 @@ using UnityEngine.XR.ARFoundation;
 using Unity.XR.CoreUtils;
 using UnityEngine.XR.ARCore;
 
-[RequireComponent(typeof(ARSession))]
 public class TakeAShot : MonoBehaviour
 {
     [Header("버튼")]
     [SerializeField] GameObject PictureBtn;
     [SerializeField] GameObject videoStartBtn;
     [SerializeField] GameObject videoStopBtn;
+    public Text debug;
 
     [Header("카메라 영역")]
     [SerializeField] GameObject shotUI;
@@ -23,7 +23,6 @@ public class TakeAShot : MonoBehaviour
     [Header("비디오 녹화")]
     [SerializeField]private ARSession m_Session;
     private bool isRecording = false;
-    
 
 
     private void Awake()
@@ -46,6 +45,7 @@ public class TakeAShot : MonoBehaviour
         }*/
         var process = new System.Diagnostics.Process();
     }
+
 
     static int GetRotation() => Screen.orientation switch
     {
