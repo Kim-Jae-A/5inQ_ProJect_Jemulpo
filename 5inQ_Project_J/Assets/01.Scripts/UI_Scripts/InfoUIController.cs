@@ -10,6 +10,7 @@ public class InfoUIController : MonoBehaviour
 {
     [SerializeField] private Text Title; 
     [SerializeField] private Text Info_name;
+    [SerializeField] private Text End_name;
     [SerializeField] private Text Info_Description;
     [SerializeField] private Image Info_Image;
     [SerializeField] private Button Shooting;
@@ -34,6 +35,7 @@ public class InfoUIController : MonoBehaviour
             //받아온 json데이터들을 text에 할당
 
             Info_name.text = selectedARData.Name;
+            End_name.text = Info_name.text;
             Info_Description.text = selectedARData.Info;
             _endlongitude = Convert.ToDouble(selectedARData.longitude);
             _endlatitude = Convert.ToDouble(selectedARData.latitude);
