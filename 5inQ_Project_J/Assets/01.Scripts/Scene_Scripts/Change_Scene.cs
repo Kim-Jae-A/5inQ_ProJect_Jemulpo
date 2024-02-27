@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,36 +18,73 @@ public class Change_Scene : MonoBehaviour
     {
         SceneManager.LoadScene("Map_Scene");
     }
+
+    private void Update()
+    {
+        if (neviPanel.activeSelf)
+        {
+            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            {
+                OffNeviPanel();
+                return;
+            }
+        }
+        if (infoPanel.activeSelf)
+        {
+            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            {
+                OffInfoPanel();
+            }
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.Escape)) //뒤로가기 버튼을 누르면
+            {
+                SceneManager.LoadScene("Home");
+            }
+        }
+
+    }
+
     public void HomeScene()
     {
         if (neviPanel.activeSelf)
         {
-            neviPanel.SetActive(false);
-            markerPanel.SetActive(true);
-            foreach (GameObject obj in marker)
-            {
-                obj.SetActive(true);
-            }
-            endPoint.SetActive(false);        
+            OffNeviPanel();      
             return;
         }
         if (infoPanel.activeSelf)
         {
-            neviPanel.SetActive(true);
-            infoPanel.SetActive(false);
-            if (lineObj.transform.childCount > 0)
-            {
-                for (int i = 0; i < lineObj.transform.childCount; i++)
-                {
-                    Destroy(lineObj.transform.GetChild(i).gameObject);
-                }
-                lineObj.GetComponent<LineRenderer>().positionCount = 0;
-            }
-            return;
+            OffInfoPanel();
         }
         else
         {
             SceneManager.LoadScene("Home");
+        }
+    }
+
+    void OffNeviPanel()
+    {
+        neviPanel.SetActive(false);
+        markerPanel.SetActive(true);
+        foreach (GameObject obj in marker)
+        {
+            obj.SetActive(true);
+        }
+        endPoint.SetActive(false);
+    }
+
+    void OffInfoPanel()
+    {
+        neviPanel.SetActive(true);
+        infoPanel.SetActive(false);
+        if (lineObj.transform.childCount > 0)
+        {
+            for (int i = 0; i < lineObj.transform.childCount; i++)
+            {
+                Destroy(lineObj.transform.GetChild(i).gameObject);
+            }
+            lineObj.GetComponent<LineRenderer>().positionCount = 0;
         }
     }
 }

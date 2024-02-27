@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class Map_DrawingLine : MonoBehaviour
 {
-    //double[] longitude;
-    //double[] latitude;
+
     public GameObject lineObj;
     public GameObject line;
 
@@ -19,25 +19,18 @@ public class Map_DrawingLine : MonoBehaviour
 
     public void OnButtonEnter()
     {
-        if (JsonManager.instance != null && JsonManager.instance.data != null &&
-            JsonManager.instance.data.route.trafast.Count > 0)
+        if (JsonManager.instance != null && JsonManager.instance.data != null && JsonManager.instance.data.route.trafast.Count > 0)
         {
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
-            // 위에 3줄 코드 입력후 불러올 데이터 foreach문으로 확인 or 출력
 
-            //longitude = new double[firstTraFast.path.Count];
-            //latitude = new double[firstTraFast.path.Count];
+            // 위에 3줄 코드 입력후 불러올 데이터 foreach문으로 확인 or 출력
 
             GameObject a;
 
             // Path 데이터 확인
             foreach (var point in firstTraFast.path)
             {
-                /*longitude[i] = point[0];
-                latitude[i] = point[1];
-                i++;*/
-                // 리스트 내의 각 포인트 출력
-                // Debug.Log("Longitude: " + point[0] + ", Latitude: " + point[1]);
+
                 Vector2 v = ConvertGeoToUnityCoordinate(point[1], point[0]);
                 a = Instantiate(line);
                 a.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -53,9 +46,9 @@ public class Map_DrawingLine : MonoBehaviour
 
             int childCount = lineObj.transform.childCount; // 자식 객체의 수를 구합니다.
 
-            lineRenderer.positionCount = childCount; // 라인의 점 개수를 자식 객체의 수로 설정합니다.
+            lineRenderer.positionCount = childCount -1; // 라인의 점 개수를 자식 객체의 수로 설정합니다.
 
-            for (int i = childCount - 1; i >= 0; i--)
+            for (int i = 0; i < lineObj.transform.childCount -1; i++)
             {
                 lineRenderer.SetPosition(i, lineObj.transform.GetChild(i).position); // 각 점의 위치를 자식 객체의 위치로 설정합니다.
             }

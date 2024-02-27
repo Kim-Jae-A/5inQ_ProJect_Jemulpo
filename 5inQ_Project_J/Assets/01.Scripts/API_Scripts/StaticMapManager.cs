@@ -23,6 +23,12 @@ public class StaticMapManager : MonoBehaviour
 
     [Header("마커 띄우기용")]
     [SerializeField]private MapUI_Enum[] mapui;
+    [Header("내위치")]
+    [SerializeField] private Image myPoint;
+    Vector2 myVector;
+
+    private double center_lat;
+    private double center_log;
 
     public static float latitude;  // 위도
     public static float longitude; // 경도
@@ -105,6 +111,10 @@ public class StaticMapManager : MonoBehaviour
                     StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
                 }
                 check = true;
+
+                myVector = ConvertGeoToUnityCoordinate(latitude, longitude);
+                
+                myPoint.transform.localPosition = new Vector3(myVector.x, myVector.y, 0);
             }
             // 잠시 대기 후 다시 위치 업데이트
             yield return new WaitForSeconds(1);
@@ -116,9 +126,44 @@ public class StaticMapManager : MonoBehaviour
         // 스크립트가 파괴될 때 위치 서비스 종료
         Input.location.Stop();
     }
+    private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
+    {
+        // 기준 위도, 경도
+        double originLatitude = center_lat;
+        double originLongitude = center_log;
+
+#if UNITY_EDITOR
+        originLatitude = 37.713675f;
+        originLongitude = 126.743572f;
+#endif
+        // 기준 x, y
+        double originX = 0;
+        double originY = 0;
+
+        // 위도, 경도에 대한 x, y의 변화 비율
+        double xRatio = 172238.37f;
+        double yRatio = 265780.73f;
+
+        double x;
+        double y;
+
+        if (longitude - originLongitude == 0)
+        {
+            x = 0; y = 0;
+        }
+        else
+        {
+            x = originX + (longitude - originLongitude) * xRatio;
+            y = originY + (latitude - originLatitude) * yRatio;
+        }
+
+        return new Vector2((float)x, (float)y);
+    }
 
     IEnumerator StaticMapDrawing()
     {
+        center_lat = latitude;
+        center_log = longitude;
         apiURL = url + $"?w={width}&h={height}&center={longitude},{latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
 #if UNITY_EDITOR
         //apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
