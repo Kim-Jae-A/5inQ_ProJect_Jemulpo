@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 4665325013155613217}
   - component: {fileID: 1671246625551753817}
   - component: {fileID: 4367531363361988754}
-  - component: {fileID: 6818519271388622955}
   m_Layer: 0
   m_Name: LOD_0
   m_TagString: Untagged
@@ -221,26 +220,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6818519271388622955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462536541359242914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5074815050d00ce3859d48d8c0394e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1.2.5
-  shaderType: 2
-  editorWindAlways: 0
-  editorWindEnabled: 0
-  windType: 0
-  windQuality: 3
-  localWindAmplitude: 0.61
-  windMain: 1
 --- !u!1 &7441219191427709991
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +231,6 @@ GameObject:
   - component: {fileID: 7553556724299177889}
   - component: {fileID: 4409308749183270519}
   - component: {fileID: 5822591590547123484}
-  - component: {fileID: 4369753264221374083}
   m_Layer: 0
   m_Name: LOD_1
   m_TagString: Untagged
@@ -326,26 +304,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4369753264221374083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441219191427709991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5074815050d00ce3859d48d8c0394e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1.2.5
-  shaderType: 2
-  editorWindAlways: 0
-  editorWindEnabled: 0
-  windType: 0
-  windQuality: 3
-  localWindAmplitude: 0.61
-  windMain: 1
 --- !u!21 &21682380054268604
 Material:
   serializedVersion: 8
@@ -473,7 +431,7 @@ Material:
     - _Cutoff: 0.35
     - _WindQuality: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _HueVariation: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!43 &43457631398962314

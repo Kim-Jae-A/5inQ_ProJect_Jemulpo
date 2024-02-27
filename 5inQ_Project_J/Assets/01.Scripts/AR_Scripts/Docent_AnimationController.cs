@@ -24,11 +24,18 @@ public class Docent_AnimationController : MonoBehaviour
         playerController = GameObject.Find("DocentUI_Controller").GetComponent<Docent_PlayerController>();
         
         playerController.animationController = this;// 같은 애니메이터를 사용하므로 this 처리
+        
     }
 
     private void OnDisable()
     {
         playerController.animationController = null;//프리팹이 비활성화 되면 Docent_PlayerController의 애니메이터 null값 할당
+    }
+    private void Update()
+    {
+        Vector3 position = transform.position;
+        position.y = 0; // 원하는 y 위치로 설정
+        transform.position = position;
     }
 
     IEnumerator DocentAnimation() // 애니메이션을 나레이션에 맞게 제어.
@@ -49,7 +56,7 @@ public class Docent_AnimationController : MonoBehaviour
         yield return new WaitForSeconds(7.3f);
         animator.SetTrigger("Good");
         yield return new WaitForSeconds(4);
-        animator.SetTrigger("Gsture2");
+        animator.SetTrigger("Gesture2");
         yield return new WaitForSeconds(6.5f);
         animator.SetTrigger("Bye");
     }
@@ -58,7 +65,7 @@ public class Docent_AnimationController : MonoBehaviour
     public void RePlay_Docent()//다시보기 기능.
     {
         StopCoroutine(DocentAnimation());
-        animator.SetTrigger("RePlay");
+        animator.SetTrigger("Replay");
         StartCoroutine(DocentAnimation());
     }
 }

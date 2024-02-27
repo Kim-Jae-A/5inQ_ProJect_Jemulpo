@@ -12,22 +12,37 @@ public class PhotoZoneUI_Btn : MonoBehaviour
     [SerializeField] private GameObject CameraBtn; 
     [SerializeField] private GameObject RecordBtn; 
     [SerializeField] private GameObject RecordDoneBtn;
+    [SerializeField] private GameObject SwipeAnime; //animator를 가져오기 위한 GameObject
 
+    Animator animator;
 
     Color Highlightcolor = new Color(0, 0.6f, 1);
     Color Normalcolor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
 
+    void Awake()
+    {
+        animator = SwipeAnime.GetComponent<Animator>();
+    }
+
     void Start()
     {
-        HighlightPhotoText();
-        NormalVideoText();
+        HighlightPhotoText(); //사진 텍스트 하이라이트
+        NormalVideoText();    //비디오 텍스트 노말
         CameraBtn.SetActive(true);
         RecordBtn.SetActive(false);
         RecordDoneBtn.SetActive(false);
 
     }
+
+
+
     public void OnPhotoBtn()
     {
+        if (CameraMode.isPhoto == false)//애니메이션 반복되지 않기 위한 조건
+        {
+            animator.SetTrigger("doRight"); //애니메이션 활성화
+        }
+
         //버튼을 누르면 사진 모드가 켜지고 그에 맞는 텍스트 변경 
         CameraMode.isPhoto = true;
         CameraMode.isVideo = false;
@@ -41,11 +56,15 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         RecordBtn.SetActive(false);
         RecordDoneBtn.SetActive(false);
 
-        
     }
 
     public void OnVideoBtn()
     {
+        if (CameraMode.isVideo == false)//애니메이션 반복되지 않기 위한 조건
+        {
+            animator.SetTrigger("doLeft"); //애니메이션 활성화
+        }
+
         //버튼 누르면 비디오 모드가 켜지고 그에 맞는 텍스트 변경
         CameraMode.isVideo = true;
         CameraMode.isPhoto = false;
@@ -59,7 +78,6 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         CameraBtn.SetActive(false);
         RecordBtn.SetActive(true);
         RecordDoneBtn.SetActive(false);
-        
     }
 
     public void OnGalleryBtn()

@@ -24,7 +24,6 @@ public class StaticMapManager : MonoBehaviour
     [Header("마커 띄우기용")]
     [SerializeField]private MapUI_Enum[] mapui;
 
-
     public static float latitude;  // 위도
     public static float longitude; // 경도
 

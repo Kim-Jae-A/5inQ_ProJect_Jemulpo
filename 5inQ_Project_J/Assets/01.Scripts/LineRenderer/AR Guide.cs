@@ -56,7 +56,7 @@ public class ARGuide : MonoBehaviour
             float distance = Vector3.Distance(ARcamera.position, target[targetNum]);
 
             // 만약 거리가 1미터 이내라면
-            if (distance <= 5f)
+            if (distance <= 3f)
             {
                 nowGuide++;
                 if (nowGuide < pointIndex.Count)
