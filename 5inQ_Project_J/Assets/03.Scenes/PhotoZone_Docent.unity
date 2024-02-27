@@ -1369,62 +1369,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6731768852957935452, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 6731768852957935452, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_Name
       value: LineObj
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -670.03
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8644694241045651587, guid: 6d82da9b01166ee408882518e7c68a68,
+    - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
@@ -1433,10 +1433,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d82da9b01166ee408882518e7c68a68, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 854a00bc5cb86014aa869d5bc839521f, type: 3}
 --- !u!1 &891903285 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6731768852957935452, guid: 6d82da9b01166ee408882518e7c68a68,
+  m_CorrespondingSourceObject: {fileID: 6731768852957935452, guid: 854a00bc5cb86014aa869d5bc839521f,
     type: 3}
   m_PrefabInstance: {fileID: 891903284}
   m_PrefabAsset: {fileID: 0}
@@ -3158,7 +3158,7 @@ MonoBehaviour:
   key_ID: yxpbvkcpme
   key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
   map: {fileID: 1681084627}
-  myPoint: {fileID: 0}
+  myPoint: {fileID: 817551698}
 --- !u!114 &7402063600284229528
 MonoBehaviour:
   m_ObjectHideFlags: 0
