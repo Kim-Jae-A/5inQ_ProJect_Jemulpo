@@ -1,15 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using System;
 using System.IO;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
-using Unity.XR.CoreUtils;
-using UnityEngine.XR.ARCore;
 
-[RequireComponent(typeof(ARSession))]
-public class TakeAShot : MonoBehaviour
+public class TakeAPhoto : MonoBehaviour
 {
     [Header("버튼")]
     [SerializeField] GameObject PictureBtn;
@@ -23,7 +18,6 @@ public class TakeAShot : MonoBehaviour
     [Header("비디오 녹화")]
     [SerializeField]private ARSession m_Session;
     private bool isRecording = false;
-    
 
 
     private void Awake()
@@ -46,6 +40,7 @@ public class TakeAShot : MonoBehaviour
         }*/
         var process = new System.Diagnostics.Process();
     }
+
 
     static int GetRotation() => Screen.orientation switch
     {
@@ -139,6 +134,6 @@ public class TakeAShot : MonoBehaviour
 
     public void OnReturnBtn()
     {
-        SceneManager.LoadScene("PhotoZone_Docent");
+        SceneManager.LoadScene("PhotoZone_Docent"); //그 전 씬으로 돌아간다
     }
 }

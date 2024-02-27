@@ -29,12 +29,13 @@ public class Direction5Manager : MonoBehaviour
     public Image infopanel;
     public Image markerpanel;
     public GameObject[] marker;
-    public Text endText;
+    
 
     void Awake()
     {
         drawingLine = JsonManager.instance.gameObject.GetComponent<Map_DrawingLine>();
         jsonManager = JsonManager.instance;
+        
 
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
@@ -69,19 +70,15 @@ public class Direction5Manager : MonoBehaviour
         switch (request.result)
         {
             case UnityWebRequest.Result.Success:
-                //text.text = request.result.ToString();
                 Debug.Log(request.result.ToString());
                 break;
             case UnityWebRequest.Result.ConnectionError:
                 Debug.LogWarning(request.result.ToString());
-                //text.text = request.result.ToString();
                 yield break;           
             case UnityWebRequest.Result.ProtocolError:
-                //text.text = request.result.ToString();
                 Debug.LogWarning(request.result.ToString());
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
-                //text.text = request.result.ToString();
                 Debug.LogWarning(request.result.ToString());
                 yield break;
         }
@@ -90,11 +87,16 @@ public class Direction5Manager : MonoBehaviour
         {
             jsonData = request.downloadHandler.text;
             print(jsonData);
-            jsonManager.LoadData();
-            drawingLine.OnButtonEnter();
-            //File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);   // 요청 결과값 데이터
-            //File.WriteAllText(Path.Combine(Application.persistentDataPath, "data.json"), json);
-            //StartCoroutine(LoadDataCoroutine());                  
+            string test = "{\"code\":1,\"message\":\"출발지와 도착지가 동일합니다. 확인 후 다시 지정해주세요.\"}";
+            if (jsonData == test)
+            {
+                Debug.LogError("출발지와 목적지가 같습니다");
+            }
+            else
+            {
+                jsonManager.LoadData();
+                drawingLine.OnButtonEnter();
+            }                       
         }
     }
 
@@ -113,6 +115,7 @@ public class Direction5Manager : MonoBehaviour
     {
         SceneManager.LoadScene("AR_LIneRenderer");
     }
+
     public void ExitPanel()
     {
         nevipanel.gameObject.SetActive(false);
