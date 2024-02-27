@@ -1,3 +1,4 @@
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -51,6 +52,12 @@ public class ImageDetection : MonoBehaviour
                     trackedImage.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
+        }
+
+        foreach (ARTrackedImage trackedImage in args.removed)
+        {
+            trackedImage.transform.GetChild(0).gameObject.SetActive(false);
+
         }
     }
 
