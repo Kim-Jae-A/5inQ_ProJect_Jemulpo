@@ -22,7 +22,6 @@ public class MapUI_Enum : MonoBehaviour
 
     Button[] panelButton;
     public Image endPoint;
-    public Text endText;
 
     private void Awake()
     {
@@ -56,7 +55,6 @@ public class MapUI_Enum : MonoBehaviour
         placeName.text = marker._name;
         placeInfo.text = marker._description;
         placeAddress.text = marker._Address;
-        endText.text = marker._name;
         Direction5Manager._endlatitude = marker._latitude;
         Direction5Manager._endlongitude = marker._longitude;
         Debug.Log(Direction5Manager._endlatitude);
