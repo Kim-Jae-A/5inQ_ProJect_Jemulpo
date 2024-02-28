@@ -46,7 +46,8 @@ public class UIRayCaster : MonoBehaviour
         photozone.onValueChanged.AddListener(OnToggleValueChanged);
         docent.onValueChanged.AddListener(OnToggleValueChanged);
     }
-    //토글이 선택되었을 때 리스트의 요소를 변경합니다. 
+
+    //토글이 선택되었을 때 리스트의 요소를 변경합니다. (선택된 요소의 상세설명창으로 이동하고 뒤로가기 버튼을 눌렀을 때의 리스트창의 정보를 저장하여 돌아왔을 때 유지.)
     public void OnToggleValueChanged(bool isOn)
     {
         if (isOn)
@@ -120,10 +121,10 @@ public class UIRayCaster : MonoBehaviour
     }*/
 
     //리스트의 요소를 클릭했을 때 클릭한 요소의 정보창으로 이동, 뒤로가기 버튼.
-    public void OnARList_ElementClicked()
-    {
-        SceneManager.LoadScene(AR_InfoScene);
-    }
+    //public void OnARList_ElementClicked()
+    //{
+    //    SceneManager.LoadScene(AR_InfoScene);
+    //}
     public void OnReturnButton()
     {
         SceneManager.LoadScene(PreviousScene);
