@@ -87,25 +87,17 @@ public class PhotoZoneUI_Btn : MonoBehaviour
         {
             // 권한이 없다면, 권한 요청
             UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.ExternalStorageRead);
-
-            if (UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.ExternalStorageRead))
-            {
-                LoadGallery();
-            }
         }
         else
         {
-            LoadGallery();
+            //안드로이드 네이티브 기능을 사용하려면 AndroidJavaClass와 AndroidJavaObject를 사용
+            AndroidJavaClass javaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");//UnityPlayer라는 클래스를 참조하는 AndroidJavaClass 객체를 생성
+            AndroidJavaObject javaObject = javaClass.GetStatic<AndroidJavaObject>("currentActivity");//현재 실행 중인 액티비티를 참조하는 AndroidJavaObject를 반환
+            AndroidJavaObject packageManager = javaObject.Call<AndroidJavaObject>("getPackageManager");//메소드를 호출하여 패키지 관리자(앱의 설치, 제거, 실행 등을 관리)를
+                                                                                                       //참조하는 AndroidJavaObject를 가져온다. 
+            AndroidJavaObject intent = packageManager.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.sec.android.gallery3d"); //안드로이드 갤러리 패키지명
+            javaObject.Call("startActivity", intent);//갤러리 앱을 실행
         }
-    }
-    
-    void LoadGallery()
-    {
-        AndroidJavaClass javaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"); 
-        AndroidJavaObject javaObject = javaClass.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaObject packageManager = javaObject.Call<AndroidJavaObject>("getPackageManager");
-        AndroidJavaObject intent = packageManager.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.sec.android.gallery3d"); //안드로이드 갤러리 패키지명
-        javaObject.Call("startActivity", intent);
     }
 
     #region TextStyle

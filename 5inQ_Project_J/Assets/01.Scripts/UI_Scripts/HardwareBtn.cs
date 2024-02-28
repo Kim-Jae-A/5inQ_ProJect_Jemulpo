@@ -9,7 +9,8 @@ public class HardwareBtn : MonoBehaviour
     {
         if(Application.platform == RuntimePlatform.Android) //디바이스가 안드로이드 일때
         {
-            if(SceneManager.GetActiveScene().name == "SavePhoto" || SceneManager.GetActiveScene().name == "SaveVideo")
+            if(SceneManager.GetActiveScene().name == "SavePhoto" 
+                || SceneManager.GetActiveScene().name == "SaveVideo")
             {
                 if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
                 {

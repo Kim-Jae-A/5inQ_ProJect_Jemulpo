@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+/// <summary>
+/// Direction5Manager와 비슷하게 API 통신을 통해 받아오나 해당씬에서 안쓰는 기능들을 배제한 스크립트
+/// </summary>
 public class Photo_Docent_Direction : MonoBehaviour
 {
+
     public static Photo_Docent_Direction instance;
     Map_DrawingLine drawingLine;
-    JsonManager jsonManager;
 
     public static string jsonData;
     double _endlongitude;
@@ -21,8 +25,7 @@ public class Photo_Docent_Direction : MonoBehaviour
 
     private void Awake()
     {
-        drawingLine = JsonManager.instance.gameObject.GetComponent<Map_DrawingLine>();
-        jsonManager = JsonManager.instance;
+        drawingLine = GetComponent<Map_DrawingLine>();
 
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
@@ -36,7 +39,12 @@ public class Photo_Docent_Direction : MonoBehaviour
         }
     }
 
-    public void DirectionStart(double lo, double la)
+    /// <summary>
+    /// 받아온 위도 경도 초기화 후 안내 시작
+    /// </summary>
+    /// <param name="lo">경도</param>
+    /// <param name="la">위도</param>
+    public void Direction_Start(double lo, double la)
     {
         _endlatitude = la;
         _endlongitude = lo;
@@ -77,7 +85,7 @@ public class Photo_Docent_Direction : MonoBehaviour
         if (request.isDone)
         {
             jsonData = request.downloadHandler.text;
-            jsonManager.LoadData(jsonData);
+            JsonManager.instance.LoadData(jsonData);
             drawingLine.OnButtonEnter();
         }
     }

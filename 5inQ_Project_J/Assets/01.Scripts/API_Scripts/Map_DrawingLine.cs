@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public class Map_DrawingLine : MonoBehaviour
 {
-
-    public GameObject lineObj;
-    public GameObject line;
+    public GameObject lineObj; // 라인 랜더러가 있는 오브젝트
+    public GameObject line; // 경로마다 생성될 투명 오브젝트
 
     LineRenderer lineRenderer;
 
@@ -28,9 +27,9 @@ public class Map_DrawingLine : MonoBehaviour
             GameObject a;
 
             // Path 데이터 확인
-            foreach (var point in firstTraFast.path)
+            // 파싱한 json 데이터 중 경로에 대한 값을 받아와 그 경로에 맞게 라인렌더로 오브젝트의 자식 오브젝트로 오브젝트를 생성          
+            foreach (var point in firstTraFast.path) 
             {
-
                 Vector2 v = ConvertGeoToUnityCoordinate(point[1], point[0]);
                 a = Instantiate(line);
                 a.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -42,7 +41,7 @@ public class Map_DrawingLine : MonoBehaviour
             a.transform.rotation = new Quaternion(0, 0, 0, 0);
             a.transform.position = new Vector3(0, 0, 0);
             a.transform.SetParent(lineObj.transform, false);
-            a.transform.localScale = new Vector3(10, 10, 10);
+            a.transform.localScale = new Vector3(1, 1, 1);
 
             int childCount = lineObj.transform.childCount; // 자식 객체의 수를 구합니다.
 
@@ -55,6 +54,12 @@ public class Map_DrawingLine : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 위도 경도를 유니티 좌표계로 치환하는 식
+    /// </summary>
+    /// <param name="latitude">위도</param>
+    /// <param name="longitude">경도</param>
+    /// <returns>입력받은 위도 경도를 바탕으로 치환한 Vector2 값</returns>
     private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
     {
         // 기준 위도, 경도

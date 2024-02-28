@@ -49,9 +49,12 @@ public class MapUI_Enum : MonoBehaviour
 #endif
     }
 
+    /// <summary>
+    /// JSON 데이터에서 받아온 데이터를 바탕으로 클릭시 해당 버튼이 가지고 있는 정보를 바탕으로 상세설명 창의 요소들을 변경 및 상세 정보 창 팝업
+    /// </summary>
+    /// <param name="b">누른 버튼의 정보</param>
     void OnButtonEnter(Button b)
     {
-        // 정보 작성 버튼 이벤트
         MarkerInFo marker = b.GetComponent<MarkerInFo>();
         placeName.text = marker._name;
         placeInfo.text = marker._description;
@@ -72,7 +75,7 @@ public class MapUI_Enum : MonoBehaviour
         naviPanel.SetActive(true);
     }
 
-    public void LoadingMarker()
+    public void LoadingMarker() // 생성된 POI Marker 버튼에 클릭 이벤트 할당
     {
         LoadAndCreate(json);
         panelButton = panel.GetComponentsInChildren<Button>();
@@ -83,7 +86,7 @@ public class MapUI_Enum : MonoBehaviour
             b.onClick.AddListener(() => OnButtonEnter(b));
         }
     }
-    private void LoadAndCreate(TextAsset jsonfile)
+    private void LoadAndCreate(TextAsset jsonfile) // POI JSON에서 파싱
     {
         if (jsonfile != null)
         {
@@ -97,7 +100,7 @@ public class MapUI_Enum : MonoBehaviour
         }
     }
 
-    private void CreateMarker(AR_POI ARZone_poi)
+    private void CreateMarker(AR_POI ARZone_poi) // 파싱된 데이터를 바탕으로 Marker 생성 및 각 마커 버튼에 정보 입력
     {
         if (ARZone_poi.Name != null)
         {
@@ -116,8 +119,13 @@ public class MapUI_Enum : MonoBehaviour
             a.transform.localScale = new Vector3(1, 1, 1);
         }
     }
-    
-    // 위도 경도에 따라 유니티 좌표계로 치환
+
+    /// <summary>
+    /// 위도 경도를 유니티 좌표계로 치환하는 식
+    /// </summary>
+    /// <param name="latitude">위도</param>
+    /// <param name="longitude">경도</param>
+    /// <returns>입력받은 위도 경도를 바탕으로 치환한 Vector2 값</returns>
     private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
     {
         // 기준 위도, 경도
