@@ -33,16 +33,6 @@ public class TakeAShot : MonoBehaviour
     ArRecordingStatus m_RecordingStatus = (ArRecordingStatus)(-1);
 #endif
 
-    static int GetRotation() => Screen.orientation switch
-    {
-        ScreenOrientation.Portrait => 0,
-        ScreenOrientation.LandscapeLeft => 90,
-        ScreenOrientation.PortraitUpsideDown => 180,
-        ScreenOrientation.LandscapeRight => 270,
-        _ => 0
-    };
-
-
     private void Awake()
     {
         m_Session = GetComponent<ARSession>();
@@ -125,7 +115,7 @@ public class TakeAShot : MonoBehaviour
                             m_Mp4Path = Path.Combine(path, fileName);
                             recordPath = m_Mp4Path;
                             config.SetMp4DatasetFilePath(session, m_Mp4Path);
-                            config.SetRecordingRotation(session,0);
+                            config.SetRecordingRotation(session,90);
                             subsystem.StartRecording(config);
                         }
                     }

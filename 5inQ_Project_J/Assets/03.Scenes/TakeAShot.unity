@@ -1642,6 +1642,9 @@ GameObject:
   - component: {fileID: 1229720912}
   - component: {fileID: 1229720911}
   - component: {fileID: 1229720910}
+  - component: {fileID: 1229720918}
+  - component: {fileID: 1229720917}
+  - component: {fileID: 1229720916}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1901,6 +1904,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1229720916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229720908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a780abfcdecfddb4bb6d5ffab7e30985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: {x: 1080, y: 2400}
+  audioSource: 1
+  targetFPS: 30
+  quality: 23
+  writingThreadsCount: 8
+  clearFlags: 2
+  backgroundColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1229720917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229720908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13b7423c86f00b42aa433b0717b1b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1229720918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229720908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686110a27b9dad240bde5cc5b1bb5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLength: 60
 --- !u!1 &1286441790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,6 +2422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1625181209}
   - component: {fileID: 1625181210}
+  - component: {fileID: 1625181211}
   m_Layer: 0
   m_Name: TakeAShot
   m_TagString: Untagged
@@ -2415,6 +2463,21 @@ MonoBehaviour:
   shotUI: {fileID: 1104080230}
   shotTexture: {fileID: 8400000, guid: 25bdc7e75e86be74f9b01c328bb51814, type: 2}
   m_Session: {fileID: 491511790}
+--- !u!114 &1625181211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625181207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AttemptUpdate: 1
+  m_MatchFrameRate: 1
+  m_TrackingMode: 2
 --- !u!1 &1685154355
 GameObject:
   m_ObjectHideFlags: 0
