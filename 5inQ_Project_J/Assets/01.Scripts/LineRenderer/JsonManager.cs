@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [System.Serializable]
@@ -86,31 +87,32 @@ public class JsonManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            LoadData();
+            //LoadData();
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    void Start()
-    {
-        LoadData();
 
-        // 첫 번째 TraFast 정보 가져오기
-        if (data.route.trafast.Count > 0)
+    public void LoadData(string jsonData = "")
+    {
+        if(jsonData == "")
         {
-            TraFast firstTraFast = data.route.trafast[0];
+            jsonData = Direction5Manager.jsonData;
         }
+        else
+        {
+            Direction5Manager.jsonData = jsonData;
+        }
+        data = JsonConvert.DeserializeObject<RouteData>(Direction5Manager.jsonData);
     }
+
     // 데이터 로드 함수
-    void LoadData()
+    /*public void LoadData()
     {
-        // Resources 폴더에서 JSON 파일 로드
-        TextAsset json = Resources.Load<TextAsset>("Data");
+        string jsonData = Direction5Manager.jsonData;
 
-        // JSON 파일을 RouteData 객체로 변환
-        data = JsonConvert.DeserializeObject<RouteData>(json.text);
-    }
-
+        data = JsonConvert.DeserializeObject<RouteData>(jsonData);
+    }*/
 }

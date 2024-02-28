@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class SavePhoto : MonoBehaviour
 {
     [SerializeField] Image photoView;
     [SerializeField] GameObject saveMessage;
-    [SerializeField] string sceneName;
+
 
     Texture2D savephotoTexture;
     private void Start()
@@ -71,8 +72,10 @@ public class SavePhoto : MonoBehaviour
 
     public void ReturnBtn()
     {
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
         //카메라 촬영 씬으로 돌아간다
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("TakeAShot");
     }
 
 }

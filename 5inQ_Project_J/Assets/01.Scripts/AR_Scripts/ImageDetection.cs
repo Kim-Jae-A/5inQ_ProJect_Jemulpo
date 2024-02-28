@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -13,24 +11,27 @@ public class ImageDetection : MonoBehaviour
     void Awake()
     {
         imageManager = GetComponent<ARTrackedImageManager>();
-
         imageManager.trackedImagesChanged += OnImageTrackedEvent;
+        
     }
 
     private void OnImageTrackedEvent(ARTrackedImagesChangedEventArgs args)
     {
-        foreach(ARTrackedImage trackedImage in args.added)
-        {
+        foreach (ARTrackedImage trackedImage in args.added)
+        {          
             //Reference Image Library로 접근
             string imageName = trackedImage.referenceImage.name;
 
+            //빈 오브젝트에 Resources에서 이름이 같은 모델 불러와 저장
             GameObject prefab = Resources.Load<GameObject>($"AR_Model/{imageName}");
 
-            if(prefab != null)
+            if (prefab != null)
             {
-                GameObject obj = Instantiate(prefab);
-                obj.transform.SetParent(trackedImage.transform);
+                GameObject obj = Instantiate(prefab); //prefab생성
+                obj.transform.SetParent(trackedImage.transform); //이미지의 자식으로 들어간다
             }
+
+
         }
 
 
@@ -40,31 +41,27 @@ public class ImageDetection : MonoBehaviour
             {
                 if (trackedImage.transform.childCount > 0)
                 {
-                    trackedImage.transform.GetChild(0).gameObject.SetActive(false);
+                    Destroy(trackedImage.transform.GetChild(0));
                 }
             }
             else
             {
                 if (trackedImage.transform.childCount > 0)
                 {
+                    //생성 위치, 회전값
                     trackedImage.transform.GetChild(0).position = trackedImage.transform.position - (Vector3.up * 0.1f);
                     trackedImage.transform.GetChild(0).rotation = trackedImage.transform.rotation;
-                    trackedImage.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
         }
 
-        //foreach (ARTrackedImage trackedImage in args.removed)
-        //{
-        //    if (trackedImage.transform.childCount > 0)
-        //    {
-        //        Destroy(trackedImage.transform.GetChild(0).gameObject);
-        //    }
-        //}
+        foreach (ARTrackedImage trackedImage in args.removed)
+        {
+            Destroy(trackedImage.transform.GetChild(0));
+
+        }
+
+
     }
 
-    private void OnDisable()
-    {
-        imageManager.trackedImagesChanged -= OnImageTrackedEvent;
-    }
 }

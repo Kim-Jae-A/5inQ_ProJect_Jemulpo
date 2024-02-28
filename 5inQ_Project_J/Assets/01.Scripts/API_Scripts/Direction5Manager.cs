@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,27 +11,37 @@ public class Direction5Manager : MonoBehaviour
 {
     public static Direction5Manager instance;
 
+    Map_DrawingLine drawingLine;
+    JsonManager jsonManager;
+
     [Header("API 설정")]
     public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"; // API 요청 URL
     public string key_ID; // API 아이디
     public string key; // API 키
     string apiURL;
-
+    
     public static string _endlongitude; // 경도
     public static string _endlatitude; // 위도
+    public static string jsonData;
 
+    [Header("UI Panel InFo")]
     public Image nevipanel;
+    public Image neviStartPanel;
     public Image infopanel;
     public Image markerpanel;
     public GameObject[] marker;
+    
 
     void Awake()
     {
+        drawingLine = JsonManager.instance.gameObject.GetComponent<Map_DrawingLine>();
+        jsonManager = JsonManager.instance;
+        
+
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
         {
             instance = this;
-            //LoadData();
         }
         else
         {
@@ -47,7 +58,7 @@ public class Direction5Manager : MonoBehaviour
     {
         apiURL = url + $"?start={StaticMapManager.longitude},{StaticMapManager.latitude}&goal={_endlongitude},{_endlatitude}&option=trafast"; // 현재 위치 좌표
 #if UNITY_EDITOR
-        apiURL = url + $"?start=126.747583,37.714058&&goal={_endlongitude},{_endlatitude}&option=trafast"; //제물포역
+        apiURL = url + $"?start=126.743572,37.713675&goal={_endlongitude},{_endlatitude}&option=trafast"; //제물포역
         //apiURL = url + $"?start=126.747583,37.714058&&goal={126.745253},{37.710519}&option=trafast"; //제물포역
 #endif
         UnityWebRequest request = UnityWebRequest.Get(apiURL);
@@ -60,43 +71,58 @@ public class Direction5Manager : MonoBehaviour
         switch (request.result)
         {
             case UnityWebRequest.Result.Success:
-                //text.text = request.result.ToString();
                 Debug.Log(request.result.ToString());
                 break;
             case UnityWebRequest.Result.ConnectionError:
                 Debug.LogWarning(request.result.ToString());
-                //text.text = request.result.ToString();
                 yield break;           
             case UnityWebRequest.Result.ProtocolError:
-                //text.text = request.result.ToString();
                 Debug.LogWarning(request.result.ToString());
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
-                //text.text = request.result.ToString();
                 Debug.LogWarning(request.result.ToString());
                 yield break;
         }
 
         if (request.isDone)
-        {           
-            string json = request.downloadHandler.text;
-            nevipanel.gameObject.SetActive(true);
-            infopanel.gameObject.SetActive(false);
-            markerpanel.gameObject.SetActive(false);
-            foreach (GameObject obj in marker)
+        {
+            jsonData = request.downloadHandler.text;
+            print(jsonData);
+            string test = "{\"code\":1,\"message\":\"출발지와 도착지가 동일합니다. 확인 후 다시 지정해주세요.\"}";
+            if (jsonData == test)
             {
-                obj.SetActive(false);
+                Debug.LogError("출발지와 목적지가 같습니다");
             }
-            File.WriteAllText(Application.dataPath + "\\Resources\\Data.json", json);   // 요청 결과값 데이터
-            yield break;
+            else
+            {
+                jsonManager.LoadData();
+                drawingLine.OnButtonEnter();
+            }                       
         }
     }
+
+    public void SomeFunction()
+    {
+        nevipanel.gameObject.SetActive(true);
+        infopanel.gameObject.SetActive(false);
+        markerpanel.gameObject.SetActive(false);
+        foreach (GameObject obj in marker)
+        {
+            obj.SetActive(false);
+        }
+    }
+
     public void NextScene()
     {
         SceneManager.LoadScene("AR_LIneRenderer");
     }
+    public void NeviStartButtonEnter()
+    {
+        neviStartPanel.gameObject.SetActive(true);
+    }
+
     public void ExitPanel()
     {
-        nevipanel.gameObject.SetActive(false);
+        neviStartPanel.gameObject.SetActive(false);
     }
 }

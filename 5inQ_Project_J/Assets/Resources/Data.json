@@ -1,7 +1,7 @@
 {
     "code": 0,
     "message": "길찾기를 성공하였습니다.",
-    "currentDateTime": "2024-02-26T15:28:02",
+    "currentDateTime": "2024-02-26T16:01:59",
     "route": {
         "trafast": [
             {
@@ -20,9 +20,9 @@
                         "dir": 2
                     },
                     "distance": 1056,
-                    "duration": 208465,
+                    "duration": 231355,
                     "etaServiceType": 0,
-                    "departureTime": "2024-02-26T15:28:02",
+                    "departureTime": "2024-02-26T16:01:59",
                     "bbox": [
                         [
                             126.7410945,
@@ -206,7 +206,7 @@
                         "distance": 100,
                         "name": "미래로408번길",
                         "congestion": 3,
-                        "speed": 11
+                        "speed": 12
                     },
                     {
                         "pointIndex": 3,
@@ -214,7 +214,7 @@
                         "distance": 154,
                         "name": "미래로",
                         "congestion": 2,
-                        "speed": 40
+                        "speed": 38
                     },
                     {
                         "pointIndex": 13,
@@ -222,7 +222,7 @@
                         "distance": 454,
                         "name": "와석순환로",
                         "congestion": 3,
-                        "speed": 17
+                        "speed": 14
                     }
                 ],
                 "guide": [
@@ -231,28 +231,28 @@
                         "type": 2,
                         "instructions": "'미래로' 방면으로 좌회전",
                         "distance": 100,
-                        "duration": 31078
+                        "duration": 29583
                     },
                     {
                         "pointIndex": 7,
                         "type": 3,
                         "instructions": "새암공원교차로에서 '운정건강공원' 방면으로 우회전",
                         "distance": 154,
-                        "duration": 13621
+                        "duration": 14588
                     },
                     {
                         "pointIndex": 20,
                         "type": 74,
                         "instructions": "지하차도 오른쪽 옆길",
                         "distance": 275,
-                        "duration": 30066
+                        "duration": 32218
                     },
                     {
                         "pointIndex": 27,
                         "type": 3,
                         "instructions": "'경기인력개발원' 방면으로 우회전",
                         "distance": 256,
-                        "duration": 70891
+                        "duration": 92157
                     },
                     {
                         "pointIndex": 33,
