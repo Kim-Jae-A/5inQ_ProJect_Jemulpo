@@ -26,6 +26,7 @@ public class Direction5Manager : MonoBehaviour
 
     [Header("UI Panel InFo")]
     public Image nevipanel;
+    public Image neviStartPanel;
     public Image infopanel;
     public Image markerpanel;
     public GameObject[] marker;
@@ -115,9 +116,13 @@ public class Direction5Manager : MonoBehaviour
     {
         SceneManager.LoadScene("AR_LIneRenderer");
     }
+    public void NeviStartButtonEnter()
+    {
+        neviStartPanel.gameObject.SetActive(true);
+    }
 
     public void ExitPanel()
     {
-        nevipanel.gameObject.SetActive(false);
+        neviStartPanel.gameObject.SetActive(false);
     }
 }

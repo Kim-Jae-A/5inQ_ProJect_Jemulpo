@@ -17,6 +17,7 @@ public class InfoUIController : MonoBehaviour
 
     public Image mainPanel;
     public Image naviPanel;
+    public Image naviStartPanel;
     public GameObject lineObj;
 
     [SerializeField] private string PreviousScene;
@@ -109,5 +110,13 @@ public class InfoUIController : MonoBehaviour
     public void NeviStartButton()
     {
         SceneManager.LoadScene("AR_LIneRenderer");
+    }
+    public void NeviStartPanelOn()
+    {
+        naviStartPanel.gameObject.SetActive(true);
+    }
+    public void ExitButton()
+    {
+        naviStartPanel.gameObject.SetActive(false);
     }
 }
