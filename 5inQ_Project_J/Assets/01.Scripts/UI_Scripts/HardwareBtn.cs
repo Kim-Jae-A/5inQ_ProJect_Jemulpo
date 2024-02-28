@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
 
 public class HardwareBtn : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class HardwareBtn : MonoBehaviour
     {
         if(Application.platform == RuntimePlatform.Android) //디바이스가 안드로이드 일때
         {
-            if(SceneManager.GetActiveScene().name == "Home")
+            if(SceneManager.GetActiveScene().name == "SavePhoto" || SceneManager.GetActiveScene().name == "SaveVideo")
             {
                 if (Input.GetKeyDown(KeyCode.Escape)) //뒤로가기 버튼을 누르면
                 {
-                    Application.Quit();//앱 종료
+                    LoaderUtility.Deinitialize();
+                    LoaderUtility.Initialize();
+                    SceneManager.LoadScene("TakeAShot");
                 }
             }
             else

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class InfoUIController : MonoBehaviour
 {
@@ -69,6 +70,8 @@ public class InfoUIController : MonoBehaviour
         PlayerPrefs.SetString("PreviousScene", currentScene);
         if(selectedButton_ChangeScene == "Photozone")
         {
+            LoaderUtility.Deinitialize();
+            LoaderUtility.Initialize();
             SceneManager.LoadScene("TakeAShot");
         }
         else if(selectedButton_ChangeScene == "Docent")
