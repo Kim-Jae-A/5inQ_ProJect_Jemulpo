@@ -12,7 +12,6 @@ public class Direction5Manager : MonoBehaviour
     public static Direction5Manager instance;
 
     Map_DrawingLine drawingLine;
-    JsonManager jsonManager;
 
     [Header("API 설정")]
     public string url = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"; // API 요청 URL
@@ -34,9 +33,7 @@ public class Direction5Manager : MonoBehaviour
 
     void Awake()
     {
-        drawingLine = JsonManager.instance.gameObject.GetComponent<Map_DrawingLine>();
-        jsonManager = JsonManager.instance;
-        
+        drawingLine = GetComponent<Map_DrawingLine>();
 
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
@@ -95,7 +92,7 @@ public class Direction5Manager : MonoBehaviour
             }
             else
             {
-                jsonManager.LoadData();
+                JsonManager.instance.LoadData();
                 drawingLine.OnButtonEnter();
             }                       
         }

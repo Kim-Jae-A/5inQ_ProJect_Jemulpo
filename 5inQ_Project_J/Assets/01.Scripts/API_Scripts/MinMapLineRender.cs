@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public class Map_DrawingLine : MonoBehaviour
+public class MinMapLineRender : MonoBehaviour
 {
     public GameObject lineObj;
     public GameObject line;
@@ -29,13 +29,12 @@ public class Map_DrawingLine : MonoBehaviour
             // Path 데이터 확인
             foreach (var point in firstTraFast.path)
             {
-
                 Vector2 v = ConvertGeoToUnityCoordinate(point[1], point[0]);
                 a = Instantiate(line);
                 a.transform.rotation = new Quaternion(0, 0, 0, 0);
-                a.transform.position = new Vector3(v.x, 0 , v.y);
+                a.transform.position = new Vector3(v.x, v.y, 0);
                 a.transform.SetParent(lineObj.transform, false);
-                a.transform.localScale = new Vector3(10, 10, 10);
+                a.transform.localScale = new Vector3(1, 1, 1);
             }
             a = Instantiate(line);
             a.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -45,9 +44,9 @@ public class Map_DrawingLine : MonoBehaviour
 
             int childCount = lineObj.transform.childCount; // 자식 객체의 수를 구합니다.
 
-            lineRenderer.positionCount = childCount -1; // 라인의 점 개수를 자식 객체의 수로 설정합니다.
+            lineRenderer.positionCount = childCount - 1; // 라인의 점 개수를 자식 객체의 수로 설정합니다.
 
-            for (int i = 0; i < lineObj.transform.childCount -1; i++)
+            for (int i = 0; i < lineObj.transform.childCount - 1; i++)
             {
                 lineRenderer.SetPosition(i, lineObj.transform.GetChild(i).position); // 각 점의 위치를 자식 객체의 위치로 설정합니다.
             }

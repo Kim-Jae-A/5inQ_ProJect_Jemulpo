@@ -107,12 +107,4 @@ public class JsonManager : MonoBehaviour
         }
         data = JsonConvert.DeserializeObject<RouteData>(Direction5Manager.jsonData);
     }
-
-    // 데이터 로드 함수
-    /*public void LoadData()
-    {
-        string jsonData = Direction5Manager.jsonData;
-
-        data = JsonConvert.DeserializeObject<RouteData>(jsonData);
-    }*/
 }

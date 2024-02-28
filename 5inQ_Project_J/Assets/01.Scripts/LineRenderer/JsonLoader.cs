@@ -5,6 +5,8 @@ using UnityEngine;
 public class JsonLoader : MonoBehaviour
 {
     private JsonManager jsonManager;
+    public MinMapLineRender drawingLine;
+
     private void Awake()
     {
         jsonManager = GetComponent<JsonManager>();      
@@ -12,9 +14,8 @@ public class JsonLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       jsonManager.LoadData();
+        jsonManager.LoadData();
+        StaticMapManager.instance.StartDrawing();
+        drawingLine.OnButtonEnter();
     }
-
-
-
 }

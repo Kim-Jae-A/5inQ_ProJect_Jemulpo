@@ -7,7 +7,6 @@ public class Photo_Docent_Direction : MonoBehaviour
 {
     public static Photo_Docent_Direction instance;
     Map_DrawingLine drawingLine;
-    JsonManager jsonManager;
 
     public static string jsonData;
     double _endlongitude;
@@ -21,8 +20,7 @@ public class Photo_Docent_Direction : MonoBehaviour
 
     private void Awake()
     {
-        drawingLine = JsonManager.instance.gameObject.GetComponent<Map_DrawingLine>();
-        jsonManager = JsonManager.instance;
+        drawingLine = GetComponent<Map_DrawingLine>();
 
         // 인스턴스가 null일 경우에만 현재 인스턴스를 할당
         if (instance == null)
@@ -36,7 +34,7 @@ public class Photo_Docent_Direction : MonoBehaviour
         }
     }
 
-    public void DirectionStart(double lo, double la)
+    public void Direction_Start(double lo, double la)
     {
         _endlatitude = la;
         _endlongitude = lo;
@@ -77,7 +75,7 @@ public class Photo_Docent_Direction : MonoBehaviour
         if (request.isDone)
         {
             jsonData = request.downloadHandler.text;
-            jsonManager.LoadData(jsonData);
+            JsonManager.instance.LoadData(jsonData);
             drawingLine.OnButtonEnter();
         }
     }
