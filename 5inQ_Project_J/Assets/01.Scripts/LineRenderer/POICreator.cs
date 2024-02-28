@@ -1,11 +1,15 @@
+using Google.XR.ARCoreExtensions.Editor.Internal.Proto;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class POICreator : MonoBehaviour
 {
     public GameObject AnchorPrefab;
     public List<double> Longitude = new List<double>();
     public List<double> Latitude = new List<double>();
+    public List<int> pointIndex = new List<int>();
+    public List<string> instructions = new List<string>();
     POIManager poiManager;
     private void Awake()
     {
@@ -17,7 +21,8 @@ public class POICreator : MonoBehaviour
         CreateAnchor();
 
     }
-    void JsonCall()
+
+    void JsonCall() // JSON 데이터를 받아온다
     {
         if (poiManager.jsonFile != null)
         {
@@ -45,8 +50,11 @@ public class POICreator : MonoBehaviour
         }
     }
 
+
     void CreateAnchor()
     {
+        LinRendererManager lineRendererManager = FindObjectOfType<LinRendererManager>();
+        Vector3[] LongLat = lineRendererManager.LongLat;
         for (int i = 0; i < Longitude.Count; i++)
         {
 
@@ -54,7 +62,7 @@ public class POICreator : MonoBehaviour
             GameObject clone = Instantiate(AnchorPrefab, Vector3.zero, Quaternion.identity);
             clone.transform.SetParent(transform);
             Vector3 unityPosition = ConvertGeoToUnityCoordinates(Latitude[i], Longitude[i]);
-            clone.transform.position = unityPosition;
+            clone.transform.position = LongLat[0] - unityPosition;
         }
 
     }

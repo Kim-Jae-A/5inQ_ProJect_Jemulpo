@@ -33,16 +33,6 @@ public class TakeAShot : MonoBehaviour
     ArRecordingStatus m_RecordingStatus = (ArRecordingStatus)(-1);
 #endif
 
-    static int GetRotation() => Screen.orientation switch
-    {
-        ScreenOrientation.Portrait => 0,
-        ScreenOrientation.LandscapeLeft => 90,
-        ScreenOrientation.PortraitUpsideDown => 180,
-        ScreenOrientation.LandscapeRight => 270,
-        _ => 0
-    };
-
-
     private void Awake()
     {
         m_Session = GetComponent<ARSession>();
@@ -104,6 +94,9 @@ public class TakeAShot : MonoBehaviour
                 videoStopBtn.gameObject.SetActive(true);
                 Debug.Log("녹화시작");
                 Debug.Log(isRecording);
+                //Arcore 라이브러리를 사용해서 안드로이드 환경에서 Arsession을 기록.
+                //현재 실행중인 AR 세션의 서브시스템이 ARCoreSessionSubsystem인지 확인합니다.
+                //ARCoreSessionSubsystem은 ARCore의 기능을 제어하는 클래스입니다.
 #if UNITY_ANDROID
                 if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
                 {
@@ -122,15 +115,15 @@ public class TakeAShot : MonoBehaviour
                             m_Mp4Path = Path.Combine(path, fileName);
                             recordPath = m_Mp4Path;
                             config.SetMp4DatasetFilePath(session, m_Mp4Path);
-                            config.SetRecordingRotation(session,0);
+                            config.SetRecordingRotation(session,90);
                             subsystem.StartRecording(config);
                         }
                     }
                 }
 #endif
             }
-        }
             isRecording = false;
+        }
     }
 
     //비디오 촬영을 끝내는 버튼을 눌렀을 때
@@ -146,11 +139,10 @@ public class TakeAShot : MonoBehaviour
         {
             if (!isRecording)
             {
-                // 녹화 종료
-                Debug.Log("녹화종료");
                 videoStartBtn.gameObject.SetActive(true);
                 videoStopBtn.gameObject.SetActive(false);
                 CameraMode.isRecord = false;
+                //위와 동일하게 AR 서브시스템을 확인하고, 현재 상태가 녹화중이라면 녹화를 중지합니다.
                 #if UNITY_ANDROID
         if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
         {
@@ -171,32 +163,4 @@ public class TakeAShot : MonoBehaviour
     {
         SceneManager.LoadScene("PhotoZone_Docent"); //그 전 씬으로 돌아간다
     }
-
-    //IEnumerator StopRecordingCoroutine()
-    //{
-    //    if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-    //    {
-    //        yield return new WaitUntil(() => subsystem.recordingStatus == ArRecordingStatus.Ok);
-
-    //        session.StopRecording();
-    //        yield return new WaitForSeconds(2);
-    //    }
-    //}
-
-    //private void OnApplicationPause(bool pause)
-    //{
-    //    if (pause)
-    //    {
-    //        if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
-    //        {
-    //            session = subsystem.session;
-
-    //            using (var config = new ArRecordingConfig(session))
-    //            {
-    //                config.SetAutoStopOnPause(session, isPaused);
-    //            }
-    //        }
-    //    }
-    //}
-
 }

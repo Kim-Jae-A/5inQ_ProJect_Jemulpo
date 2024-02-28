@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LinRendererManager : MonoBehaviour
 {
+    public GameObject GuidePrefab;
     public Transform ARCamera;
     private LineRenderer lineRenderer;
+    public TextMeshPro textMeshPro;
     // 위도와 경도
     public Vector3[] LongLat;
+    public List<int> pointIndex = new List<int>();
+    public List<string> instructions = new List<string>();
     public List<double> Longitude = new List<double>();
     public List<double> Latitude = new List<double>();
     public static LinRendererManager instance;
+
+    private List<GameObject> clones = new List<GameObject>(); // 생성된 클론들을 저장할 리스트
+
     private void Awake()
     {
         if (instance == null)
@@ -29,8 +37,9 @@ public class LinRendererManager : MonoBehaviour
     private void Start()
     {
         LineRenderDraw();
-        UpdateARCameraPosition();     
+        CreateGuide();
     }
+
     void LineRenderDraw()
     {
         // JsonManager 클래스의 인스턴스를 통해 데이터에 접근
@@ -38,8 +47,17 @@ public class LinRendererManager : MonoBehaviour
             JsonManager.instance.data.route.trafast.Count > 0)
         {
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
+            foreach (Guide guideInfo in firstTraFast.guide)
+            {
+                pointIndex.Add(guideInfo.pointIndex);
+                instructions.Add(guideInfo.instructions);
+            }
+            Start startPoint = JsonManager.instance.data.route.trafast[0].summary.start;
             Goal goalPoint = JsonManager.instance.data.route.trafast[0].summary.goal;
+            List<float> startLocation = startPoint.location;
             List<float> goalLocation = goalPoint.location;
+            Longitude.Add(startLocation[0]);
+            Latitude.Add(startLocation[1]);
             // Path 데이터 확인
             foreach (var point in firstTraFast.path)
             {
@@ -50,40 +68,47 @@ public class LinRendererManager : MonoBehaviour
             Latitude.Add(goalLocation[1]);
         }
         LongLat = new Vector3[Longitude.Count];
-        for (int i = 0; i < Longitude.Count - 1 && i < Latitude.Count - 1; i++)
+        for (int i = 0; i < Longitude.Count; i++)
         {
-            double drawLongitude = Longitude[i] - Longitude[i + 1];
-            double drawLatitude = Latitude[i] - Latitude[i + 1];
+            double drawLongitude = Longitude[i] - Longitude[0];
+            double drawLatitude = Latitude[i] - Latitude[0];
             Vector3 position = new Vector3((float)drawLongitude * 100000, 0, (float)drawLatitude * 100000);
-            // 변환된 Vector3를 LongLat 배열에 추가합니다.
-            if (i > 0)
-            {
-                LongLat[i] = LongLat[i - 1] + position;
-            }
-            else
-            {
-                LongLat[i] = position;
-            }
+            LongLat[i] = position;
         }
-        lineRenderer.positionCount = Longitude.Count-1;
+        lineRenderer.positionCount = Longitude.Count;
         lineRenderer.SetPositions(LongLat); // 라인 렌더러에 위치 설정
     }
 
-    void UpdateARCameraPosition()
+    void CreateGuide()
     {
-        // AR 카메라가 바라보는 방향을 설정합니다.
-        Vector3 cameraForward = LongLat[2] - LongLat[0];
-        ARCamera.rotation = Quaternion.LookRotation(cameraForward, Vector3.up);
+        for (int i = 0; i < pointIndex.Count; i++)
+        {
+            // AR Geospatial Creator 게임 오브젝트 생성
+            GameObject clone = Instantiate(GuidePrefab, Vector3.zero, Quaternion.identity);
+            clone.transform.SetParent(transform);
+            Vector3 newPosition = LongLat[pointIndex[i] + 1];
+            newPosition.y = 2f; // y 좌표를 2로 수정
+            clone.transform.position = newPosition;
+            clones.Add(clone); // 생성된 클론을 리스트에 추가
 
-        // AR 카메라의 위치를 AR 카메라 화면의 중앙에 LongLat[0]가 보이도록 조정합니다.
-        // AR 카메라의 위치와 방향을 역으로 계산하여 조정합니다.
-        Vector3 cameraPosition = LongLat[0] - cameraForward.normalized;
-        ARCamera.position = cameraPosition;
+            textMeshPro = clone.GetComponentInChildren<TextMeshPro>();
+            if (textMeshPro != null)
+            {
+                textMeshPro.text = $"{instructions[i]}"; // 원하는 텍스트로 변경
+            }
+        }
+    }
 
-        // AR 카메라의 y 값을 2로 보정합니다.
-        Vector3 newPosition = ARCamera.position;
-        newPosition.y = 2f;
-        ARCamera.position = newPosition;
+    void Update()
+    {
+        // AR 카메라의 Transform을 가져옵니다.
+        Transform arCameraTransform = ARCamera.transform;
+
+        // 생성된 클론들이 AR 카메라를 바라보도록 회전 조정
+        foreach (GameObject clone in clones)
+        {
+            // 클론의 회전 각도를 AR 카메라의 앞쪽 방향과 같은 방향으로 설정합니다.
+            clone.transform.rotation = Quaternion.LookRotation(arCameraTransform.forward, Vector3.up);
+        }
     }
 }
-

@@ -98,7 +98,7 @@ public class ARGuide : MonoBehaviour
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
             foreach (Guide guideInfo in firstTraFast.guide)
             {
-                pointIndex.Add(guideInfo.pointIndex-1);
+                pointIndex.Add(guideInfo.pointIndex+1);
                 instructions.Add(guideInfo.instructions);
             }
         }

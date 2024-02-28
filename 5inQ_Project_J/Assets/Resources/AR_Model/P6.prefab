@@ -23,6 +23,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.9299991
       objectReference: {fileID: 0}
+    - target: {fileID: 3546232158172310844, guid: b1f3c9552944ebe4cb7e2fb4d0eb34d7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 75100b6245d2c9b4bac943fee4e7d315, type: 2}
     - target: {fileID: 3555780521530504032, guid: b1f3c9552944ebe4cb7e2fb4d0eb34d7,
         type: 3}
       propertyPath: simulationSpeed
