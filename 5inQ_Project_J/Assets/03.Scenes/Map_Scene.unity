@@ -220,8 +220,8 @@ RectTransform:
   - {fileID: 1552176500}
   - {fileID: 1604012301}
   - {fileID: 1453276433}
-  - {fileID: 106808647}
   - {fileID: 1894326379}
+  - {fileID: 106808647}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -935,7 +935,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB124\uBE44 \uC548\uB0B4 \n\uC2DC\uC791\uD558\uACA0\uC2B5\uB2C8\uAE4C"
+  m_Text: "\uB124\uBE44 \uC548\uB0B4 \n\uC2DC\uC791\uD558\uACA0\uC2B5\uB2C8\uAE4C\n(\uD655\uC778
+    \uC2DC AR\uD654\uBA74\uC73C\uB85C \uB118\uC5B4\uAC11\uB2C8\uB2E4)"
 --- !u!222 &204221028
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3943,7 +3944,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1914446052}
         m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
-        m_MethodName: NextScene
+        m_MethodName: OnNaviStartButtonEnter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5409,6 +5410,11 @@ PrefabInstance:
       propertyPath: markerpanel
       value: 
       objectReference: {fileID: 1552176501}
+    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
+        type: 3}
+      propertyPath: neviStartPanel
+      value: 
+      objectReference: {fileID: 106808648}
     - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
         type: 3}
       propertyPath: marker.Array.data[0]
