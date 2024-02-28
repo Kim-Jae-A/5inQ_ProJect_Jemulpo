@@ -80,7 +80,9 @@ public class InfoUIController : MonoBehaviour
             SceneManager.LoadScene("Docent_Animation");
         }
     }
-
+    /// <summary>
+    /// //
+    /// </summary>
     public void OnReturnButton()
     {
         if (mainPanel.gameObject.activeSelf)
