@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c950596f8d8aae54bb371491554e1daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousScene: TakeAShot
+  previousScene: 
 --- !u!4 &1335359865
 Transform:
   m_ObjectHideFlags: 0

@@ -2029,7 +2029,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c885e04b5e97f4ca6c9704a1986394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arSession: {fileID: 491511790}
 --- !u!114 &1286441796
 MonoBehaviour:
   m_ObjectHideFlags: 0
