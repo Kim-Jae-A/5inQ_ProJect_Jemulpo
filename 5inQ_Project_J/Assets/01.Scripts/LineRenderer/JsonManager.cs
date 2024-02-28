@@ -97,14 +97,23 @@ public class JsonManager : MonoBehaviour
 
     public void LoadData(string jsonData = "")
     {
-        if(jsonData == "")
+
+        if (jsonData == "")
+
         {
+
             jsonData = Direction5Manager.jsonData;
+
         }
+
         else
+
         {
+
             Direction5Manager.jsonData = jsonData;
+
         }
+
         data = JsonConvert.DeserializeObject<RouteData>(Direction5Manager.jsonData);
     }
 }
