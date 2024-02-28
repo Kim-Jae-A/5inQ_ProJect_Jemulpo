@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Change_Scene : MonoBehaviour
 {
+    StaticMapManager mapManager;
     public GameObject neviPanel;
     public GameObject infoPanel;
     public GameObject markerPanel;
@@ -14,9 +15,19 @@ public class Change_Scene : MonoBehaviour
     public GameObject endPoint;
     public GameObject lineObj;
 
+
+    private void Awake()
+    {
+        mapManager = StaticMapManager.instance;
+    }
     public void NeviScene()
     {
         SceneManager.LoadScene("Map_Scene");
+    }
+
+    private void Start()
+    {
+        mapManager.StartDrawing();
     }
 
     private void Update()

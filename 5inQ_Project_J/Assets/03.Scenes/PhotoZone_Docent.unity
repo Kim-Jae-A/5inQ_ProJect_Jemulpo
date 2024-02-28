@@ -1187,7 +1187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 14, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817551698
@@ -3160,8 +3160,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7222642833357218305}
-  - component: {fileID: 7402063600284229527}
   - component: {fileID: 7402063600284229528}
+  - component: {fileID: 7402063600284229529}
   m_Layer: 0
   m_Name: NaverAPIManager
   m_TagString: Untagged
@@ -3184,26 +3184,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7402063600284229527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217005332415128798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7364df0549cee994f8027f18432ad004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  url: https://naveropenapi.apigw.ntruss.com/map-static/v2/raster
-  width: 1000
-  height: 1000
-  zoomLevel: 17
-  key_ID: yxpbvkcpme
-  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
-  map: {fileID: 1681084627}
-  myPoint: {fileID: 817551698}
 --- !u!114 &7402063600284229528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,3 +3199,28 @@ MonoBehaviour:
   url: https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving
   key_ID: yxpbvkcpme
   key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
+--- !u!114 &7402063600284229529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217005332415128798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91669994d422894a88e04807838f8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://naveropenapi.apigw.ntruss.com/map-static/v2/raster
+  width: 1000
+  height: 1000
+  zoomLevel: 17
+  key_ID: yxpbvkcpme
+  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
+  map: {fileID: 1681084627}
+  mapui:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  myPoint: {fileID: 817551698}

@@ -95,16 +95,24 @@ public class JsonManager : MonoBehaviour
         }
     }
 
-    public void LoadData(string jsonData)
+    public void LoadData(string jsonData = "")
     {
-        data = JsonConvert.DeserializeObject<RouteData>(jsonData);
+        if(jsonData == "")
+        {
+            jsonData = Direction5Manager.jsonData;
+        }
+        else
+        {
+            Direction5Manager.jsonData = jsonData;
+        }
+        data = JsonConvert.DeserializeObject<RouteData>(Direction5Manager.jsonData);
     }
 
     // 데이터 로드 함수
-    public void LoadData()
+    /*public void LoadData()
     {
         string jsonData = Direction5Manager.jsonData;
 
         data = JsonConvert.DeserializeObject<RouteData>(jsonData);
-    }
+    }*/
 }

@@ -103,7 +103,7 @@ public class InfoUIController : MonoBehaviour
         mainPanel.gameObject.SetActive(false);
         naviPanel.gameObject.SetActive(true);
         //photo_Docent_static.DrawingStart();
-        Photo_Docent_Static.instance.DrawingStart();
+        StaticMapManager.instance.StartDrawing();
         Photo_Docent_Direction.instance.DirectionStart(_endlongitude, _endlatitude);      
     }
     public void NeviStartButton()
