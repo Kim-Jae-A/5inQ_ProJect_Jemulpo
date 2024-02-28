@@ -1750,7 +1750,7 @@ PrefabInstance:
     - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
@@ -2066,7 +2066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1136149953
 GameObject:
@@ -3316,7 +3316,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1717019130}
   - component: {fileID: 1717019129}
-  - component: {fileID: 1717019128}
   m_Layer: 0
   m_Name: JsonManager
   m_TagString: Untagged
@@ -3324,20 +3323,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1717019128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717019127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5626788a113a794da79e8bc52cb1553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineObj: {fileID: 891903285}
-  line: {fileID: 6371561800203796419, guid: e2bc1f5daa5efbd4abaaa6d046e6d353, type: 3}
 --- !u!114 &1717019129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,7 +3354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1857997365
 GameObject:
@@ -3447,6 +3432,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857997365}
   m_CullTransparentMesh: 1
+--- !u!1 &1878236882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1878236884}
+  - component: {fileID: 1878236883}
+  - component: {fileID: 1878236885}
+  m_Layer: 0
+  m_Name: DirectionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1878236883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878236882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9941b9bc066670042bf8c7500a53bbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving
+  key_ID: yxpbvkcpme
+  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
+--- !u!4 &1878236884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878236882}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1878236885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878236882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5626788a113a794da79e8bc52cb1553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineObj: {fileID: 891903285}
+  line: {fileID: 6371561800203796419, guid: e2bc1f5daa5efbd4abaaa6d046e6d353, type: 3}
 --- !u!1 &1883527053
 GameObject:
   m_ObjectHideFlags: 0
@@ -3833,31 +3880,13 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137256836}
   m_CullTransparentMesh: 1
---- !u!1 &7217005332415128798
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7222642833357218305}
-  - component: {fileID: 7402063600284229528}
-  - component: {fileID: 7402063600284229529}
-  m_Layer: 0
-  m_Name: NaverAPIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7222642833357218305
+--- !u!4 &3171604851095357583
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217005332415128798}
+  m_GameObject: {fileID: 6607496086230211138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -3866,28 +3895,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7402063600284229528
+--- !u!1 &6607496086230211138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3171604851095357583}
+  - component: {fileID: 7162081770897024522}
+  m_Layer: 0
+  m_Name: StaticMapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &7162081770897024522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217005332415128798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9941b9bc066670042bf8c7500a53bbb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  url: https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving
-  key_ID: yxpbvkcpme
-  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
---- !u!114 &7402063600284229529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217005332415128798}
+  m_GameObject: {fileID: 6607496086230211138}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f91669994d422894a88e04807838f8f4, type: 3}

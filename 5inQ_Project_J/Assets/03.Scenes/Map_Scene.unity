@@ -223,7 +223,7 @@ RectTransform:
   - {fileID: 1894326379}
   - {fileID: 106808647}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -403,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3559218298023099883, guid: d4169cf2566c7ab4b85e02689dd21f7c,
         type: 3}
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1914446052}
+      - m_Target: {fileID: 389490165}
         m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
         m_MethodName: NextScene
         m_Mode: 1
@@ -1375,6 +1375,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288478045}
   m_CullTransparentMesh: 1
+--- !u!1 &389490164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 389490166}
+  - component: {fileID: 389490165}
+  - component: {fileID: 389490167}
+  m_Layer: 0
+  m_Name: DirectionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &389490165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389490164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b1b3fe078d07c4aada9a231529bfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving
+  key_ID: yxpbvkcpme
+  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
+  nevipanel: {fileID: 1453276434}
+  neviStartPanel: {fileID: 106808648}
+  infopanel: {fileID: 1604012302}
+  markerpanel: {fileID: 1552176501}
+  marker:
+  - {fileID: 2103070973}
+  - {fileID: 2040568650}
+  - {fileID: 547938325}
+  - {fileID: 1538986481}
+--- !u!4 &389490166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389490164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389490167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389490164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5626788a113a794da79e8bc52cb1553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineObj: {fileID: 1058680595}
+  line: {fileID: 6371561800203796419, guid: e2bc1f5daa5efbd4abaaa6d046e6d353, type: 3}
 --- !u!1 &472809218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,7 +1927,6 @@ GameObject:
   m_Component:
   - component: {fileID: 658301158}
   - component: {fileID: 658301157}
-  - component: {fileID: 658301159}
   m_Layer: 0
   m_Name: JsonManager
   m_TagString: Untagged
@@ -1895,22 +1965,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &658301159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658301156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5626788a113a794da79e8bc52cb1553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineObj: {fileID: 1058680595}
-  line: {fileID: 6371561800203796419, guid: e2bc1f5daa5efbd4abaaa6d046e6d353, type: 3}
 --- !u!1 &782152252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,7 +2276,7 @@ PrefabInstance:
     - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8644694241045651587, guid: 854a00bc5cb86014aa869d5bc839521f,
         type: 3}
@@ -2314,7 +2370,7 @@ Transform:
   m_Children:
   - {fileID: 1899440621}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074340611
 MonoBehaviour:
@@ -2488,7 +2544,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1914446052}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
         m_MethodName: ExitPanel
         m_Mode: 1
@@ -2859,7 +2915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352975641
 GameObject:
@@ -3942,9 +3998,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1914446052}
+      - m_Target: {fileID: 389490165}
         m_TargetAssemblyTypeName: Direction5Manager, Assembly-CSharp
-        m_MethodName: OnNaviStartButtonEnter
+        m_MethodName: NeviStartButtonEnter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4911,18 +4967,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &1914446052 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-    type: 3}
-  m_PrefabInstance: {fileID: 2832905315333561790}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b1b3fe078d07c4aada9a231529bfda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2040568650
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,7 +5161,7 @@ RectTransform:
   m_Children:
   - {fileID: 175012235}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5357,146 +5401,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103070973}
   m_CullTransparentMesh: 1
---- !u!1001 &2832905315333561790
-PrefabInstance:
+--- !u!114 &1533135142738537648
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3609153609421091086, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: map
-      value: 
-      objectReference: {fileID: 175012233}
-    - target: {fileID: 3609153609421091086, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: myPoint
-      value: 
-      objectReference: {fileID: 1901843192}
-    - target: {fileID: 3609153609421091086, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: mapui.Array.data[0]
-      value: 
-      objectReference: {fileID: 2103070975}
-    - target: {fileID: 3609153609421091086, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: mapui.Array.data[1]
-      value: 
-      objectReference: {fileID: 2040568654}
-    - target: {fileID: 3609153609421091086, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: mapui.Array.data[2]
-      value: 
-      objectReference: {fileID: 547938327}
-    - target: {fileID: 3609153609421091086, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: mapui.Array.data[3]
-      value: 
-      objectReference: {fileID: 1538986483}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: infopanel
-      value: 
-      objectReference: {fileID: 1604012302}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: nevipanel
-      value: 
-      objectReference: {fileID: 1453276434}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: markerpanel
-      value: 
-      objectReference: {fileID: 1552176501}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: neviStartPanel
-      value: 
-      objectReference: {fileID: 106808648}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: marker.Array.data[0]
-      value: 
-      objectReference: {fileID: 2103070973}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: marker.Array.data[1]
-      value: 
-      objectReference: {fileID: 2040568650}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: marker.Array.data[2]
-      value: 
-      objectReference: {fileID: 547938325}
-    - target: {fileID: 6746988455934603387, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: marker.Array.data[3]
-      value: 
-      objectReference: {fileID: 1538986481}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6854633128295255532, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862505051850197811, guid: b7105397b892a634fb8aaaebb75ce377,
-        type: 3}
-      propertyPath: m_Name
-      value: NaverAPIManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b7105397b892a634fb8aaaebb75ce377, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677314583706146445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91669994d422894a88e04807838f8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://naveropenapi.apigw.ntruss.com/map-static/v2/raster
+  width: 1000
+  height: 1000
+  zoomLevel: 17
+  key_ID: yxpbvkcpme
+  key: 0yutJDRB0oHCq9pOLk9u060XEpQlEMZL7sRShb9t
+  map: {fileID: 175012233}
+  mapui:
+  - {fileID: 2103070975}
+  - {fileID: 2040568654}
+  - {fileID: 547938327}
+  - {fileID: 1538986483}
+  myPoint: {fileID: 1901843192}
+--- !u!1 &8677314583706146445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8678450624186814546}
+  - component: {fileID: 1533135142738537648}
+  m_Layer: 0
+  m_Name: StaticMapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8678450624186814546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677314583706146445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

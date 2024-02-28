@@ -15,11 +15,6 @@ public class Change_Scene : MonoBehaviour
     public GameObject endPoint;
     public GameObject lineObj;
 
-
-    private void Awake()
-    {
-        mapManager = StaticMapManager.instance;
-    }
     public void NeviScene()
     {
         SceneManager.LoadScene("Map_Scene");
@@ -27,7 +22,7 @@ public class Change_Scene : MonoBehaviour
 
     private void Start()
     {
-        mapManager.StartDrawing();
+        StaticMapManager.instance.StartDrawing();
     }
 
     private void Update()
