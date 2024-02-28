@@ -33,5 +33,11 @@ EditorBuildSettings:
     path: Assets/03.Scenes/UI_AR&Docent ListPage.unity
     guid: 03f6f2f8c7d5f6245a1fbe1f8a13dbea
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e3882d1369a243a428ea05a8959602a8,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 39d8b0cdd622b904ea168bd290f861c4,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: efe4d17d423f40f4abc92d48a2ee8964,
+      type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 438781a775f7f224c8b5ca58a1edbd43,
       type: 2}
