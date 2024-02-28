@@ -28,13 +28,13 @@ public class InfoUIController : MonoBehaviour
 
     private void Start()
     {
-        //JsonDataHolder¿¡ ÀÌÀü ¾À¿¡¼­ ³Ñ¾î¿Â ÀÎ½ºÅÏ½ºÀÇ µ¥ÀÌÅÍ¸¦ ¹Ş¾Æ¿È 
+        //JsonDataHolderì— ì´ì „ ì”¬ì—ì„œ ë„˜ì–´ì˜¨ ì¸ìŠ¤í„´ìŠ¤ì˜ ë°ì´í„°ë¥¼ ë°›ì•„ì˜´ 
         AR_POI selectedARData = JsonDataHolder.Instance.GetSelectedARData();
 
-        //¹Ş¾Æ¿Â µ¥ÀÌÅÍ°¡ nullÀÌ ¾Æ´Ï¶ó¸é
+        //ë°›ì•„ì˜¨ ë°ì´í„°ê°€ nullì´ ì•„ë‹ˆë¼ë©´
         if (selectedARData != null)
         {
-            //¹Ş¾Æ¿Â jsonµ¥ÀÌÅÍµéÀ» text¿¡ ÇÒ´ç
+            //ë°›ì•„ì˜¨ jsonë°ì´í„°ë“¤ì„ textì— í• ë‹¹
 
             Info_name.text = selectedARData.Name;
             End_name.text = Info_name.text;
@@ -43,27 +43,27 @@ public class InfoUIController : MonoBehaviour
             _endlatitude = Convert.ToDouble(selectedARData.latitude);
 
 
-            //ÀÌ¹ÌÁö ¶ÇÇÑ ¹Ş¾Æ¿Â µ¥ÀÌÅÍÀÇ ÀÌ¹ÌÁö °æ·Î¸¦ ÇÒ´ç
+            //ì´ë¯¸ì§€ ë˜í•œ ë°›ì•„ì˜¨ ë°ì´í„°ì˜ ì´ë¯¸ì§€ ê²½ë¡œë¥¼ í• ë‹¹
             Sprite sprite = Resources.Load<Sprite>(selectedARData.imagepath);
             if (sprite != null)
             {
-                //¹Ş¾Æ¿Â ÀÌ¹ÌÁö ÇÒ´ç.
+                //ë°›ì•„ì˜¨ ì´ë¯¸ì§€ í• ë‹¹.
                 Info_Image.sprite = sprite;
             }
-            //Playerprefs·Î ¹ŞÀº µ¥ÀÌÅÍ¸¦ ¹ÙÅÁÀ¸·Î »ó¼¼¼³¸íÃ¢ÀÇ TitleÀ» ¼³Á¤
+            //Playerprefsë¡œ ë°›ì€ ë°ì´í„°ë¥¼ ë°”íƒ•ìœ¼ë¡œ ìƒì„¸ì„¤ëª…ì°½ì˜ Titleì„ ì„¤ì •
             string selectedButton = PlayerPrefs.GetString("selectedButton", "Photozone");
             if(selectedButton == "Photozone") 
             {
-                Title.text = "AR Æ÷ÅäÁ¸";
+                Title.text = "AR í¬í† ì¡´";
             }
             else if(selectedButton == "Docent")
             {
-                Title.text = "AR µµ½¼Æ®";
+                Title.text = "AR ë„ìŠ¨íŠ¸";
             }
         }
     }
 
-    //ÃÔ¿µÇÏ±â Ã¢À¸·Î ³Ñ¾î°¨(¿©±âµµ ÃÔ¿µÇÏ±â ¹öÆ°À» ´©¸¥ »ó¼¼¼³¸íÃ¢À¸·Î ´Ù½Ã µ¹¾Æ¿À±â À§ÇØ Playerprefs ¼³Á¤.)
+    //ì´¬ì˜í•˜ê¸° ì°½ìœ¼ë¡œ ë„˜ì–´ê°(ì—¬ê¸°ë„ ì´¬ì˜í•˜ê¸° ë²„íŠ¼ì„ ëˆ„ë¥¸ ìƒì„¸ì„¤ëª…ì°½ìœ¼ë¡œ ë‹¤ì‹œ ëŒì•„ì˜¤ê¸° ìœ„í•´ Playerprefs ì„¤ì •.)
     public void OnShootingButton()
     {
         string selectedButton_ChangeScene = PlayerPrefs.GetString("selectedButton", "Photozone");
@@ -81,7 +81,7 @@ public class InfoUIController : MonoBehaviour
         }
     }
 
-    // Æä³ÎÀÇ ON,OFF ¿©ºÎ¸¦ È®ÀÎ ÈÄ ±× ÀüÀ¸·Î ÀÌµ¿
+    // í˜ë„ì˜ ON,OFF ì—¬ë¶€ë¥¼ í™•ì¸ í›„ ê·¸ ì „ìœ¼ë¡œ ì´ë™
     public void OnReturnButton()
     {
         if (mainPanel.gameObject.activeSelf)
@@ -103,7 +103,7 @@ public class InfoUIController : MonoBehaviour
             naviPanel.gameObject.SetActive(false);           
         }
     }
-    public void DirectionButton() // À§Ä¡º¸±â ¹öÆ° Å¬¸¯½Ã
+    public void DirectionButton() // ìœ„ì¹˜ë³´ê¸° ë²„íŠ¼ í´ë¦­ì‹œ
     {
         mainPanel.gameObject.SetActive(false);
         naviPanel.gameObject.SetActive(true);

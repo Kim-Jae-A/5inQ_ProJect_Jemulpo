@@ -23,9 +23,12 @@ public class Docent_PlayerController : MonoBehaviour
         Docent_slider.gameObject.SetActive(false);
         OnARDocentCreated += () => //프리팹이 생성되면 OnARDocentCreated 이벤트를 통해 replay버튼과 슬라이더를 활성화.
         {
+            //다시보기 버튼, 슬라이더 활성화
             Replay.gameObject.SetActive(true);
             Docent_slider.gameObject.SetActive(true);
-            Docent_slider.maxValue = animationController.narration.clip.length;//gaebalone.length;  
+            //슬라이더의 최대값을 나레이션의 length로 설정
+            Docent_slider.maxValue = animationController.narration.clip.length;
+            //다시보기 버튼에 이벤트추가.
             Replay.onClick.AddListener(animationController.RePlay_Docent);
         };
         animationController = GetComponent<Docent_AnimationController>();   
