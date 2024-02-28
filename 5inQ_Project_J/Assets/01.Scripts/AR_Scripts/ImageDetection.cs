@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -11,27 +12,13 @@ public class ImageDetection : MonoBehaviour
     {
         imageManager = GetComponent<ARTrackedImageManager>();
         imageManager.trackedImagesChanged += OnImageTrackedEvent;
+        
     }
-
-    void Start()
-    {
-        ResetTrackedImages();
-    }
-
-
-    public void ResetTrackedImages()
-    {
-        foreach (ARTrackedImage trackedImage in imageManager.trackables)
-        {
-            Destroy(trackedImage.transform.GetChild(0)?.gameObject);
-        }
-    }
-
 
     private void OnImageTrackedEvent(ARTrackedImagesChangedEventArgs args)
     {
         foreach (ARTrackedImage trackedImage in args.added)
-        {
+        {          
             //Reference Image Library로 접근
             string imageName = trackedImage.referenceImage.name;
 
@@ -43,6 +30,8 @@ public class ImageDetection : MonoBehaviour
                 GameObject obj = Instantiate(prefab); //prefab생성
                 obj.transform.SetParent(trackedImage.transform); //이미지의 자식으로 들어간다
             }
+
+
         }
 
 
@@ -60,7 +49,7 @@ public class ImageDetection : MonoBehaviour
                 if (trackedImage.transform.childCount > 0)
                 {
                     //생성 위치, 회전값
-                    trackedImage.transform.GetChild(0).position = trackedImage.transform.position - (Vector3.up * 0.2f);
+                    trackedImage.transform.GetChild(0).position = trackedImage.transform.position - (Vector3.up * 0.1f);
                     trackedImage.transform.GetChild(0).rotation = trackedImage.transform.rotation;
                 }
             }
