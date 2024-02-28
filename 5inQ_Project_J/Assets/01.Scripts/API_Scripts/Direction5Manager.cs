@@ -21,14 +21,14 @@ public class Direction5Manager : MonoBehaviour
     
     public static string _endlongitude; // 경도
     public static string _endlatitude; // 위도
-    public static string jsonData;
+    public static string jsonData; // API 에서 받아온 JSON 데이터가 저장되는 변수
 
     [Header("UI Panel InFo")]
-    public Image nevipanel;
-    public Image neviStartPanel;
-    public Image infopanel;
-    public Image markerpanel;
-    public GameObject[] marker;
+    public Image nevipanel;  // 현재 위치와 도착위치 경로 미리보기 팝업창
+    public Image neviStartPanel; // AR 화면으로 넘어갈때 확인 팝업창
+    public Image infopanel;  // POT 데이터 마커 클릭시 나오는 상세 설명 팝업창
+    public Image markerpanel;  // POI 데이터 마커 패널
+    public GameObject[] marker;  // POI 데이터를 받아와 생성할때 쓰는 마커 프리펩
     
 
     void Awake()
@@ -46,11 +46,15 @@ public class Direction5Manager : MonoBehaviour
         }
     }
 
-    public void OnNaviStartButtonEnter()
+    public void OnNaviStartButtonEnter() 
     {
-        StartCoroutine(DirectionStart());
+        StartCoroutine(DirectionStart()); 
     }
 
+    /// <summary>
+    /// 유니티 통신 라이브러리를 통해 API 통신 및 결과값을 받는 코루틴
+    /// </summary>
+    /// <returns></returns>
     IEnumerator DirectionStart()
     {
         apiURL = url + $"?start={StaticMapManager.longitude},{StaticMapManager.latitude}&goal={_endlongitude},{_endlatitude}&option=trafast"; // 현재 위치 좌표

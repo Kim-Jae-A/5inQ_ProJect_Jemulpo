@@ -53,6 +53,12 @@ public class MinMapLineRender : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 위도 경도를 유니티 좌표계로 치환하는 식
+    /// </summary>
+    /// <param name="latitude">위도</param>
+    /// <param name="longitude">경도</param>
+    /// <returns>입력받은 위도 경도를 바탕으로 치환한 Vector2 값</returns>
     private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
     {
         // 기준 위도, 경도
