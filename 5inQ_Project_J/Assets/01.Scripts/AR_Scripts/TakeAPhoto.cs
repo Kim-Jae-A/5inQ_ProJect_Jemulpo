@@ -139,11 +139,10 @@ public class TakeAShot : MonoBehaviour
         {
             if (!isRecording)
             {
-                // 녹화 종료
-                Debug.Log("녹화종료");
                 videoStartBtn.gameObject.SetActive(true);
                 videoStopBtn.gameObject.SetActive(false);
                 CameraMode.isRecord = false;
+                //위와 동일하게 AR 서브시스템을 확인하고, 현재 상태가 녹화중이라면 녹화를 중지합니다.
                 #if UNITY_ANDROID
         if (m_Session.subsystem is ARCoreSessionSubsystem subsystem)
         {
