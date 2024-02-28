@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class InfoUIController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class InfoUIController : MonoBehaviour
 
     public Image mainPanel;
     public Image naviPanel;
+    public Image naviStartPanel;
     public GameObject lineObj;
 
     [SerializeField] private string PreviousScene;
@@ -69,6 +71,8 @@ public class InfoUIController : MonoBehaviour
         PlayerPrefs.SetString("PreviousScene", currentScene);
         if(selectedButton_ChangeScene == "Photozone")
         {
+            LoaderUtility.Deinitialize();
+            LoaderUtility.Initialize();
             SceneManager.LoadScene("TakeAShot");
         }
         else if(selectedButton_ChangeScene == "Docent")
@@ -103,11 +107,19 @@ public class InfoUIController : MonoBehaviour
         mainPanel.gameObject.SetActive(false);
         naviPanel.gameObject.SetActive(true);
         //photo_Docent_static.DrawingStart();
-        Photo_Docent_Static.instance.DrawingStart();
+        StaticMapManager.instance.StartDrawing();
         Photo_Docent_Direction.instance.DirectionStart(_endlongitude, _endlatitude);      
     }
     public void NeviStartButton()
     {
         SceneManager.LoadScene("AR_LIneRenderer");
+    }
+    public void NeviStartPanelOn()
+    {
+        naviStartPanel.gameObject.SetActive(true);
+    }
+    public void ExitButton()
+    {
+        naviStartPanel.gameObject.SetActive(false);
     }
 }

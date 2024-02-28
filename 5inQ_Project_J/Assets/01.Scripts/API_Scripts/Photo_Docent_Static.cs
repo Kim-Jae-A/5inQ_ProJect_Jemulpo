@@ -28,8 +28,8 @@ public class Photo_Docent_Static : MonoBehaviour
     private double center_lat;
     private double center_log;
 
-    double latitude;
-    double longitude;
+    double _latitude;
+    double _longitude;
 
     bool check;
 
@@ -90,15 +90,15 @@ public class Photo_Docent_Static : MonoBehaviour
             if (Input.location.status == LocationServiceStatus.Running)
             {
                 // 현재 위치 정보를 구조체에 저장
-                latitude = Input.location.lastData.latitude;
-                longitude = Input.location.lastData.longitude;
+                _latitude = Input.location.lastData.latitude;
+                _longitude = Input.location.lastData.longitude;
                 if (!check)
                 {
                     StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
                 }
                 check = true;
 
-                myVector = ConvertGeoToUnityCoordinate(latitude, longitude);
+                myVector = ConvertGeoToUnityCoordinate(_latitude, _longitude);
 
                 myPoint.transform.localPosition = new Vector3(myVector.x, myVector.y, 0);
             }      
@@ -149,9 +149,7 @@ public class Photo_Docent_Static : MonoBehaviour
 
     public void DrawingStart()
     {
-#if UNITY_ANDROID
         StartCoroutine(RequestLocationPermission());
-#endif
 #if UNITY_EDITOR
         StartCoroutine(StaticMapDrawing());
 #endif
@@ -159,7 +157,7 @@ public class Photo_Docent_Static : MonoBehaviour
 
     IEnumerator StaticMapDrawing()
     {
-        apiURL = url + $"?w={width}&h={height}&center={longitude},{latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
+        apiURL = url + $"?w={width}&h={height}&center={_longitude},{_latitude}&level={zoomLevel}&scale=2"; // 현재 위치 좌표
 
 #if UNITY_EDITOR
         //apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역

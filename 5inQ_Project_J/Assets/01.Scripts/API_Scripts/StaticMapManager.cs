@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class StaticMapManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class StaticMapManager : MonoBehaviour
     public RawImage map;  // 받아온 텍스쳐를 적용할 공간
     string apiURL;
     bool check;
+    Scene scene;
 
     [Header("마커 띄우기용")]
     [SerializeField]private MapUI_Enum[] mapui;
@@ -46,8 +48,9 @@ public class StaticMapManager : MonoBehaviour
         }
     }
 
-    void Start()
+    public void StartDrawing()
     {
+        scene = SceneManager.GetActiveScene();
         // 위치 정보 권한 요청
         StartCoroutine(RequestLocationPermission());
 #if UNITY_EDITOR
@@ -104,10 +107,13 @@ public class StaticMapManager : MonoBehaviour
 
                 if (!check)
                 {
-                    for (int i = 0; i< mapui.Length; i++)
+                    if (scene.name == "Map_Scene")
                     {
-                        mapui[i].LoadingMarker();
-                    }                
+                        for (int i = 0; i < mapui.Length; i++)
+                        {
+                            mapui[i].LoadingMarker();
+                        }
+                    }   
                     StartCoroutine(StaticMapDrawing()); // API 요청 코루틴
                 }
                 check = true;
