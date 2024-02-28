@@ -132,6 +132,13 @@ public class StaticMapManager : MonoBehaviour
         // 스크립트가 파괴될 때 위치 서비스 종료
         Input.location.Stop();
     }
+
+    /// <summary>
+    /// 위도 경도를 유니티 좌표계로 치환하는 식
+    /// </summary>
+    /// <param name="latitude">위도</param>
+    /// <param name="longitude">경도</param>
+    /// <returns>입력받은 위도 경도를 바탕으로 치환한 Vector2 값</returns>
     private Vector2 ConvertGeoToUnityCoordinate(double latitude, double longitude)
     {
         // 기준 위도, 경도
@@ -159,6 +166,7 @@ public class StaticMapManager : MonoBehaviour
         }
         else
         {
+            // 위도 경도를 유니티 좌표계로 치환하는 식
             x = originX + (longitude - originLongitude) * xRatio;
             y = originY + (latitude - originLatitude) * yRatio;
         }
@@ -166,6 +174,11 @@ public class StaticMapManager : MonoBehaviour
         return new Vector2((float)x, (float)y);
     }
 
+
+    /// <summary>
+    /// 유니티 통신 라이브러리를 통해 API 통신 및 결과값을 받는 코루틴
+    /// </summary>
+    /// <returns></returns>
     IEnumerator StaticMapDrawing()
     {
         center_lat = latitude;
@@ -175,10 +188,7 @@ public class StaticMapManager : MonoBehaviour
         //apiURL = url + $"?w={width}&h={height}&center=126.657566,37.466480&level={zoomLevel}&scale=2"; //제물포역
         apiURL = url + $"?w={width}&h={height}&center=126.743572,37.713675&level={zoomLevel}&scale=2"; // 경기인력
 #endif
-        /*        apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center={longitude},{latitude}&crs=epsg:4326&zoom={zoomLevel}&size={width},{height}";// 현재 위치 좌표
-        #if UNITY_EDITOR
-                apiURL = url + $"{key}&format=png&basemap=GRAPHIC&center=126.657566,37.466480&crs=epsg:4326&zoom=16&size={width},{height}";
-        #endif*/
+        // 유니티 통신 라이브러리 사용
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(apiURL);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", key_ID);
         request.SetRequestHeader("X-NCP-APIGW-API-KEY", key);
@@ -201,7 +211,7 @@ public class StaticMapManager : MonoBehaviour
                 Debug.LogWarning(request.result.ToString());
                 yield break;
         }
-        if (request.isDone)
+        if (request.isDone) // 통신 리퀘스트 성공시
         {
             Debug.Log(request.result.ToString());
             map.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;

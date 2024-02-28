@@ -18,7 +18,8 @@ public class POICreator : MonoBehaviour
         CreateAnchor();
 
     }
-    void JsonCall()
+
+    void JsonCall() // JSON 데이터를 받아온다
     {
         if (poiManager.jsonFile != null)
         {
@@ -45,6 +46,7 @@ public class POICreator : MonoBehaviour
             Debug.LogError("JSON file is missing.");
         }
     }
+
 
     void CreateAnchor()
     {

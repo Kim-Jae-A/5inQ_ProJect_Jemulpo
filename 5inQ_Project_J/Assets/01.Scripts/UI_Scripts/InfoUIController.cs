@@ -81,6 +81,7 @@ public class InfoUIController : MonoBehaviour
         }
     }
 
+    // 페널의 ON,OFF 여부를 확인 후 그 전으로 이동
     public void OnReturnButton()
     {
         if (mainPanel.gameObject.activeSelf)
@@ -102,7 +103,7 @@ public class InfoUIController : MonoBehaviour
             naviPanel.gameObject.SetActive(false);           
         }
     }
-    public void DirectionButton()
+    public void DirectionButton() // 위치보기 버튼 클릭시
     {
         mainPanel.gameObject.SetActive(false);
         naviPanel.gameObject.SetActive(true);
