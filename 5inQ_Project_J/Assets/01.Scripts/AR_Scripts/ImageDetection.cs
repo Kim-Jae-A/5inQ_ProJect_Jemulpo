@@ -11,8 +11,7 @@ public class ImageDetection : MonoBehaviour
     void Awake()
     {
         imageManager = GetComponent<ARTrackedImageManager>();
-        imageManager.trackedImagesChanged += OnImageTrackedEvent;
-        
+        imageManager.trackedImagesChanged += OnImageTrackedEvent;       
     }
 
     private void OnImageTrackedEvent(ARTrackedImagesChangedEventArgs args)
@@ -30,23 +29,20 @@ public class ImageDetection : MonoBehaviour
                 GameObject obj = Instantiate(prefab); //prefab생성
                 obj.transform.SetParent(trackedImage.transform); //이미지의 자식으로 들어간다
             }
-
-
         }
-
 
         foreach (ARTrackedImage trackedImage in args.updated)
         {
-            if (trackedImage.trackingState == TrackingState.None)
+            if (trackedImage.trackingState == TrackingState.None) //이미지가 더 이상 추적되지 않는 경우
             {
-                if (trackedImage.transform.childCount > 0)
+                if (trackedImage.transform.childCount > 0) //자식 오브젝트가 존재하면
                 {
-                    Destroy(trackedImage.transform.GetChild(0));
+                    Destroy(trackedImage.transform.GetChild(0));//파괴
                 }
             }
-            else
+            else//이미지가 추저되는 경우
             {
-                if (trackedImage.transform.childCount > 0)
+                if (trackedImage.transform.childCount > 0)//자식 오브젝트가 존재하면
                 {
                     //생성 위치, 회전값
                     trackedImage.transform.GetChild(0).position = trackedImage.transform.position - (Vector3.up * 0.1f);
@@ -54,14 +50,6 @@ public class ImageDetection : MonoBehaviour
                 }
             }
         }
-
-        foreach (ARTrackedImage trackedImage in args.removed)
-        {
-            Destroy(trackedImage.transform.GetChild(0));
-
-        }
-
-
     }
 
 }
