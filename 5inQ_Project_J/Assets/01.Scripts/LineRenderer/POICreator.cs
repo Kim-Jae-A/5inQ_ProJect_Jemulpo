@@ -48,6 +48,8 @@ public class POICreator : MonoBehaviour
 
     void CreateAnchor()
     {
+        LinRendererManager lineRendererManager = FindObjectOfType<LinRendererManager>();
+        Vector3[] LongLat = lineRendererManager.LongLat;
         for (int i = 0; i < Longitude.Count; i++)
         {
 
@@ -55,7 +57,7 @@ public class POICreator : MonoBehaviour
             GameObject clone = Instantiate(AnchorPrefab, Vector3.zero, Quaternion.identity);
             clone.transform.SetParent(transform);
             Vector3 unityPosition = ConvertGeoToUnityCoordinates(Latitude[i], Longitude[i]);
-            clone.transform.position = unityPosition;
+            clone.transform.position = LongLat[0] - unityPosition;
         }
 
     }
