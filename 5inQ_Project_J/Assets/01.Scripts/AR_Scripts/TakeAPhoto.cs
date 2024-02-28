@@ -9,6 +9,7 @@ using Google.XR.ARCoreExtensions;
 using Unity.Collections;
 using UnityEngine.XR.ARSubsystems;
 using System;
+
 public class TakeAShot : MonoBehaviour
 {
     [Header("버튼")]
@@ -35,7 +36,7 @@ public class TakeAShot : MonoBehaviour
 
     private void Awake()
     {
-        m_Session = GetComponent<ARSession>();
+        //m_Session = GetComponent<ARSession>();
         bool isExist = Directory.Exists(path);
         if (!isExist)
         {

@@ -6,15 +6,8 @@ using UnityEngine.UI;
 
 public class MinMapLineRender : MonoBehaviour
 {
-    public GameObject lineObj;
-    public GameObject line;
-
-    LineRenderer lineRenderer;
-
-    private void Awake()
-    {
-        lineRenderer = lineObj.GetComponent<LineRenderer>();
-    }
+    public Transform lineContainer;
+    public RectTransform linePrefab;
 
     public void OnButtonEnter()
     {
@@ -22,36 +15,36 @@ public class MinMapLineRender : MonoBehaviour
         {
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
 
-            // 위에 3줄 코드 입력후 불러올 데이터 foreach문으로 확인 or 출력
+            RectTransform previousLine = null;
 
-            GameObject a;
-
-            // Path 데이터 확인
-            foreach (var point in firstTraFast.path)
+            // 제이슨 파싱한 좌표에 이미지를 생성하고 이미지를 라인렌더러처럼 보이게 변환시켜 경로를 표시한다
+            for (int i = 0; i < firstTraFast.path.Count - 1; i++)
             {
-                Vector2 v = ConvertGeoToUnityCoordinate(point[1], point[0]);
-                a = Instantiate(line);
-                a.transform.rotation = new Quaternion(0, 0, 0, 0);
-                a.transform.position = new Vector3(v.x, v.y, 0);
-                a.transform.SetParent(lineObj.transform, false);
-                a.transform.localScale = new Vector3(1, 1, 1);
-            }
-            a = Instantiate(line);
-            a.transform.rotation = new Quaternion(0, 0, 0, 0);
-            a.transform.position = new Vector3(0, 0, 0);
-            a.transform.SetParent(lineObj.transform, false);
-            a.transform.localScale = new Vector3(1, 1, 1);
+                var point1 = firstTraFast.path[i];
+                var point2 = firstTraFast.path[i + 1];
 
-            int childCount = lineObj.transform.childCount; // 자식 객체의 수를 구합니다.
+                Vector2 position1 = ConvertGeoToUnityCoordinate(point1[1], point1[0]);
+                Vector2 position2 = ConvertGeoToUnityCoordinate(point2[1], point2[0]);
 
-            lineRenderer.positionCount = childCount - 1; // 라인의 점 개수를 자식 객체의 수로 설정합니다.
+                if (previousLine != null)
+                {
+                    RectTransform line = Instantiate(linePrefab, lineContainer);
+                    line.anchoredPosition = (position1 + position2) / 2f;
 
-            for (int i = 0; i < lineObj.transform.childCount - 1; i++)
-            {
-                lineRenderer.SetPosition(i, lineObj.transform.GetChild(i).position); // 각 점의 위치를 자식 객체의 위치로 설정합니다.
+                    float distance = Vector2.Distance(position1, position2);
+                    line.sizeDelta = new Vector2(distance, line.sizeDelta.y);
+
+                    Vector2 direction = position2 - position1;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    line.rotation = Quaternion.Euler(0, 0, angle);
+                }
+
+                previousLine = Instantiate(linePrefab, lineContainer);
+                previousLine.anchoredPosition = position2;
             }
         }
     }
+
 
     /// <summary>
     /// 위도 경도를 유니티 좌표계로 치환하는 식
@@ -64,7 +57,6 @@ public class MinMapLineRender : MonoBehaviour
         // 기준 위도, 경도
         double originLatitude = StaticMapManager.latitude;
         double originLongitude = StaticMapManager.longitude;
-
 #if UNITY_EDITOR
         originLatitude = 37.713675f;
         originLongitude = 126.743572f;
