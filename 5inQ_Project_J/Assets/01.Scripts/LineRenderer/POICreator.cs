@@ -1,12 +1,15 @@
-using System.Collections;
+using Google.XR.ARCoreExtensions.Editor.Internal.Proto;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class POICreator : MonoBehaviour
 {
     public GameObject AnchorPrefab;
     public List<double> Longitude = new List<double>();
     public List<double> Latitude = new List<double>();
+    public List<int> pointIndex = new List<int>();
+    public List<string> instructions = new List<string>();
     POIManager poiManager;
     private void Awake()
     {
