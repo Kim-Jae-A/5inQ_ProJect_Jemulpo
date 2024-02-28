@@ -11,11 +11,19 @@ public class LinRendererManager : MonoBehaviour
     public Vector3[] LongLat;
     public List<double> Longitude = new List<double>();
     public List<double> Latitude = new List<double>();
-    
+    public static LinRendererManager instance;
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this; // 클래스의 인스턴스를 할당
+        }
+        else
+        {
+            Destroy(gameObject); // 이미 다른 인스턴스가 존재하면 이 객체를 파괴
+            return;
+        }
         lineRenderer = GetComponent<LineRenderer>();
-
     }
 
     private void Start()
@@ -30,12 +38,8 @@ public class LinRendererManager : MonoBehaviour
             JsonManager.instance.data.route.trafast.Count > 0)
         {
             TraFast firstTraFast = JsonManager.instance.data.route.trafast[0];
-            Start startPoint = JsonManager.instance.data.route.trafast[0].summary.start;
             Goal goalPoint = JsonManager.instance.data.route.trafast[0].summary.goal;
-            List<float> startLocation = startPoint.location;
             List<float> goalLocation = goalPoint.location;
-            Longitude.Add(startLocation[0]);
-            Latitude.Add(startLocation[1]);
             // Path 데이터 확인
             foreach (var point in firstTraFast.path)
             {
