@@ -9,6 +9,8 @@ public class Docent_PlayerController : MonoBehaviour
     [SerializeField] private Slider Docent_slider;//애니메이션 진행률표시 슬라이더
     [SerializeField] private Button BackToDescription;//이전 씬 이동
     [SerializeField] private Button Replay; //애니메이션 다시보기 버튼
+    
+
     public Docent_AnimationController animationController;//프리팹이 생성되면 연결되어야 하기 때문에 public 사용
 
 
@@ -18,7 +20,7 @@ public class Docent_PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        Docent_AnimationController.OnDocentCreated += ConnectAnimator;
         Replay.gameObject.SetActive(false);
         Docent_slider.gameObject.SetActive(false);
         OnARDocentCreated += () => //프리팹이 생성되면 OnARDocentCreated 이벤트를 통해 replay버튼과 슬라이더를 활성화.
@@ -33,6 +35,10 @@ public class Docent_PlayerController : MonoBehaviour
         };
         animationController = GetComponent<Docent_AnimationController>();   
         BackToDescription.onClick.AddListener(Return_Docent_Description);//뒤로가기버튼 이벤트 추가.
+    }
+    private void ConnectAnimator(Docent_AnimationController docent)
+    {
+        animationController = docent;
     }
     void Update()
     {
