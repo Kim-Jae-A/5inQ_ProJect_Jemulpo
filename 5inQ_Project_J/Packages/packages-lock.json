@@ -13,15 +13,14 @@
       "url": "https://unity.pkg.cesium.com"
     },
     "com.google.ar.core.arfoundation.extensions": {
-      "version": "https://github.com/google-ar/arcore-unity-extensions.git",
+      "version": "file:arcore-unity-extensions-1.40.0.tgz",
       "depth": 0,
-      "source": "git",
+      "source": "local-tarball",
       "dependencies": {
         "com.unity.xr.arfoundation": "4.1.5",
         "com.unity.xr.arcore": "4.1.5",
         "com.unity.xr.arkit": "4.1.5"
-      },
-      "hash": "7984b1776fce72cac82f36c791af2306de993745"
+      }
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
