@@ -14,11 +14,6 @@ public class UIRayCaster : MonoBehaviour
     [SerializeField] private Toggle photozone;
     [SerializeField] private Toggle docent;
     [SerializeField] private ToggleGroup toggleGroup;
-
-    [Header("스크롤뷰")]
-    [SerializeField] private GameObject ListPage;
-    [SerializeField] private ScrollRect ListPage_Change_Content;
-
     private ScrollViewManager scrollViewManager;
 
     [SerializeField] private string AR_InfoScene;
@@ -67,64 +62,6 @@ public class UIRayCaster : MonoBehaviour
         }
     }
     
-
-    /*private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GraphicRaycaster raycaster = GetComponentInParent<GraphicRaycaster>();
-
-            if (raycaster != null)
-            {
-                PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-                pointerEventData.position = Input.mousePosition;
-                List<RaycastResult> results = new List<RaycastResult>();
-                raycaster.Raycast(pointerEventData, results);
-                foreach (RaycastResult result in results)
-                {
-                    if (result.gameObject.CompareTag("PhotozoneButton"))
-                    {
-                        Debug.Log("포토존 버튼 선택.");
-                        PlayerPrefs.SetString("selectedButton", "Photozone");
-                        photozone_Color.a = 1f;
-                        docent_Color.a = 0f;
-                        photozone.color = photozone_Color;
-                        docent.color = docent_Color;
-                        scrollViewManager.OnPhotozoneButtonClicked();
-                    }
-
-                    else if (result.gameObject.CompareTag("DocentButton"))
-                    {
-                        Debug.Log("도슨트 버튼 선택");
-                        PlayerPrefs.SetString("selectedButton", "Docent");
-                        photozone_Color.a = 0f;
-                        docent_Color.a = 1f;
-                        photozone.color = photozone_Color;
-                        docent.color = docent_Color;
-                        scrollViewManager.OnDocentButtonClicked();
-                    }
-                    else if (result.gameObject.CompareTag("Element"))
-                    {
-                        AR_POI selectedData = result.gameObject.GetComponent<SaveListElementData>().GetARJsonData();
-                        //이 왜 진?
-                        if (selectedData == null)
-                        {
-                            //Debug.Log("selectedData is null.");
-                            return;
-                        }
-                        JsonDataHolder.Instance.SetSelectedARData(selectedData);
-                        OnARList_ElementClicked();
-                    }
-                }
-            }
-        }
-    }*/
-
-    //리스트의 요소를 클릭했을 때 클릭한 요소의 정보창으로 이동, 뒤로가기 버튼.
-    //public void OnARList_ElementClicked()
-    //{
-    //    SceneManager.LoadScene(AR_InfoScene);
-    //}
     public void OnReturnButton()
     {
         SceneManager.LoadScene(PreviousScene);
