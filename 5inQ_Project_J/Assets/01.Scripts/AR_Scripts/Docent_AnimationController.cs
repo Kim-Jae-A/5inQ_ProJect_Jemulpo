@@ -10,6 +10,7 @@ public class Docent_AnimationController : MonoBehaviour
 
     public delegate void DocentCreated(Docent_AnimationController docent);
     public  static event DocentCreated OnDocentCreated;
+
     Docent_PlayerController playerController;
 
     void Start()
