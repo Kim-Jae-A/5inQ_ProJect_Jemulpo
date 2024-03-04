@@ -10,7 +10,7 @@ public class LinRendererManager : MonoBehaviour
     public Transform ARCamera;
     private LineRenderer lineRenderer;
     public TextMeshPro textMeshPro;
-    // À§µµ¿Í °æµµ
+    // ìœ„ë„ì™€ ê²½ë„
     public Vector3[] LongLat;
     public List<int> pointIndex = new List<int>();
     public List<string> instructions = new List<string>();
@@ -18,17 +18,17 @@ public class LinRendererManager : MonoBehaviour
     public List<double> Latitude = new List<double>();
     public static LinRendererManager instance;
 
-    private List<GameObject> clones = new List<GameObject>(); // »ı¼ºµÈ Å¬·ĞµéÀ» ÀúÀåÇÒ ¸®½ºÆ®
+    private List<GameObject> clones = new List<GameObject>(); // ìƒì„±ëœ í´ë¡ ë“¤ì„ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
 
     private void Awake()
     {
         if (instance == null)
         {
-            instance = this; // Å¬·¡½ºÀÇ ÀÎ½ºÅÏ½º¸¦ ÇÒ´ç
+            instance = this; // í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í• ë‹¹
         }
         else
         {
-            Destroy(gameObject); // ÀÌ¹Ì ´Ù¸¥ ÀÎ½ºÅÏ½º°¡ Á¸ÀçÇÏ¸é ÀÌ °´Ã¼¸¦ ÆÄ±«
+            Destroy(gameObject); // ì´ë¯¸ ë‹¤ë¥¸ ì¸ìŠ¤í„´ìŠ¤ê°€ ì¡´ì¬í•˜ë©´ ì´ ê°ì²´ë¥¼ íŒŒê´´
             return;
         }
         lineRenderer = GetComponent<LineRenderer>();
@@ -39,10 +39,14 @@ public class LinRendererManager : MonoBehaviour
         LineRenderDraw();
         CreateGuide();
     }
-
+/// <summary>
+/// ë¼ì¸ ë Œë”ëŸ¬ê°€ ì‹¤ì œë‘ ë¶ˆì¼ì¹˜í•˜ëŠ” ì´ìœ ëŠ” í˜„ì‹¤ê³¼ ìœ ë‹ˆí‹° ìƒì˜ ê±°ë¦¬ ë¹„ê°€ ë‹¤ë¥´ê¸° ë•Œë¬¸ì´ë‹¤.
+/// ê³„ìƒ í¸ì˜ìƒ  Vector3 positionì— 10ë§Œì„ ê³±í–ˆì„ ë•Œ ì‹¤ì œ ê±°ë¦¬ì™€ 20mì •ë„ ì°¨ì´ê°€ ë‚¬ë‹¤.
+/// ì´ ì½”ë“œë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œëŠ” 9ë§Œì´ë‚˜ 8ë§Œ ë“± ê³±í•˜ëŠ” ìˆ˜ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë©´ì„œ í˜„ì‹¤ê³¼ ìœ ë‹ˆí‹° ìƒì—ì„œ ì¼ì¹˜í•˜ëŠ” ê°’ì„ ì°¾ì•„ë‚´ì„œ ê³±í•´ì•¼í•œë‹¤.
+/// <summary>
     void LineRenderDraw()
     {
-        // JsonManager Å¬·¡½ºÀÇ ÀÎ½ºÅÏ½º¸¦ ÅëÇØ µ¥ÀÌÅÍ¿¡ Á¢±Ù
+        // JsonManager í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í†µí•´ ë°ì´í„°ì— ì ‘ê·¼
         if (JsonManager.instance != null && JsonManager.instance.data != null &&
             JsonManager.instance.data.route.trafast.Count > 0)
         {
@@ -58,7 +62,7 @@ public class LinRendererManager : MonoBehaviour
             List<float> goalLocation = goalPoint.location;
             Longitude.Add(startLocation[0]);
             Latitude.Add(startLocation[1]);
-            // Path µ¥ÀÌÅÍ È®ÀÎ
+            // Path ë°ì´í„° í™•ì¸
             foreach (var point in firstTraFast.path)
             {
                 Longitude.Add(point[0]);
@@ -76,38 +80,38 @@ public class LinRendererManager : MonoBehaviour
             LongLat[i] = position;
         }
         lineRenderer.positionCount = Longitude.Count;
-        lineRenderer.SetPositions(LongLat); // ¶óÀÎ ·»´õ·¯¿¡ À§Ä¡ ¼³Á¤
+        lineRenderer.SetPositions(LongLat); // ë¼ì¸ ë Œë”ëŸ¬ì— ìœ„ì¹˜ ì„¤ì •
     }
 
     void CreateGuide()
     {
         for (int i = 0; i < pointIndex.Count; i++)
         {
-            // AR Geospatial Creator °ÔÀÓ ¿ÀºêÁ§Æ® »ı¼º
+            // AR Geospatial Creator ê²Œì„ ì˜¤ë¸Œì íŠ¸ ìƒì„±
             GameObject clone = Instantiate(GuidePrefab, Vector3.zero, Quaternion.identity);
             clone.transform.SetParent(transform);
             Vector3 newPosition = LongLat[pointIndex[i] + 1];
-            newPosition.y = 2f; // y ÁÂÇ¥¸¦ 2·Î ¼öÁ¤
+            newPosition.y = 2f; // y ì¢Œí‘œë¥¼ 2ë¡œ ìˆ˜ì •
             clone.transform.position = newPosition;
-            clones.Add(clone); // »ı¼ºµÈ Å¬·ĞÀ» ¸®½ºÆ®¿¡ Ãß°¡
+            clones.Add(clone); // ìƒì„±ëœ í´ë¡ ì„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 
             textMeshPro = clone.GetComponentInChildren<TextMeshPro>();
             if (textMeshPro != null)
             {
-                textMeshPro.text = $"{instructions[i]}"; // ¿øÇÏ´Â ÅØ½ºÆ®·Î º¯°æ
+                textMeshPro.text = $"{instructions[i]}"; // ì›í•˜ëŠ” í…ìŠ¤íŠ¸ë¡œ ë³€ê²½
             }
         }
     }
 
     void Update()
     {
-        // AR Ä«¸Ş¶óÀÇ TransformÀ» °¡Á®¿É´Ï´Ù.
+        // AR ì¹´ë©”ë¼ì˜ Transformì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
         Transform arCameraTransform = ARCamera.transform;
 
-        // »ı¼ºµÈ Å¬·ĞµéÀÌ AR Ä«¸Ş¶ó¸¦ ¹Ù¶óº¸µµ·Ï È¸Àü Á¶Á¤
+        // ìƒì„±ëœ í´ë¡ ë“¤ì´ AR ì¹´ë©”ë¼ë¥¼ ë°”ë¼ë³´ë„ë¡ íšŒì „ ì¡°ì •
         foreach (GameObject clone in clones)
         {
-            // Å¬·ĞÀÇ È¸Àü °¢µµ¸¦ AR Ä«¸Ş¶óÀÇ ¾ÕÂÊ ¹æÇâ°ú °°Àº ¹æÇâÀ¸·Î ¼³Á¤ÇÕ´Ï´Ù.
+            // í´ë¡ ì˜ íšŒì „ ê°ë„ë¥¼ AR ì¹´ë©”ë¼ì˜ ì•ìª½ ë°©í–¥ê³¼ ê°™ì€ ë°©í–¥ìœ¼ë¡œ ì„¤ì •í•©ë‹ˆë‹¤.
             clone.transform.rotation = Quaternion.LookRotation(arCameraTransform.forward, Vector3.up);
         }
     }
