@@ -19,17 +19,6 @@ public class Docent_AnimationController : MonoBehaviour
         OnDocentCreated?.Invoke(this);
 
     }
-
-    //private void OnEnable()
-    //{
-    //    //사용을 꺼리는 코드지만, 여러개의 애니메이션 클립을 사용하여 애니메이션의 진행률을 프리팹의 데이터로
-    //    //받아와야 하는 상태이므로 프리팹이 생성되면 DocentUI_Controller 오브젝트를 찾아 연결시켜줘야 애니메이션의
-    //    //다시보기와 진행상태를 표시하는 기능을 사용할 수 있습니다.
-    //    //playerController = GameObject.Find("DocentUI_Controller").GetComponent<Docent_PlayerController>();
-    //    //playerController.animationController = this;// 같은 애니메이터를 사용하므로 this 처리
-        
-    //}
-
     private void OnDisable()
     {
         playerController.animationController = null;//프리팹이 비활성화 되면 Docent_PlayerController의 애니메이터 null값 할당
