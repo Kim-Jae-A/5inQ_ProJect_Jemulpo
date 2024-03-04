@@ -7,6 +7,9 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Naver API Direction 사용을 위한 Class
+/// </summary>
 public class Direction5Manager : MonoBehaviour
 {
     public static Direction5Manager instance;
@@ -102,6 +105,9 @@ public class Direction5Manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 길안내 버튼을 누르면 패널 및 마커 가리기
+    /// </summary>
     public void SomeFunction()
     {
         nevipanel.gameObject.SetActive(true);

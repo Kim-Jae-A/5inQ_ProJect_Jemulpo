@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// AR 화면 미니맵 경로 표시 클래스
+/// </summary>
 public class MinMapLineRender : MonoBehaviour
 {
     public Transform lineContainer;
     public RectTransform linePrefab;
 
+    /// <summary>
+    /// AR 화면에서 밑의 미니맵에 이미지를 라인 랜더러 처럼 변환시키기 위한 함수
+    /// </summary>
     public void OnButtonEnter()
     {
         if (JsonManager.instance != null && JsonManager.instance.data != null && JsonManager.instance.data.route.trafast.Count > 0)

@@ -16,6 +16,9 @@ public class Map_DrawingLine : MonoBehaviour
         lineRenderer = lineObj.GetComponent<LineRenderer>();
     }
 
+    /// <summary>
+    /// 저장된 경로의 정보를 받아와 라인으로 그려주는 함수
+    /// </summary>
     public void OnButtonEnter()
     {
         if (JsonManager.instance != null && JsonManager.instance.data != null && JsonManager.instance.data.route.trafast.Count > 0)

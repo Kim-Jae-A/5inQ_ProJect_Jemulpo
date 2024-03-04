@@ -22,6 +22,7 @@ public class POICreator : MonoBehaviour
 
     }
 
+
     void JsonCall() // JSON 데이터를 받아온다
     {
         if (poiManager.jsonFile != null)

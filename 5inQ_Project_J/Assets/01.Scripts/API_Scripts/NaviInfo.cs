@@ -8,6 +8,4 @@ public class NaviInfo : MonoBehaviour
     public Text startText;
     public Text endText;
     public Text endInfo;
-
-
 }

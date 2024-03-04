@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Naver API StaticMap 사용을 위한 Class
+/// </summary>
 public class StaticMapManager : MonoBehaviour
 {
     public static StaticMapManager instance;

@@ -52,6 +52,10 @@ public class Photo_Docent_Direction : MonoBehaviour
         StartCoroutine(DirectionStart());
     }
 
+    /// <summary>
+    /// API 통신 및 경로 안내
+    /// </summary>
+    /// <returns></returns>
     IEnumerator DirectionStart()
     {
         apiURL = url + $"?start={StaticMapManager.longitude},{StaticMapManager.latitude}&goal={_endlongitude},{_endlatitude}&option=trafast"; // 현재 위치 좌표

@@ -75,7 +75,10 @@ public class MapUI_Enum : MonoBehaviour
         naviPanel.SetActive(true);
     }
 
-    public void LoadingMarker() // 생성된 POI Marker 버튼에 클릭 이벤트 할당
+    /// <summary>
+    /// 생성된 POI Marker 버튼에 클릭 이벤트 할당
+    /// </summary>
+    public void LoadingMarker()
     {
         LoadAndCreate(json);
         panelButton = panel.GetComponentsInChildren<Button>();
@@ -86,7 +89,12 @@ public class MapUI_Enum : MonoBehaviour
             b.onClick.AddListener(() => OnButtonEnter(b));
         }
     }
-    private void LoadAndCreate(TextAsset jsonfile) // POI JSON에서 파싱
+
+    /// <summary>
+    /// POI JSON에서 파싱 후 생성함수 호출
+    /// </summary>
+    /// <param name="jsonfile">제이슨파일</param>
+    private void LoadAndCreate(TextAsset jsonfile)
     {
         if (jsonfile != null)
         {
@@ -100,7 +108,11 @@ public class MapUI_Enum : MonoBehaviour
         }
     }
 
-    private void CreateMarker(AR_POI ARZone_poi) // 파싱된 데이터를 바탕으로 Marker 생성 및 각 마커 버튼에 정보 입력
+    /// <summary>
+    /// 파싱된 데이터를 바탕으로 Marker 생성 및 각 마커 버튼에 정보 입력
+    /// </summary>
+    /// <param name="ARZone_poi">제이슨 파싱한 컨테이너</param>
+    private void CreateMarker(AR_POI ARZone_poi)
     {
         if (ARZone_poi.Name != null)
         {
